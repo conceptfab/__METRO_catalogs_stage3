@@ -1,0 +1,30 @@
+{
+  "sectionLabel": "Functionality",
+  "title": "Features",
+  "items": [
+    {
+      "icon": "layout-grid",
+      "title": "Classic & timeless",
+      "desc": "A clean, restrained silhouette that fits any office aesthetic — from formal executive suites to modern open-plan layouts.",
+      "video": {
+        "src": "/catalogs/FM/features/FM_classic.mp4"
+      }
+    },
+    {
+      "icon": "wrench",
+      "title": "Quick & simple assembly",
+      "desc": "Pre-assembled frame keeps installation fast and straightforward. One person can complete a full desk without specialist help.",
+      "video": {
+        "src": "/catalogs/FM/features/FM_assembly.mp4"
+      }
+    },
+    {
+      "icon": "combine",
+      "title": "Optional return desk",
+      "desc": "A side return can be attached to extend the work surface — useful for L-shape setups and longer workstations.",
+      "video": {
+        "src": "/catalogs/FM/features/FM_extend.mp4"
+      }
+    }
+  ]
+}
