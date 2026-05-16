@@ -8,6 +8,7 @@ import FeaturesPrintQX from './FeaturesPrintQX';
 import GettingStartedQX from './GettingStartedQX';
 import PackshotsPrintQX from './PackshotsPrintQX';
 import ProductCodesQX from './ProductCodesQX';
+import ContactPrintQX from './ContactPrintQX';
 
 interface Props {
   catalog: CatalogData;
@@ -72,6 +73,8 @@ export default function CatalogPrintQX({ catalog }: Props) {
       <div className="print-page print-page-product-codes">
         <ProductCodesQX data={catalog.productCodes} />
       </div>
+      {/* Shared contact section — same content across all catalogs. */}
+      <ContactPrintQX />
     </div>
   );
 }

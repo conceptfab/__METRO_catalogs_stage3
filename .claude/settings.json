@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /tmp/qx-contact)",
+      "Bash(rm -f /tmp/qx-contact/*)",
+      "Bash(pdftoppm -r 90 -f 16 -l 16 /tmp/qx-pdf-now.pdf /tmp/qx-contact/page)",
+      "Bash(sips -s format png /tmp/qx-contact/page-16.ppm --out /tmp/qx-contact/page-16.png)"
+    ]
+  }
+}

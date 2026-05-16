@@ -110,10 +110,10 @@ describe('CatalogPrintQX', () => {
   it('wraps every section in a .print-page container', () => {
     const { container } = render(<CatalogPrintQX catalog={minimalCatalog} />);
     const pages = container.querySelectorAll('.print-page');
-    // Hero, Overview, Gallery, Finishes, Dimensions, Features, GettingStarted, ProductCodes = 8
-    // Materials (Customization) is intentionally omitted from print; Packshots
-    // is undefined here → not rendered. Expected: 8 print pages.
-    expect(pages.length).toBe(8);
+    // Hero, Overview, Gallery, Finishes, Dimensions, Features, GettingStarted,
+    // ProductCodes, Contact = 9. Materials (Customization) is intentionally
+    // omitted from print; Packshots is undefined here → not rendered.
+    expect(pages.length).toBe(9);
   });
 
   it('renders no navigation or footer (print layout only)', () => {
@@ -127,8 +127,8 @@ describe('CatalogPrintQX', () => {
     expect(container.firstChild).toHaveClass('catalog-print');
   });
 
-  it('renders 9 pages when packshots data is provided with 1 item', () => {
-    // 8 base pages + ceil(1 / 4) = 1 packshots page = 9 total.
+  it('renders 10 pages when packshots data is provided with 1 item', () => {
+    // 9 base pages + ceil(1 / 4) = 1 packshots page = 10 total.
     const withPackshots = {
       ...minimalCatalog,
       packshots: {
@@ -136,6 +136,6 @@ describe('CatalogPrintQX', () => {
       },
     } as CatalogData;
     const { container } = render(<CatalogPrintQX catalog={withPackshots} />);
-    expect(container.querySelectorAll('.print-page').length).toBe(9);
+    expect(container.querySelectorAll('.print-page').length).toBe(10);
   });
 });

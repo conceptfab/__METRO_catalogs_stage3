@@ -461,7 +461,6 @@
   display: inline-block;
   width: 18px;
   height: 18px;
-  border-radius: 9999px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background-size: cover;
   background-position: center;
@@ -555,6 +554,81 @@
   font-size: 13px;
   line-height: 1.5;
   color: var(--foreground, #000000);
+}
+
+/* === Contact (print-specific, shared across all catalogs) === */
+.contact-print-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 960px;
+}
+
+.contact-print-company {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-print-company-name {
+  font-family: var(--font-display, inherit);
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--foreground, #000000);
+  margin: 0;
+}
+
+.contact-print-company-tagline {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--foreground, #000000);
+  opacity: 0.7;
+  margin: 0;
+}
+
+.contact-print-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 48px;
+}
+
+.contact-print-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-print-block-label {
+  font-family: var(--font-display, inherit);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--foreground, #000000);
+  opacity: 0.6;
+  margin: 0;
+}
+
+.contact-print-block-value {
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--foreground, #000000);
+}
+
+.contact-print-block-value p {
+  margin: 0;
+}
+
+.contact-print-note {
+  max-width: 640px;
+  font-size: 12px;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--foreground, #000000);
+  opacity: 0.7;
+  margin: 8px 0 0;
 }
 
 /* On-screen preview of the /print route — visualise the page boundaries.

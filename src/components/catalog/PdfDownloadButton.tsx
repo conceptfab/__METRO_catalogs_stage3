@@ -10,11 +10,11 @@ export default function PdfDownloadButton({ catalogId }: Props) {
     <Link
       href={`/api/catalog/${catalogId}/pdf`}
       rel="noopener noreferrer"
-      aria-label="Pobierz PDF tego katalogu"
-      className="print-hide fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold uppercase tracking-wide text-on-dark shadow-lg transition hover:bg-foreground/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      aria-label="Download PDF of this catalog"
+      className="print-hide group fixed bottom-6 right-6 z-50 inline-flex min-h-[44px] items-center gap-3 bg-primary px-8 py-4 font-display text-sm font-bold uppercase tracking-widest text-primary-foreground shadow-lg transition-colors hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     >
       <Download size={18} strokeWidth={2} aria-hidden="true" />
-      Pobierz PDF
+      <span>Download PDF</span>
     </Link>
   );
 }
