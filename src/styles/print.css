@@ -633,15 +633,16 @@
 
 /* On-screen preview of the /print route — visualise the page boundaries.
  * Scales each 1920×1358 page down to 60% so they fit a normal browser
- * window without horizontal scroll. */
+ * window without horizontal scroll. Uses `zoom` (not `transform: scale`)
+ * so the document height shrinks too — otherwise the body keeps its
+ * full un-scaled height and the page scrolls miles past the last page. */
 @media screen {
   body.print-preview {
     background: #d4d4d4;
     padding: 24px 0;
   }
   body.print-preview .catalog-print {
-    transform: scale(0.6);
-    transform-origin: top center;
+    zoom: 0.6;
     margin: 0 auto;
     width: 1920px;
   }
