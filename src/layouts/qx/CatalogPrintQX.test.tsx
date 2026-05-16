@@ -5,7 +5,7 @@ import type { CatalogData } from '@/types/catalog';
 
 vi.mock('next/image', () => ({
   default: ({ alt, src }: { alt?: string; src: string }) => (
-    <img alt={alt ?? ''} src={typeof src === 'string' ? src : ''} />
+    <img alt={alt ?? ''} src={typeof src === 'string' ? src : 'test-image'} />
   ),
 }));
 
@@ -85,6 +85,24 @@ const minimalCatalog: CatalogData = {
   packshots: undefined,
 };
 
+const PACKSHOTS_FIXTURE: import('@/types/catalog').PackshotsData = {
+  sectionLabel: 'Packshots',
+  title: 'Product Packshots',
+  groups: [
+    {
+      model: 'QX-TEST',
+      label: 'QX Test Group',
+      items: [
+        {
+          code: 'QX-001',
+          name: 'QX Test Item',
+          colorName: 'Black',
+        },
+      ],
+    },
+  ],
+};
+
 describe('CatalogPrintQX', () => {
   it('wraps every section in a .print-page container', () => {
     const { container } = render(<CatalogPrintQX catalog={minimalCatalog} />);
@@ -98,5 +116,21 @@ describe('CatalogPrintQX', () => {
     const { queryByRole } = render(<CatalogPrintQX catalog={minimalCatalog} />);
     expect(queryByRole('navigation')).toBeNull();
     expect(queryByRole('contentinfo')).toBeNull();
+  });
+
+  it('applies catalog-print class to root element', () => {
+    const { container } = render(<CatalogPrintQX catalog={minimalCatalog} />);
+    expect(container.firstChild).toHaveClass('catalog-print');
+  });
+
+  it('renders 10 pages when packshots data is provided', () => {
+    const withPackshots = {
+      ...minimalCatalog,
+      packshots: {
+        ...PACKSHOTS_FIXTURE,
+      },
+    } as CatalogData;
+    const { container } = render(<CatalogPrintQX catalog={withPackshots} />);
+    expect(container.querySelectorAll('.print-page').length).toBe(10);
   });
 });
