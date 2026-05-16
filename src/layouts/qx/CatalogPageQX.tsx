@@ -120,6 +120,7 @@ export default function CatalogPageQX({
             })}
           </nav>
         </footer>
+        <div className="h-[120px] w-full bg-neutral-300 dark:bg-neutral-800" aria-hidden="true" />
       </CatalogMotion>
     </div>
   );
