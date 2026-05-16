@@ -150,6 +150,71 @@
   margin-top: 8px;
 }
 
+/* === Shared print section frame ===
+ * All non-Hero print sections share this outer geometry so the catalog looks
+ * uniform: centered 1440px content area (matches Overview's max-w-[1440px]),
+ * vertical centering of the inner frame inside the 1358px page. */
+.print-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.print-section-frame {
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 96px 0;
+}
+
+.print-section-heading {
+  flex: 0 0 auto;
+  margin-bottom: 48px;
+}
+
+.print-section-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Gallery (print-specific overrides) === */
+.gallery-print-grid {
+  flex: 1 1 auto;
+  display: grid;
+  min-height: 0;
+}
+
+.gallery-print-cell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.gallery-print-image {
+  /* Image keeps its natural aspect ratio: fits inside the cell without
+   * cropping. Cell aspect ratios that don't match leave centered whitespace. */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
 /* On-screen preview of the /print route — visualise the page boundaries.
  * Scales each 1920×1358 page down to 60% so they fit a normal browser
  * window without horizontal scroll. */

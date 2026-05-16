@@ -456,6 +456,7 @@ interface CatalogContentFiles {
   heroSliderFile: HeroSliderFile | null;
   overview: OverviewData;
   gallery: RawGalleryData;
+  galleryPrint: import('@/types/catalog').GalleryPrintConfig | null;
   finishes: FinishesData;
   dimensions: DimensionsData;
   materials: MaterialsData;
@@ -540,6 +541,7 @@ async function readCatalogContent(
     heroSliderFile,
     overview,
     gallery,
+    galleryPrint,
     finishes,
     dimensions,
     materials,
@@ -552,6 +554,9 @@ async function readCatalogContent(
     readPublicJson<HeroSliderFile>(`${base}/hero/slider.json`),
     readPublicJson<OverviewData>(`${base}/overview/content.json`),
     readPublicJson<RawGalleryData>(`${base}/gallery/content.json`),
+    readPublicJson<import('@/types/catalog').GalleryPrintConfig>(
+      `${base}/gallery/print.json`,
+    ),
     readPublicJson<FinishesData>(`${base}/finishes/content.json`),
     readPublicJson<DimensionsData>(`${base}/dimensions/content.json`),
     readPublicJson<MaterialsData>(`${base}/materials/content.json`),
@@ -575,6 +580,7 @@ async function readCatalogContent(
         heroSliderFile,
         overview,
         gallery,
+        galleryPrint,
         finishes,
         dimensions,
         materials,
@@ -612,6 +618,7 @@ export async function loadCatalog(
     heroSliderFile,
     overview,
     gallery,
+    galleryPrint,
     finishes,
     dimensions,
     materials,
@@ -726,6 +733,7 @@ export async function loadCatalog(
     gallery: {
       ...gallery,
       images: resolvedGalleryImages,
+      ...(galleryPrint ? { print: galleryPrint } : {}),
     },
     finishes: {
       ...finishes,

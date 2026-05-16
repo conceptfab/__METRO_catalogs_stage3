@@ -1,7 +1,7 @@
 import type { CatalogData } from '@/types/catalog';
 import HeroPrintQX from './HeroPrintQX';
 import OverviewQX from './OverviewQX';
-import GalleryQX from './GalleryQX';
+import GalleryPrintQX from './GalleryPrintQX';
 import FinishesQX from './FinishesQX';
 import DimensionsQX from './DimensionsQX';
 import MaterialsQX from './MaterialsQX';
@@ -41,7 +41,7 @@ export default function CatalogPrintQX({ catalog }: Props) {
         <OverviewQX data={catalog.overview} />
       </div>
       <div className="print-page print-page-gallery">
-        <GalleryQX data={catalog.gallery} />
+        <GalleryPrintQX catalog={catalog} />
       </div>
       <div className="print-page print-page-finishes">
         <FinishesQX

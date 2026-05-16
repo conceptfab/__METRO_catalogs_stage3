@@ -144,6 +144,7 @@ export async function GET(
     // Final settle for paint + decode.
     await new Promise((resolve) => setTimeout(resolve, 500));
 
+
     // DEBUG: log dimensions of each .print-page so we can see why Chromium
     // is paginating into 2 PDF pages per DOM page.
     const pdfBytes = await page.pdf({

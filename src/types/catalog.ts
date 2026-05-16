@@ -252,10 +252,29 @@ interface GalleryImage {
   category: string;
 }
 
+export interface GalleryPrintConfig {
+  /** Number of grid columns (default 3) */
+  columns?: number;
+  /** Number of grid rows (default 2 → 3×2 = 6 cells with 6 images) */
+  rows?: number;
+  /** Gap between cells, in px (default 16) */
+  gap?: number;
+  /** Outer padding around the section, in px (default 80) */
+  padding?: number;
+  /** Background color CSS value (default '#ffffff') */
+  background?: string;
+  /** Show section label + title above the grid (default true) */
+  showTitle?: boolean;
+  /** Max number of images to include from gallery.images (default = all) */
+  maxImages?: number;
+}
+
 export interface GalleryData {
   sectionLabel: string;
   title: string;
   images: GalleryImage[];
+  /** Print-only layout config loaded from gallery/print.json (optional). */
+  print?: GalleryPrintConfig;
 }
 
 interface ColorOption {
