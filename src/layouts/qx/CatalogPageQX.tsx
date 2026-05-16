@@ -14,6 +14,7 @@ import FeaturesQX from './FeaturesQX';
 import GettingStartedQX from './GettingStartedQX';
 import PackshotsQX from './PackshotsQX';
 import ProductCodesQX from './ProductCodesQX';
+import PdfDownloadButton from '@/components/catalog/PdfDownloadButton';
 
 interface Props {
   catalog: CatalogData;
@@ -121,6 +122,7 @@ export default function CatalogPageQX({
           </nav>
         </footer>
         <div className="h-[120px] w-full bg-neutral-300 dark:bg-neutral-800" aria-hidden="true" />
+        <PdfDownloadButton catalogId={catalog.id} />
       </CatalogMotion>
     </div>
   );
