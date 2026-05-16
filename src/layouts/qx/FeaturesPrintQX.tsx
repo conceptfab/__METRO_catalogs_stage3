@@ -20,14 +20,14 @@ function chunk<T>(arr: T[], size: number): T[][] {
 /**
  * Resolve the still image (last video frame) for a feature.
  *
- * Convention: alongside each `*.mp4` there is a pre-generated `*_last.jpg`
+ * Convention: alongside each `*.mp4` there is a pre-generated `*_last.webp`
  * extracted via ffmpeg (see scripts / catalog README). If the feature has a
  * `poster`, that takes precedence; otherwise we swap the extension.
  */
 function resolveStillImage(item: FeatureItem): string | undefined {
   if (item.video?.poster) return item.video.poster;
   if (item.video?.src) {
-    return item.video.src.replace(/\.(mp4|webm|mov)$/i, '_last.jpg');
+    return item.video.src.replace(/\.(mp4|webm|mov)$/i, '_last.webp');
   }
   return undefined;
 }
@@ -72,7 +72,7 @@ function FeatureCard({ item }: { item: FeatureItem }) {
 /**
  * Print-only Features section. Static rendering — no video playback, no
  * animation, no tabs. The last frame of each video is used as a still image
- * (pre-generated `*_last.jpg` next to the MP4).
+ * (pre-generated `*_last.webp` next to the MP4).
  *
  * Layout: up to 3 features per page, 3 columns side-by-side. Catalogs with
  * more than 3 features get additional pages emitted by this component itself.
