@@ -34,8 +34,10 @@
   }
 }
 
-/* Wrapper used on the /print route — one wrapper per A4 landscape page */
-.print-page {
+/* Wrapper used on the /print route — one wrapper per A4 landscape page.
+ * Scoped to .catalog-print to prevent accidental misuse from creating
+ * 297×210mm invisible boxes on regular catalog pages. */
+.catalog-print .print-page {
   width: 297mm;
   height: 210mm;
   overflow: hidden;
@@ -46,7 +48,7 @@
   box-sizing: border-box;
 }
 
-.print-page:last-child {
+.catalog-print .print-page:last-child {
   page-break-after: auto;
   break-after: auto;
 }
@@ -57,7 +59,7 @@
     background: #d4d4d4;
     padding: 24px 0;
   }
-  body.print-preview .print-page {
+  body.print-preview .catalog-print .print-page {
     margin: 0 auto 24px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
