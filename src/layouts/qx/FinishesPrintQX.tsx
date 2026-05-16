@@ -5,10 +5,12 @@ import type {
 } from '@/types/catalog';
 import { SectionHeading } from '@/components/catalog/SectionHeading';
 import { QxText } from '@/components/catalog/QxText';
+import { responsiveImg } from '@/lib/responsive-image';
 
 interface Props {
   data: FinishesData;
   configurator?: MaterialsConfiguratorData;
+  previewMode?: 'layered' | 'frame-only' | 'desktop-only';
 }
 
 const EMPTY_OPTIONS: MaterialsConfiguratorOption[] = [];
@@ -16,13 +18,51 @@ const DESKTOP_PRICE_GROUP_1 = ['U100', 'U110', 'U120', 'U130', 'W200', 'W220'];
 const DESKTOP_PRICE_GROUP_2 = ['W210', 'W240', 'W250', 'W310', 'W330'];
 const FRAME_COLOR_ORDER = ['RAL9006', 'RAL9005', 'RAL9003', 'RAL7024'];
 
+const METRO_ID_PATTERN = /^metro[_ -]/i;
+
+// === Copied verbatim from MaterialsQX so the print preview uses the
+//     exact same option-resolution + layering schema as Customization. ===
+function pickConfiguratorOption(
+  options: MaterialsConfiguratorOption[],
+  code: string,
+): MaterialsConfiguratorOption | undefined {
+  const matches = options.filter((option) => option.code === code);
+  if (matches.length === 0) return undefined;
+
+  const metroEntry = matches.find((option) => METRO_ID_PATTERN.test(option.id));
+  const swatchEntry = matches.find(
+    (option) => !METRO_ID_PATTERN.test(option.id),
+  );
+
+  if (metroEntry && swatchEntry) {
+    return {
+      ...metroEntry,
+      label: swatchEntry.label,
+      thumbnail: swatchEntry.image,
+    };
+  }
+  return metroEntry ?? swatchEntry ?? matches[0];
+}
+
+function dedupeByCode(options: MaterialsConfiguratorOption[]) {
+  const seen = new Set<string>();
+  const result: MaterialsConfiguratorOption[] = [];
+  for (const option of options) {
+    if (seen.has(option.code)) continue;
+    const preferred = pickConfiguratorOption(options, option.code);
+    if (!preferred) continue;
+    seen.add(option.code);
+    result.push(preferred);
+  }
+  return result;
+}
+
 function orderOptions(
   options: MaterialsConfiguratorOption[],
   orderedCodes: string[],
 ) {
-  const byCode = new Map(options.map((o) => [o.code, o]));
   return orderedCodes.flatMap((code) => {
-    const option = byCode.get(code);
+    const option = pickConfiguratorOption(options, code);
     return option ? [option] : [];
   });
 }
@@ -35,6 +75,16 @@ function getOptionLabelParts(option: MaterialsConfiguratorOption) {
   const code = formatOptionCode(option.code);
   const name = option.label.replace(code, '').replace(option.code, '').trim();
   return { code, name };
+}
+
+function describeOption(option: MaterialsConfiguratorOption) {
+  const { code, name } = getOptionLabelParts(option);
+  return name ? `${code} ${name}` : code;
+}
+
+function pickRandom<T>(arr: T[]): T | undefined {
+  if (arr.length === 0) return undefined;
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
 function StaticTile({ option }: { option: MaterialsConfiguratorOption }) {
@@ -89,22 +139,58 @@ function StaticGroup({
 }
 
 /**
- * Print-only Finishes section. Static rendering — no tile selection,
- * no hover, no preview zoom, no motion. Visual structure mirrors
- * FinishesQX but uses the shared .print-section frame.
+ * Print-only Finishes section.
+ *
+ * Preview area is a direct copy of the Customization (MaterialsQX) schema:
+ * two layered images — frame underneath, desktop on top — both object-contain.
+ * Random choice on every render (page is force-dynamic). Tiles are static
+ * (non-clickable). Legend under the preview describes the random selection
+ * and points to online customization.
  */
-export default function FinishesPrintQX({ data, configurator }: Props) {
+export default function FinishesPrintQX({
+  data,
+  configurator,
+  previewMode,
+}: Props) {
   const sourceFrame = configurator?.frameOptions ?? EMPTY_OPTIONS;
   const sourceDesktop = configurator?.desktopOptions ?? EMPTY_OPTIONS;
-  const frameOptions = orderOptions(sourceFrame, FRAME_COLOR_ORDER);
-  const desktopGroup1 = orderOptions(sourceDesktop, DESKTOP_PRICE_GROUP_1);
-  const desktopGroup2 = orderOptions(sourceDesktop, DESKTOP_PRICE_GROUP_2);
-  const desktopOptions = [...desktopGroup1, ...desktopGroup2];
-  const hasConfigurator = frameOptions.length > 0 && desktopOptions.length > 0;
 
-  const previewOption = desktopOptions[0] ?? frameOptions[0];
-  const previewImage = previewOption?.image ?? '';
-  const previewAlt = previewOption?.label ?? data.title;
+  const dedupedFrame = dedupeByCode(sourceFrame);
+  const dedupedDesktop = dedupeByCode(sourceDesktop);
+
+  const orderedFrame = orderOptions(dedupedFrame, FRAME_COLOR_ORDER);
+  const orderedFrameCodes = new Set(orderedFrame.map((o) => o.code));
+  const frameOptions = [
+    ...orderedFrame,
+    ...dedupedFrame.filter((o) => !orderedFrameCodes.has(o.code)),
+  ];
+
+  const desktopGroup1 = orderOptions(dedupedDesktop, DESKTOP_PRICE_GROUP_1);
+  const desktopGroup2 = orderOptions(dedupedDesktop, DESKTOP_PRICE_GROUP_2);
+  const knownDesktopCodes = new Set([
+    ...DESKTOP_PRICE_GROUP_1,
+    ...DESKTOP_PRICE_GROUP_2,
+  ]);
+  const desktopLeftovers = dedupedDesktop.filter(
+    (o) => !knownDesktopCodes.has(o.code),
+  );
+  const desktopOptions = [
+    ...desktopGroup1,
+    ...desktopGroup2,
+    ...desktopLeftovers,
+  ];
+
+  const hasConfigurator =
+    frameOptions.length > 0 && desktopOptions.length > 0;
+
+  // Random pick per render (page is force-dynamic).
+  const randomFrame = pickRandom(frameOptions);
+  const randomDesktop = pickRandom(desktopOptions);
+
+  const previewAlt =
+    randomFrame && randomDesktop
+      ? `Metro desk with desktop ${randomDesktop.label} and frame ${randomFrame.label}`
+      : `${data.title} preview`;
 
   const descriptionLines = data.description?.split('\n') ?? [];
 
@@ -150,6 +236,9 @@ export default function FinishesPrintQX({ data, configurator }: Props) {
                       title="II-nd price group"
                       options={desktopGroup2}
                     />
+                    {desktopLeftovers.length > 0 && (
+                      <StaticGroup title="Other" options={desktopLeftovers} />
+                    )}
                   </div>
                 </div>
                 <StaticGroup
@@ -190,17 +279,69 @@ export default function FinishesPrintQX({ data, configurator }: Props) {
             )}
           </div>
 
-          {previewImage && (
+          {hasConfigurator && (randomFrame || randomDesktop) ? (
             <div className="finishes-print-preview">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={previewImage}
-                alt={previewAlt}
-                loading="eager"
-                className="finishes-print-preview-image"
-              />
+              {/* === Preview block — verbatim layering schema from MaterialsQX === */}
+              <figure
+                className="finishes-print-preview-stage"
+                role="img"
+                aria-label={previewAlt}
+              >
+                {previewMode !== 'desktop-only' && randomFrame && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={randomFrame.image}
+                    {...responsiveImg(randomFrame.image, 'materials-full')}
+                    alt=""
+                    aria-hidden="true"
+                    draggable={false}
+                    loading="eager"
+                    className="finishes-print-preview-layer"
+                  />
+                )}
+                {previewMode !== 'frame-only' && randomDesktop && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={randomDesktop.image}
+                    {...responsiveImg(randomDesktop.image, 'materials-full')}
+                    alt=""
+                    aria-hidden="true"
+                    draggable={false}
+                    loading="eager"
+                    className="finishes-print-preview-layer"
+                  />
+                )}
+              </figure>
+              <figcaption className="finishes-print-preview-legend">
+                <ul className="finishes-print-preview-legend-list">
+                  {randomDesktop && (
+                    <li>
+                      <span className="finishes-print-preview-legend-label">
+                        Desktop finish:
+                      </span>{' '}
+                      <span className="finishes-print-preview-legend-value">
+                        <QxText text={describeOption(randomDesktop)} />
+                      </span>
+                    </li>
+                  )}
+                  {randomFrame && (
+                    <li>
+                      <span className="finishes-print-preview-legend-label">
+                        Steel parts:
+                      </span>{' '}
+                      <span className="finishes-print-preview-legend-value">
+                        <QxText text={describeOption(randomFrame)} />
+                      </span>
+                    </li>
+                  )}
+                </ul>
+                <p className="finishes-print-preview-legend-note">
+                  Full customization is available online on the METRO product
+                  page.
+                </p>
+              </figcaption>
             </div>
-          )}
+          ) : null}
         </div>
       </div>
     </section>

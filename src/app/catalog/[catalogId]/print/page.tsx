@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+// Render fresh per request so random preview choices in FinishesPrintQX
+// re-roll on every PDF generation (Puppeteer navigates to this URL each call).
+export const dynamic = 'force-dynamic';
+
 export default async function CatalogPrintPage({
   params,
 }: {
