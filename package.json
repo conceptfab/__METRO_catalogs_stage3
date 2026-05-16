@@ -33,9 +33,11 @@
     "kill:next:mac": "lsof -ti:3000-3009 | xargs kill -9 || true"
   },
   "dependencies": {
+    "@sparticuz/chromium": "^148.0.0",
     "framer-motion": "^12.34.0",
     "lucide-react": "^0.462.0",
     "next": "15.5.12",
+    "puppeteer-core": "^25.0.2",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "tailwindcss-animate": "^1.0.7",

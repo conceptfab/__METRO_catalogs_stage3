@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { loadCatalog, getCatalogList } from '@/lib/catalog-loader';
 import CatalogPrintQX from '@/layouts/qx/CatalogPrintQX';
 import PrintAutoTrigger from '@/components/catalog/PrintAutoTrigger';
+import PdfDownloadButton from '@/components/catalog/PdfDownloadButton';
 
 export async function generateStaticParams() {
   const catalogs = await getCatalogList();
@@ -34,6 +35,9 @@ export default async function CatalogPrintPage({
     <>
       <CatalogPrintQX catalog={catalog} />
       <PrintAutoTrigger />
+      {/* Visible when a user manually opens /print; hidden by .print-hide
+       * during Puppeteer's page.pdf() because that uses @media print. */}
+      <PdfDownloadButton catalogId={catalog.id} />
     </>
   );
 }

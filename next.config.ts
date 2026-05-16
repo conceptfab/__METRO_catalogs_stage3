@@ -24,6 +24,9 @@ export default function nextConfig(phase: string): NextConfig {
     distDir: useLocalIsolatedProdDist
       ? LOCAL_ISOLATED_PROD_DIST_DIR
       : DEFAULT_DIST_DIR,
+    // Keep puppeteer + chromium binary out of the function bundle so Vercel
+    // can use the native serverless deps it ships with @sparticuz/chromium.
+    serverExternalPackages: ['@sparticuz/chromium', 'puppeteer-core'],
     experimental: {
       optimizePackageImports: ['lucide-react', 'framer-motion'],
       reactCompiler: true,

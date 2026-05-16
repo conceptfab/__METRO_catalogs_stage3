@@ -3,11 +3,10 @@ import { describe, it, expect } from 'vitest';
 import PdfDownloadButton from './PdfDownloadButton';
 
 describe('PdfDownloadButton', () => {
-  it('renders an accessible link to the catalog print route', () => {
+  it('renders an accessible link to the catalog PDF download endpoint', () => {
     render(<PdfDownloadButton catalogId="QX0" />);
     const link = screen.getByRole('link', { name: /pobierz pdf/i });
-    expect(link).toHaveAttribute('href', '/catalog/QX0/print');
-    expect(link).toHaveAttribute('target', '_blank');
+    expect(link).toHaveAttribute('href', '/api/catalog/QX0/pdf');
     expect(link).toHaveAttribute('rel', expect.stringContaining('noopener'));
   });
 

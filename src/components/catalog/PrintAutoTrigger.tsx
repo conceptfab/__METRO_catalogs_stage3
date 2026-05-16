@@ -3,9 +3,12 @@
 import { useEffect } from 'react';
 
 /**
- * Mounted on /print routes. Waits for all <img> resources to finish loading,
- * then triggers the browser print dialog once. URL ?auto=0 disables the trigger
- * (useful when debugging the print layout in screen mode).
+ * Mounted on /print routes. Adds body.print-preview class when ?auto=0 is set
+ * so the page renders A4 boundaries on screen for visual debugging.
+ *
+ * The auto window.print() behavior was removed once /api/catalog/[id]/pdf
+ * took over server-side PDF generation — users now click the download button
+ * instead of being surprised by a print dialog.
  */
 export default function PrintAutoTrigger() {
   useEffect(() => {
@@ -18,43 +21,6 @@ export default function PrintAutoTrigger() {
         document.body.classList.remove('print-preview');
       };
     }
-
-    let timerId: number | undefined;
-
-    // Brief delay lets Next.js Image finish swapping placeholder → real bitmap
-    // before the browser snapshots the page for the print dialog.
-    const triggerPrint = () => {
-      timerId = window.setTimeout(() => window.print(), 250);
-    };
-
-    const images = Array.from(document.images);
-    const pending = images.filter((img) => !img.complete);
-
-    if (pending.length === 0) {
-      triggerPrint();
-      return () => {
-        if (timerId !== undefined) window.clearTimeout(timerId);
-      };
-    }
-
-    let remaining = pending.length;
-    const onDone = () => {
-      remaining -= 1;
-      if (remaining <= 0) triggerPrint();
-    };
-
-    pending.forEach((img) => {
-      img.addEventListener('load', onDone, { once: true });
-      img.addEventListener('error', onDone, { once: true });
-    });
-
-    return () => {
-      pending.forEach((img) => {
-        img.removeEventListener('load', onDone);
-        img.removeEventListener('error', onDone);
-      });
-      if (timerId !== undefined) window.clearTimeout(timerId);
-    };
   }, []);
 
   return null;
