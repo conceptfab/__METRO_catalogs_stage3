@@ -64,3 +64,48 @@
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   }
 }
+
+/* === Per-section A4 fits ===
+ * A4 landscape = 297×210mm ≈ 1123×794px @ 96dpi, ratio 1.414:1.
+ * Each section component is designed for a 1920px desktop viewport.
+ * We force section height to 1357px (= 1920/1.414) so the section box
+ * matches A4 landscape proportions, then uniformly scale by 1123/1920 ≈ 0.585
+ * → scaled box is exactly 1123×794px = A4 landscape, no whitespace. */
+.catalog-print .print-page {
+  overflow: hidden;
+}
+
+.catalog-print .print-page > * {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  width: 1920px;
+  height: 1357px;
+  transform-origin: top left;
+  transform: scale(0.585);
+}
+
+/* Force viewport-relative heights to the A4-landscape baseline so sections
+ * using min-h-screen/h-screen render at the same height as the scale math. */
+.catalog-print .min-h-screen {
+  min-height: 1357px !important;
+}
+
+.catalog-print .h-screen {
+  height: 1357px !important;
+}
+
+/* Defeat framer-motion intro animations: print pages live inside a scaled,
+ * fixed-height container where the IntersectionObserver useInView() relies on
+ * never fires — sections stay at their initial opacity: 0 / translateY state
+ * and render as blank pages. In print we want the "last frame" of every
+ * animation: everything visible, no motion transforms, no transitions.
+ *
+ * Scoped to descendants 2+ levels deep so the section root's own
+ * .catalog-print .print-page > * { transform: scale(0.585) } rule survives. */
+.catalog-print .print-page > * * {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+}
