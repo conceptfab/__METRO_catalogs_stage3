@@ -1,0 +1,64 @@
+/*
+ * Print-only stylesheet for catalog PDF export.
+ * Loaded globally; @media print rules are inert in normal viewing.
+ * .print-page utility is used by the dedicated /print route only.
+ */
+
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .print-hide {
+    display: none !important;
+  }
+}
+
+.print-only {
+  display: none;
+}
+
+@media print {
+  .print-only {
+    display: block;
+  }
+}
+
+/* Wrapper used on the /print route — one wrapper per A4 landscape page */
+.print-page {
+  width: 297mm;
+  height: 210mm;
+  overflow: hidden;
+  page-break-after: always;
+  break-after: page;
+  background: #ffffff;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.print-page:last-child {
+  page-break-after: auto;
+  break-after: auto;
+}
+
+/* On-screen preview of the /print route — visualise the page boundaries */
+@media screen {
+  body.print-preview {
+    background: #d4d4d4;
+    padding: 24px 0;
+  }
+  body.print-preview .print-page {
+    margin: 0 auto 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+}
