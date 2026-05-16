@@ -364,15 +364,14 @@
 }
 
 .packshots-print-grid {
-  /* Fixed height (not flex-grow) so the frame's justify-content: center
-   * vertically centers the heading + grid stack inside the page. Pure
-   * flex-grow keeps the stack edge-to-edge and defeats the centering. */
+  /* Explicit row heights (not 1fr) so both rows render even if the items
+   * happen to have content that the grid's intrinsic sizing would otherwise
+   * collapse to zero. 2 × 520 + 40 gap = 1080 total. */
   flex: 0 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 520px 520px;
   gap: 40px;
-  height: 1140px;
 }
 
 .print-page-packshots .print-section-content {

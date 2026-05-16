@@ -73,7 +73,7 @@ const DimensionsQX = ({ data }: DimensionsSectionProps) => {
                 alt="Technical dimension drawing"
                 width={842}
                 height={842}
-                className="h-auto w-full lg:-mt-[18%]"
+                className="h-auto w-full"
               />
             </div>
 
