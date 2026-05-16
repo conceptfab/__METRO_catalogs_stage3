@@ -71,6 +71,17 @@
   margin: 0 !important;
 }
 
+/* Vertically center content within every section EXCEPT the Hero (which has
+ * its own min-h-screen + flex centering and uses a full-bleed background
+ * image — its layout already fills the page symmetrically). For every other
+ * section, the inner wrapper is shorter than 1358px, so without flex
+ * centering content sticks to the top with empty whitespace at the bottom. */
+.catalog-print .print-page > section:not(.min-h-screen) {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
 /* Defeat framer-motion intro animations — print pages live inside Puppeteer
  * which doesn't scroll, so useInView() never fires and sections stay at
  * opacity: 0 / translateY initial state. Force the "last frame": everything
