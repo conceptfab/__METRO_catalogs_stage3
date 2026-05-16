@@ -15,7 +15,6 @@ import GettingStartedQX from './GettingStartedQX';
 import PackshotsQX from './PackshotsQX';
 import ProductCodesQX from './ProductCodesQX';
 import PdfDownloadButton from '@/components/catalog/PdfDownloadButton';
-import CatalogPrintFooterAction from '@/components/catalog/CatalogPrintFooterAction';
 
 interface Props {
   catalog: CatalogData;
@@ -83,7 +82,6 @@ export default function CatalogPageQX({
         </main>
 
         <footer className="bg-catalog-footer py-10">
-          <CatalogPrintFooterAction catalogId={catalog.id} />
           <nav
             aria-label="Other catalogs"
             className="mx-auto grid w-full max-w-[1440px] grid-cols-2 gap-3 px-5 sm:grid-cols-4 sm:px-8 lg:grid-cols-8 lg:px-0"

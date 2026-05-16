@@ -4,7 +4,12 @@
       "Bash(mkdir -p /tmp/qx-contact)",
       "Bash(rm -f /tmp/qx-contact/*)",
       "Bash(pdftoppm -r 90 -f 16 -l 16 /tmp/qx-pdf-now.pdf /tmp/qx-contact/page)",
-      "Bash(sips -s format png /tmp/qx-contact/page-16.ppm --out /tmp/qx-contact/page-16.png)"
+      "Bash(sips -s format png /tmp/qx-contact/page-16.ppm --out /tmp/qx-contact/page-16.png)",
+      "Bash(mkdir -p /tmp/vr-check)",
+      "Bash(rm -f /tmp/vr-check/*)",
+      "Bash(pdftotext -layout -f 11 -l 12 /tmp/vr-pdf.pdf -)",
+      "Bash(pdftoppm -r 80 -f 11 -l 11 /tmp/vr-pdf.pdf /tmp/vr-check/feat)",
+      "Bash(sips -s format png /tmp/vr-check/feat-11.ppm --out /tmp/vr-check/feat-11.png)"
     ]
   }
 }
