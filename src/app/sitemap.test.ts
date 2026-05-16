@@ -55,4 +55,15 @@ describe('sitemap', () => {
     const entries = await sitemap();
     expect(entries[0].lastModified).toBeInstanceOf(Date);
   });
+
+  it('does not include any /print routes', async () => {
+    vi.mocked(getCatalogList).mockResolvedValue([
+      { id: 'QX' } as any,
+      { id: 'QS' } as any,
+    ]);
+    const entries = await sitemap();
+    const urls = entries.map((e) => e.url);
+    expect(urls.every((url) => !url.endsWith('/print'))).toBe(true);
+    expect(urls.every((url) => !url.includes('/print'))).toBe(true);
+  });
 });

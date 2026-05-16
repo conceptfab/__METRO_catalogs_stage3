@@ -7,6 +7,7 @@ export function GET() {
     '',
     'User-agent: *',
     'Allow: /',
+    'Disallow: /catalog/*/print',
     '',
     `Sitemap: ${base}/sitemap.xml`,
     '',
