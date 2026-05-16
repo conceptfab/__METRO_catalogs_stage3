@@ -51,7 +51,7 @@ def validate_prisma_schema(file_path: Path) -> list:
     try:
         content = file_path.read_text(encoding='utf-8', errors='ignore')
         
-        # Find all models
+        # Find Selected models
         models = re.findall(r'model\s+(\w+)\s*{([^}]+)}', content, re.DOTALL)
         
         for model_name, model_body in models:

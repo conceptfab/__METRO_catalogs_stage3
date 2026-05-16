@@ -6,7 +6,7 @@ import PackshotsQX from './PackshotsQX';
 const data: PackshotsData = {
   sectionLabel: 'Models',
   title: 'QX Collection',
-  subtitle: 'All models',
+  subtitle: 'Selected models',
   groups: [
     {
       model: 'QX11',
