@@ -659,6 +659,7 @@ export async function loadCatalog(
     resolvedPackshots,
     materialsConfigurator,
     finishesConfigurator,
+    resolvedPrintCoverImage,
   ] = await Promise.all([
     resolveImage(heroBase, hero.heroImage),
     resolveImage(`${base}/overview`, overview.packshotImage),
@@ -696,6 +697,9 @@ export async function loadCatalog(
       : undefined,
     discoverMaterialsConfigurator(materialsBase, { includeShared: true }),
     discoverMaterialsConfigurator(finishesBase, { includeShared: true }),
+    hero.printCover?.image
+      ? resolveImage(heroBase, hero.printCover.image)
+      : Promise.resolve(undefined),
   ]);
 
   return {
@@ -710,6 +714,10 @@ export async function loadCatalog(
       slider: Object.keys(sliderConfig).length > 0 ? sliderConfig : undefined,
       descriptionStyle:
         Object.keys(descriptionStyle).length > 0 ? descriptionStyle : undefined,
+      printCover:
+        hero.printCover && resolvedPrintCoverImage
+          ? { image: resolvedPrintCoverImage, alt: hero.printCover.alt }
+          : undefined,
     },
     overview: {
       ...overview,

@@ -228,6 +228,12 @@ export interface HeroData {
   slider?: HeroSliderConfig;
   /** Description label style loaded from hero/slider.json */
   descriptionStyle?: HeroDescriptionStyleConfig;
+  /** Dedicated cover used by the PDF print layout (separate from the live
+   * hero slider so the print can use a different image/composition). */
+  printCover?: {
+    image: string;
+    alt: string;
+  };
 }
 
 export interface OverviewData {

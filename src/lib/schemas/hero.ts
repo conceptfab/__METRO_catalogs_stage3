@@ -8,6 +8,12 @@ const heroContentSchema = z.object({
   ctaLabel: z.string().default(''),
   heroImage: z.string().optional(),
   heroImageAlt: z.string().optional(),
+  printCover: z
+    .object({
+      image: z.string(),
+      alt: z.string().default(''),
+    })
+    .optional(),
 });
 
 type HeroContent = z.infer<typeof heroContentSchema>;

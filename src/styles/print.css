@@ -94,6 +94,62 @@
   transition: none !important;
 }
 
+/* === Hero print section ===
+ * Dedicated print styles for HeroPrintQX. Kept here (not as Tailwind utility
+ * soup on the component) so design tweaks live in one place and don't leak
+ * to the live HeroQX. */
+.hero-print-cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.hero-print-image {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-print-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-print-logo {
+  position: absolute;
+  top: 96px;
+  /* SVG has internal whitespace before the "M" glyph — shift the box
+   * 10px left so the visible logo edge lines up with the text below. */
+  left: 86px;
+  z-index: 2;
+  width: 320px;
+  height: auto;
+}
+
+.hero-print-text {
+  position: absolute;
+  /* Sits directly under the logo. Logo top: 96px + height ~88px + gap 32px. */
+  top: 216px;
+  left: 96px;
+  /* Width = 1/3 of the print page (1920 / 3 ≈ 640px). */
+  width: 640px;
+  z-index: 2;
+  font-family: var(--font-display, 'Inter'), sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+.hero-print-text p + p {
+  margin-top: 8px;
+}
+
 /* On-screen preview of the /print route — visualise the page boundaries.
  * Scales each 1920×1358 page down to 60% so they fit a normal browser
  * window without horizontal scroll. */
