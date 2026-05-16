@@ -14,11 +14,17 @@ export default function PrintAutoTrigger() {
     const params = new URLSearchParams(window.location.search);
     if (params.get('auto') === '0') {
       document.body.classList.add('print-preview');
-      return;
+      return () => {
+        document.body.classList.remove('print-preview');
+      };
     }
 
+    let timerId: number | undefined;
+
+    // Brief delay lets Next.js Image finish swapping placeholder → real bitmap
+    // before the browser snapshots the page for the print dialog.
     const triggerPrint = () => {
-      window.setTimeout(() => window.print(), 250);
+      timerId = window.setTimeout(() => window.print(), 250);
     };
 
     const images = Array.from(document.images);
@@ -26,7 +32,9 @@ export default function PrintAutoTrigger() {
 
     if (pending.length === 0) {
       triggerPrint();
-      return;
+      return () => {
+        if (timerId !== undefined) window.clearTimeout(timerId);
+      };
     }
 
     let remaining = pending.length;
@@ -45,6 +53,7 @@ export default function PrintAutoTrigger() {
         img.removeEventListener('load', onDone);
         img.removeEventListener('error', onDone);
       });
+      if (timerId !== undefined) window.clearTimeout(timerId);
     };
   }, []);
 
