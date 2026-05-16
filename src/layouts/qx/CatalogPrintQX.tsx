@@ -4,7 +4,6 @@ import OverviewQX from './OverviewQX';
 import GalleryPrintQX from './GalleryPrintQX';
 import FinishesPrintQX from './FinishesPrintQX';
 import DimensionsQX from './DimensionsQX';
-import MaterialsQX from './MaterialsQX';
 import FeaturesQX from './FeaturesQX';
 import GettingStartedQX from './GettingStartedQX';
 import PackshotsPrintQX from './PackshotsPrintQX';
@@ -63,9 +62,6 @@ export default function CatalogPrintQX({ catalog }: Props) {
       )}
       <div className="print-page print-page-dimensions">
         <DimensionsQX data={catalog.dimensions} />
-      </div>
-      <div className="print-page print-page-materials">
-        <MaterialsQX data={catalog.materials} />
       </div>
       <div className="print-page print-page-features">
         <FeaturesQX data={catalog.features} />
