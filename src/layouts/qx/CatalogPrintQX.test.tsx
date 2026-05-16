@@ -67,7 +67,9 @@ const minimalCatalog: CatalogData = {
   features: {
     sectionLabel: 'Features',
     title: 'Features',
-    items: [],
+    items: [
+      { icon: 'puzzle', title: 'F1', desc: 'd1' },
+    ],
   },
   gettingStarted: {
     sectionLabel: 'Getting Started',

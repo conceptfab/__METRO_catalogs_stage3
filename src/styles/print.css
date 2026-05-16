@@ -472,6 +472,91 @@
   font-weight: 500;
 }
 
+/* === Features (print-specific, static — last video frame, no animation) ===
+ * Up to 3 features per page, 3 columns side-by-side. Each column:
+ * still image on top, dark "button" with icon + title, plain description.
+ * Image wrap uses an explicit aspect ratio so all buttons land on the same
+ * horizontal line — flex-grow on the wrap stretched cells unequally and
+ * pushed buttons low on the page. */
+.features-print-grid {
+  flex: 0 0 auto;
+  /* Flex with fixed-basis cards + justify-content: center → 3 cards fill
+   * the row; 1 or 2 cards centre horizontally on the last page. */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.features-print-card {
+  flex: 0 0 calc((100% - 80px) / 3);
+  max-width: calc((100% - 80px) / 3);
+}
+
+.print-page-features .print-section-content {
+  flex: 0 0 auto;
+}
+
+.features-print-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.features-print-image-wrap {
+  flex: 0 0 auto;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-elevated, #f5f5f5);
+}
+
+.features-print-image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.features-print-button {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 14px 20px;
+  background: var(--foreground, #000000);
+  color: var(--background, #ffffff);
+  border: 1px solid var(--foreground, #000000);
+}
+
+.features-print-button-icon {
+  flex: 0 0 auto;
+}
+
+.features-print-button-title {
+  font-family: var(--font-display, inherit);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.features-print-desc {
+  flex: 0 0 auto;
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--foreground, #000000);
+}
+
 /* On-screen preview of the /print route — visualise the page boundaries.
  * Scales each 1920×1358 page down to 60% so they fit a normal browser
  * window without horizontal scroll. */

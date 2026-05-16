@@ -4,7 +4,7 @@ import OverviewQX from './OverviewQX';
 import GalleryPrintQX from './GalleryPrintQX';
 import FinishesPrintQX from './FinishesPrintQX';
 import DimensionsQX from './DimensionsQX';
-import FeaturesQX from './FeaturesQX';
+import FeaturesPrintQX from './FeaturesPrintQX';
 import GettingStartedQX from './GettingStartedQX';
 import PackshotsPrintQX from './PackshotsPrintQX';
 import ProductCodesQX from './ProductCodesQX';
@@ -63,9 +63,9 @@ export default function CatalogPrintQX({ catalog }: Props) {
       <div className="print-page print-page-dimensions">
         <DimensionsQX data={catalog.dimensions} />
       </div>
-      <div className="print-page print-page-features">
-        <FeaturesQX data={catalog.features} />
-      </div>
+      {/* FeaturesPrintQX emits its own .print-page wrappers — one per chunk
+       * of 3 features. */}
+      <FeaturesPrintQX data={catalog.features} />
       <div className="print-page print-page-getting-started">
         <GettingStartedQX data={catalog.gettingStarted} />
       </div>
