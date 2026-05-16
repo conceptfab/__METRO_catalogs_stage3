@@ -5,6 +5,7 @@ import type { CatalogData } from '@/types/catalog';
 
 vi.mock('next/image', () => ({
   default: ({ alt, src }: { alt?: string; src: string }) => (
+    // eslint-disable-next-line @next/next/no-img-element
     <img alt={alt ?? ''} src={typeof src === 'string' ? src : 'test-image'} />
   ),
 }));
