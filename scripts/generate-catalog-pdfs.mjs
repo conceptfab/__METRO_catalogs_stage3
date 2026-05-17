@@ -91,7 +91,7 @@ async function discoverCatalogs() {
       console.warn(c.yellow(`  ⚠ ${id}: missing config.json, skipping`));
       continue;
     }
-    if (config?.meta?.layoutType !== 'qx') {
+    if (config?.meta?.layoutType !== 'qx' && config?.meta?.layoutType !== 'mcr800') {
       console.warn(c.yellow(`  ⚠ ${id}: layoutType "${config?.meta?.layoutType}" is not yet supported by print/, skipping`));
       continue;
     }
