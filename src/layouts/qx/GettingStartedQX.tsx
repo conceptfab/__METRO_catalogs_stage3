@@ -76,7 +76,7 @@ const GettingStartedQX = ({ data }: GettingStartedSectionProps) => {
                 <h3 className="mt-3 qx-emphasis-title">
                   <QxText text={s.title} />
                 </h3>
-                <p className="sec_main_text mt-1 max-w-[360px] font-body">
+                <p className="sec_main_text mt-1 font-body sm:max-w-[360px]">
                   <QxText text={s.desc} />
                 </p>
               </m.article>

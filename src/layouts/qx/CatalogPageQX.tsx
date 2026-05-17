@@ -81,7 +81,7 @@ export default function CatalogPageQX({
           <ProductCodesQX data={catalog.productCodes} />
         </main>
 
-        <footer className="bg-catalog-footer py-10">
+        <footer className="bg-white py-10">
           <nav
             aria-label="Other catalogs"
             className="mx-auto grid w-full max-w-[1440px] grid-cols-2 gap-3 px-5 sm:grid-cols-4 sm:px-8 lg:grid-cols-8 lg:px-0"
@@ -121,7 +121,18 @@ export default function CatalogPageQX({
             })}
           </nav>
         </footer>
-        <div className="h-[120px] w-full bg-neutral-300 dark:bg-neutral-800" aria-hidden="true" />
+        <div className="bg-white py-6">
+          <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-0">
+            <Image
+              src="/banner.webp"
+              alt="Fundusze Europejskie dla Nowoczesnej Gospodarki — Rzeczpospolita Polska — Dofinansowane przez Unię Europejską — PARP Grupa PFR"
+              width={2545}
+              height={218}
+              sizes="(min-width: 1440px) 864px, (min-width: 1024px) 60vw, 90vw"
+              className="mx-auto block h-auto w-[90%] lg:w-[60%]"
+            />
+          </div>
+        </div>
         <PdfDownloadButton catalogId={catalog.id} />
       </CatalogMotion>
     </div>
