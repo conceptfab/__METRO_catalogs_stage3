@@ -4,88 +4,20 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { m, useInView, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
-import type {
-  MaterialsConfiguratorData,
-  MaterialsConfiguratorOption,
-  PackshotsData,
-} from '@/types/catalog';
+import type { PackshotsData } from '@/types/catalog';
 import { SECTION_REVEAL_SLIDE, slowTransition } from '@/lib/motion';
 import { QxText } from '@/components/catalog/QxText';
-import { ColorChip } from '@/components/catalog/ColorChip';
 import { useFocusTrap } from '@/hooks/use-focus-trap';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 interface PackshotsSectionProps {
   data: PackshotsData;
-  materialsConfigurator?: MaterialsConfiguratorData;
 }
 
 const SAMPLE_PACKSHOT_SRC =
   '/catalogs/MCR800/packshots/V51_W240_black__Shot_A_4K_R10.webp';
 
-const FRAME_COLOR_FROM_NAME: Record<string, string> = {
-  white: 'RAL9003',
-  black: 'RAL9005',
-  grey: 'RAL9006',
-  gray: 'RAL9006',
-};
-
-function parsePackshotImage(filename: string | undefined): {
-  topCode?: string;
-  frameCode?: string;
-} {
-  if (!filename) return {};
-  const base = filename.split('/').pop() ?? '';
-  const stem = base.replace(/\.[^.]+$/, '').split('__')[0];
-  const tokens = stem.split('_');
-  const topToken = tokens[1];
-  const frameToken = tokens[2];
-  const topCode =
-    topToken && /^[UW]\d+$/i.test(topToken) ? topToken.toUpperCase() : undefined;
-
-  let frameCode: string | undefined;
-  if (frameToken) {
-    if (/^RAL\d+$/i.test(frameToken)) {
-      frameCode = frameToken.toUpperCase();
-    } else {
-      frameCode = FRAME_COLOR_FROM_NAME[frameToken.toLowerCase()];
-    }
-  }
-  return { topCode, frameCode };
-}
-
-const METRO_ID_PATTERN = /^metro[_ -]/i;
-
-function pickOption(
-  options: MaterialsConfiguratorOption[] | undefined,
-  code: string | undefined,
-): MaterialsConfiguratorOption | undefined {
-  if (!options || !code) return undefined;
-  const upper = code.toUpperCase();
-  const matches = options.filter(
-    (option) => option.code.toUpperCase() === upper,
-  );
-  if (matches.length === 0) return undefined;
-
-  const metroEntry = matches.find((option) => METRO_ID_PATTERN.test(option.id));
-  const swatchEntry = matches.find(
-    (option) => !METRO_ID_PATTERN.test(option.id),
-  );
-
-  if (metroEntry && swatchEntry) {
-    return {
-      ...metroEntry,
-      label: swatchEntry.label,
-      thumbnail: swatchEntry.image,
-    };
-  }
-  return swatchEntry ?? metroEntry ?? matches[0];
-}
-
-const PackshotsMCR800 = ({
-  data,
-  materialsConfigurator,
-}: PackshotsSectionProps) => {
+const PackshotsMCR800 = ({ data }: PackshotsSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const reveal = SECTION_REVEAL_SLIDE;
@@ -186,81 +118,50 @@ const PackshotsMCR800 = ({
           </m.div>
 
           <div className="mt-12 -mx-5 grid grid-cols-1 gap-6 sm:mx-0 sm:grid-cols-2 lg:mt-[120px]">
-            {packshotItems.map((item, i) => {
-              const { topCode, frameCode } = parsePackshotImage(item.image);
-              const frameOption = pickOption(
-                materialsConfigurator?.frameOptions,
-                frameCode,
-              );
-              const desktopOption = pickOption(
-                materialsConfigurator?.desktopOptions,
-                topCode,
-              );
-              return (
-                <m.article
-                  key={`${item.code}-${item.image}`}
-                  initial={reveal.content.initial}
-                  animate={isInView ? reveal.content.animate : {}}
-                  transition={slowTransition({
-                    duration: 0.5,
-                    delay: 0.2 + i * 0.1,
-                  })}
-                  className="min-w-0"
-                >
-                  {isMobile ? (
-                    <div className="qx-packshot-mobile-frame">
+            {packshotItems.map((item, i) => (
+              <m.article
+                key={`${item.code}-${item.image}`}
+                initial={reveal.content.initial}
+                animate={isInView ? reveal.content.animate : {}}
+                transition={slowTransition({
+                  duration: 0.5,
+                  delay: 0.2 + i * 0.1,
+                })}
+                className="min-w-0"
+              >
+                {isMobile ? (
+                  <div className="qx-packshot-mobile-frame">
+                    <Image
+                      src={item.image}
+                      alt={item.name || `${item.code} packshot`}
+                      fill
+                      sizes="(min-width: 1440px) 710px, (min-width: 640px) 46vw, 100vw"
+                      className="qx-packshot-mobile-image"
+                    />
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => openLightbox(i)}
+                    className="group relative block w-full overflow-hidden"
+                    aria-label={`View ${item.name || item.code} packshot in fullscreen`}
+                  >
+                    <div className="qx-packshot-desktop-frame">
                       <Image
                         src={item.image}
                         alt={item.name || `${item.code} packshot`}
                         fill
                         sizes="(min-width: 1440px) 710px, (min-width: 640px) 46vw, 100vw"
-                        className="qx-packshot-mobile-image"
+                        className="qx-packshot-desktop-image"
                       />
                     </div>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => openLightbox(i)}
-                      className="group relative block w-full overflow-hidden"
-                      aria-label={`View ${item.name || item.code} packshot in fullscreen`}
-                    >
-                      <div className="qx-packshot-desktop-frame">
-                        <Image
-                          src={item.image}
-                          alt={item.name || `${item.code} packshot`}
-                          fill
-                          sizes="(min-width: 1440px) 710px, (min-width: 640px) 46vw, 100vw"
-                          className="qx-packshot-desktop-image"
-                        />
-                      </div>
-                    </button>
-                  )}
-                  <div className="qx-packshot-meta">
-                    <span className="qx-packshot-code">{item.code}</span>
-                    {frameCode && (
-                      <span className="inline-flex items-center gap-1.5">
-                        <span className="font-display text-[10px] uppercase tracking-[0.12em] text-foreground/70">
-                          Frame
-                        </span>
-                        {frameOption ? (
-                          <ColorChip option={frameOption} role="frame" />
-                        ) : null}
-                      </span>
-                    )}
-                    {topCode && (
-                      <span className="inline-flex items-center gap-1.5">
-                        <span className="font-display text-[10px] uppercase tracking-[0.12em] text-foreground/70">
-                          Top
-                        </span>
-                        {desktopOption ? (
-                          <ColorChip option={desktopOption} role="top" />
-                        ) : null}
-                      </span>
-                    )}
-                  </div>
-                </m.article>
-              );
-            })}
+                  </button>
+                )}
+                <div className="qx-packshot-meta">
+                  <span className="qx-packshot-code">{item.code}</span>
+                </div>
+              </m.article>
+            ))}
           </div>
         </div>
       </section>

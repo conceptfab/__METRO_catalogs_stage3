@@ -44,18 +44,18 @@ const FinishesMCR800 = ({ data }: FinishesSectionProps) => {
   return (
     <section
       id="finishes"
-      className="bg-surface-elevated lg:min-h-[960px]"
+      className="bg-surface-elevated"
       aria-labelledby="finishes-title"
     >
       <div
-        className="relative mx-auto w-full max-w-[1440px] px-5 pt-6 pb-12 sm:px-8 sm:pt-8 lg:min-h-[960px] lg:px-0 lg:py-0"
+        className="mx-auto w-full max-w-[1440px] px-5 pt-6 pb-12 sm:px-8 sm:pt-8 lg:px-12 lg:pt-16 lg:pb-20"
         ref={ref}
       >
         <m.div
           initial={reveal.header.initial}
           animate={isInView ? reveal.header.animate : {}}
           transition={slowTransition({ duration: 0.6 })}
-          className="relative z-10 flex flex-col lg:max-w-[520px] lg:pt-3"
+          className="flex flex-col lg:max-w-[720px]"
         >
           <p className="section_ID font-display uppercase">
             <QxText text={data.sectionLabel} />
@@ -82,7 +82,7 @@ const FinishesMCR800 = ({ data }: FinishesSectionProps) => {
           initial={reveal.content.initial}
           animate={isInView ? reveal.content.animate : {}}
           transition={slowTransition({ duration: 0.6, delay: 0.25 })}
-          className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[687px] lg:gap-5"
+          className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:mt-14 lg:gap-8"
         >
           {illustrations.map((slot) => {
             const isWhite = slot.color === 'white';

@@ -250,6 +250,11 @@ interface GalleryImage {
   src: string;
   alt: string;
   category: string;
+  /** Natural pixel width (resolved at load time). Optional — used by the
+   * print layout to size cells proportionally to image aspect ratio. */
+  width?: number;
+  /** Natural pixel height (resolved at load time). */
+  height?: number;
 }
 
 export interface GalleryPrintConfig {

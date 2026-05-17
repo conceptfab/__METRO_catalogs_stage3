@@ -11,8 +11,6 @@ import { responsiveImg } from '@/lib/responsive-image';
 interface MCR800Illustration {
   id: string;
   model: string;
-  frameName: string;
-  frameHex: string;
   image: string;
   alt: string;
 }
@@ -25,40 +23,7 @@ interface MaterialsSectionProps {
   data: MaterialsData;
 }
 
-const FALLBACK_ILLUSTRATIONS: MCR800Illustration[] = [
-  {
-    id: 'set-1-white',
-    model: 'Set 1',
-    frameName: 'White',
-    frameHex: '#f2f0ec',
-    image: '/catalogs/MCR800/set/MCR_Set 1_white_wg__Shot_A__4K_R8.webp',
-    alt: 'MCR800 Set 1 in white finish',
-  },
-  {
-    id: 'set-2-white',
-    model: 'Set 2',
-    frameName: 'White',
-    frameHex: '#f2f0ec',
-    image: '/catalogs/MCR800/set/MCR_Set 2_white_wg__Shot_A__4K_R8.webp',
-    alt: 'MCR800 Set 2 in white finish',
-  },
-  {
-    id: 'set-3-black',
-    model: 'Set 3',
-    frameName: 'Black',
-    frameHex: '#1a1a1a',
-    image: '/catalogs/MCR800/set/MCR_Set 3_black_gb__Shot_A__4K_R8.webp',
-    alt: 'MCR800 Set 3 in black finish',
-  },
-  {
-    id: 'set-4-black',
-    model: 'Set 4',
-    frameName: 'Black',
-    frameHex: '#1a1a1a',
-    image: '/catalogs/MCR800/set/MCR_Set 4_black_gb__Shot_A__4K_R8.webp',
-    alt: 'MCR800 Set 4 in black finish',
-  },
-];
+const FALLBACK_ILLUSTRATIONS: MCR800Illustration[] = [];
 
 const MaterialsMCR800 = ({ data }: MaterialsSectionProps) => {
   const ref = useRef(null);
@@ -127,16 +92,6 @@ const MaterialsMCR800 = ({ data }: MaterialsSectionProps) => {
               </div>
               <div className="qx-packshot-meta">
                 <span className="qx-packshot-code">{slot.model}</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <span className="font-display text-[10px] uppercase tracking-[0.12em] text-foreground/70">
-                    Frame
-                  </span>
-                  <span
-                    aria-label={`Frame: ${slot.frameName}`}
-                    className="inline-block size-6 border border-border"
-                    style={{ backgroundColor: slot.frameHex }}
-                  />
-                </span>
               </div>
             </m.article>
           ))}

@@ -6,20 +6,25 @@ interface Props {
 }
 
 /**
- * Print-only Gallery. Uses the shared .print-section / .print-section-frame
- * geometry so the page matches every other non-Hero section in the catalog.
- * SectionHeading at the top, image grid below — columns × rows from
- * gallery/print.json.
+ * Print-only Gallery. Justified-row layout: rows share equal height, each cell
+ * inside a row flex-grows by the image's aspect ratio so wide and tall images
+ * occupy proportionally different widths but render at the same row height.
+ * `columns` from gallery/print.json controls items per row.
  */
 export default function GalleryPrintQX({ catalog }: Props) {
   const { sectionLabel, title, images, print } = catalog.gallery;
   const config = print ?? {};
-  const columns = config.columns ?? 3;
-  const rows = config.rows ?? Math.ceil(images.length / columns);
+  const perRow = config.columns ?? 3;
   const gap = config.gap ?? 16;
   const showTitle = config.showTitle ?? true;
-  const maxImages = config.maxImages ?? columns * rows;
+  const maxImages =
+    config.maxImages ?? (config.rows ? perRow * config.rows : images.length);
   const items = images.slice(0, maxImages);
+
+  const rows: typeof items[] = [];
+  for (let i = 0; i < items.length; i += perRow) {
+    rows.push(items.slice(i, i + perRow));
+  }
 
   return (
     <section
@@ -38,23 +43,28 @@ export default function GalleryPrintQX({ catalog }: Props) {
         )}
 
         <div className="print-section-content">
-          <div
-            className="gallery-print-grid"
-            style={{
-              gridTemplateColumns: `repeat(${columns}, 1fr)`,
-              gridTemplateRows: `repeat(${rows}, 1fr)`,
-              gap,
-            }}
-          >
-            {items.map((img, i) => (
-              <div key={`${img.src}-${i}`} className="gallery-print-cell">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  loading="eager"
-                  className="gallery-print-image"
-                />
+          <div className="gallery-print-rows" style={{ gap }}>
+            {rows.map((row, ri) => (
+              <div key={ri} className="gallery-print-row" style={{ gap }}>
+                {row.map((img, i) => {
+                  const aspect =
+                    img.width && img.height ? img.width / img.height : 1;
+                  return (
+                    <div
+                      key={`${img.src}-${i}`}
+                      className="gallery-print-cell"
+                      style={{ flex: `${aspect} 1 0` }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        loading="eager"
+                        className="gallery-print-image"
+                      />
+                    </div>
+                  );
+                })}
               </div>
             ))}
           </div>

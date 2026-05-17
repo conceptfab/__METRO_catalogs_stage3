@@ -385,6 +385,8 @@
   "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_D_2_R5_0000.webp": [],
   "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_detal_R5_0000.webp": [],
   "/catalogs/MCR800/features/07_25_Metro_Lada_WHITE_B_2_R5.webp": [],
+  "/catalogs/MCR800/finishes/07_25_Metro_Lada_BLACK_detal_R5_0001.webp": [],
+  "/catalogs/MCR800/finishes/07_25_Metro_Lada_WHITE_detal_R5_0001.webp": [],
   "/catalogs/MCR800/gallery/scene_BLACK_A_2_0000.webp": [
     256,
     512,
@@ -432,96 +434,6 @@
     1280,
     1920,
     2560
-  ],
-  "/catalogs/MCR800/materials/metro RAL 7024.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro RAL 9003.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro RAL 9005.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro RAL 9006.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro U100.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro U110.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro U120.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro U130.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro W200.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro W210.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro W220.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro W240.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro W250.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro W310.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/materials/metro W330.webp": [
-    400,
-    800,
-    1200,
-    1600
   ],
   "/catalogs/MCR800/overview/QS-overview0000.webp": [
     400,

@@ -18,13 +18,15 @@ function chunk<T>(arr: T[], size: number): T[][] {
 }
 
 /**
- * Resolve the still image (last video frame) for a feature.
+ * Resolve the still image for a feature.
  *
- * Convention: alongside each `*.mp4` there is a pre-generated `*_last.webp`
- * extracted via ffmpeg (see scripts / catalog README). If the feature has a
- * `poster`, that takes precedence; otherwise we swap the extension.
+ * Order of precedence:
+ *   1. Explicit `image.src` — MCR800 uses this for static photo features.
+ *   2. `video.poster` — pre-supplied poster frame.
+ *   3. `video.src` → `_last.webp` — last-frame extract sitting next to the MP4.
  */
 function resolveStillImage(item: FeatureItem): string | undefined {
+  if (item.image?.src) return item.image.src;
   if (item.video?.poster) return item.video.poster;
   if (item.video?.src) {
     return item.video.src.replace(/\.(mp4|webm|mov)$/i, '_last.webp');

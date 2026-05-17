@@ -63,12 +63,7 @@ export default function CatalogPageMCR800({
           <OverviewMCR800 data={catalog.overview} />
           <GalleryMCR800 data={catalog.gallery} />
           <FinishesMCR800 data={catalog.finishes} />
-          {catalog.packshots && (
-            <PackshotsMCR800
-              data={catalog.packshots}
-              materialsConfigurator={catalog.materials.configurator}
-            />
-          )}
+          {catalog.packshots && <PackshotsMCR800 data={catalog.packshots} />}
           <DimensionsMCR800 data={catalog.dimensions} />
           <MaterialsMCR800 data={catalog.materials} />
           <FeaturesMCR800 data={catalog.features} />

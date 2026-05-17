@@ -1,15 +1,23 @@
-import type { PackshotsData } from '@/types/catalog';
+import type { MaterialsData } from '@/types/catalog';
 import { SectionHeading } from '@/components/catalog/SectionHeading';
 import { QxText } from '@/components/catalog/QxText';
 
+interface MCR800Illustration {
+  id: string;
+  model: string;
+  image: string;
+  alt: string;
+}
+
+interface MCR800MaterialsData extends MaterialsData {
+  illustrations?: MCR800Illustration[];
+}
+
 interface Props {
-  data: PackshotsData;
+  data: MaterialsData;
 }
 
 const ITEMS_PER_PAGE = 4;
-
-const SAMPLE_PACKSHOT_SRC =
-  '/catalogs/MCR800/packshots/V51_W240_black__Shot_A_4K_R10.webp';
 
 function chunk<T>(arr: T[], size: number): T[][] {
   const result: T[][] = [];
@@ -19,82 +27,67 @@ function chunk<T>(arr: T[], size: number): T[][] {
   return result;
 }
 
-interface FlatItem {
-  code: string;
-  name: string;
-  image: string;
-  groupLabel: string;
-}
-
 /**
- * Print-only Packshots/Models section.
+ * Print-only Materials / "Example sets" section for MCR800.
  *
- * Counts catalog items and emits ceil(N / 4) print pages with a 2×2 grid
- * on each. Self-contained: no clicks, no lightbox, no motion. Renders its
- * own outer .print-page wrappers (CatalogPrintMCR800 skips its own wrapper for
- * this component).
- *
- * Meta block shows only the model code — no color chips (kept in sync with
- * the on-screen PackshotsMCR800 which dropped Frame/Top swatch info).
+ * Renders the same `illustrations` from materials/content.json that the
+ * on-screen MaterialsMCR800 uses — but paged for A4 landscape print. Reuses
+ * the .packshots-print-* CSS so the cell sizing, gaps and meta layout match
+ * the Packshots section byte-for-byte. Emits its own .print-page wrappers,
+ * one per chunk of 4 sets.
  */
-export default function PackshotsPrintMCR800({ data }: Props) {
-  const allItems: FlatItem[] = data.groups.flatMap((group) =>
-    group.items.map((item) => ({
-      code: item.code,
-      name: item.name,
-      image: item.image ?? SAMPLE_PACKSHOT_SRC,
-      groupLabel: group.label,
-    })),
-  );
+export default function MaterialsPrintMCR800({ data }: Props) {
+  const extended = data as MCR800MaterialsData;
+  const illustrations = extended.illustrations ?? [];
 
-  if (allItems.length === 0) return null;
+  if (illustrations.length === 0) return null;
 
-  const pages = chunk(allItems, ITEMS_PER_PAGE);
+  const pages = chunk(illustrations, ITEMS_PER_PAGE);
 
   return (
     <>
       {pages.map((pageItems, pageIndex) => (
         <div
-          key={`packshots-page-${pageIndex}`}
-          className="print-page print-page-packshots"
+          key={`materials-page-${pageIndex}`}
+          className="print-page print-page-materials"
         >
           <section
-            id={pageIndex === 0 ? 'packshots' : undefined}
+            id={pageIndex === 0 ? 'materials' : undefined}
             className="print-section"
-            aria-labelledby={pageIndex === 0 ? 'packshots-title' : undefined}
+            aria-labelledby={pageIndex === 0 ? 'materials-title' : undefined}
           >
             <div className="print-section-frame">
               <SectionHeading
-                id="packshots"
+                id="materials"
                 sectionLabel={data.sectionLabel}
                 title={data.title}
                 className="print-section-heading"
               />
-              {data.subtitle && (
+              {data.description && (
                 <p className="packshots-print-subtitle sec_main_text">
-                  <QxText text={data.subtitle} />
+                  <QxText text={data.description} />
                 </p>
               )}
 
               <div className="print-section-content">
                 <div className="packshots-print-grid">
-                  {pageItems.map((item) => (
+                  {pageItems.map((slot) => (
                     <article
-                      key={`${item.code}-${item.image}`}
+                      key={slot.id}
                       className="packshots-print-cell"
                     >
                       <div className="packshots-print-image-wrap">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src={item.image}
-                          alt={item.name || `${item.code} packshot`}
+                          src={slot.image}
+                          alt={slot.alt}
                           loading="eager"
                           className="packshots-print-image"
                         />
                       </div>
                       <div className="packshots-print-meta">
                         <span className="packshots-print-code">
-                          <QxText text={item.code} />
+                          <QxText text={slot.model} />
                         </span>
                       </div>
                     </article>

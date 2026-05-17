@@ -729,7 +729,11 @@ html {
   }
 
   /* Packshots/Models — height grows with thumbnail count */
-  .catalog-qx0 main>section#packshots>div:first-child {
+  .catalog-qx0 main>section#packshots>div:first-child,
+  /* Customization (MCR800 Example sets) — height grows with set count */
+  .catalog-id-mcr800 main>section#materials>div:first-child,
+  /* Technical Data (MCR800 placeholders) — height grows with grid */
+  .catalog-id-mcr800 main>section#dimensions>div:first-child {
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;

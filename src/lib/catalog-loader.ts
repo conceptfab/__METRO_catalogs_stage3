@@ -17,8 +17,31 @@ import type {
 } from '@/types/catalog';
 import fs from 'fs/promises';
 import path from 'path';
+import sharp from 'sharp';
 import { parseHeroContent } from './schemas/hero';
 import { parsePackshotsContent } from './schemas/packshots';
+
+const imageDimsCache = new Map<string, { width: number; height: number } | null>();
+
+async function probeImageDimensions(
+  publicUrl: string,
+): Promise<{ width: number; height: number } | null> {
+  if (!publicUrl || publicUrl.startsWith('http')) return null;
+  if (imageDimsCache.has(publicUrl)) return imageDimsCache.get(publicUrl) ?? null;
+
+  const relative = publicUrl.replace(/^\/+/, '');
+  const absolute = path.join(PUBLIC_DIR, relative);
+  try {
+    const meta = await sharp(absolute).metadata();
+    const dims =
+      meta.width && meta.height ? { width: meta.width, height: meta.height } : null;
+    imageDimsCache.set(publicUrl, dims);
+    return dims;
+  } catch {
+    imageDimsCache.set(publicUrl, null);
+    return null;
+  }
+}
 
 type DiscoveredMaterialsOption = {
   code: string;
@@ -671,11 +694,16 @@ export async function loadCatalog(
     resolveImage(heroBase, hero.heroImage),
     resolveImage(`${base}/overview`, overview.packshotImage),
     Promise.all(
-      (gallery.images ?? []).map(async (img) => ({
-        src: await resolveImage(`${base}/gallery`, img.image),
-        alt: img.alt,
-        category: img.category,
-      })),
+      (gallery.images ?? []).map(async (img) => {
+        const src = await resolveImage(`${base}/gallery`, img.image);
+        const dims = await probeImageDimensions(src);
+        return {
+          src,
+          alt: img.alt,
+          category: img.category,
+          ...(dims ? { width: dims.width, height: dims.height } : {}),
+        };
+      }),
     ),
     packshots
       ? Promise.all(

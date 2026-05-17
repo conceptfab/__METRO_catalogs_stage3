@@ -14,32 +14,18 @@
   "comparisonTable": [],
   "illustrations": [
     {
-      "id": "white-set-1",
+      "id": "white-detail",
       "color": "white",
-      "label": "Set 1 / White",
-      "image": "/catalogs/MCR800/set/MCR_Set 1_white_wg__Shot_A__4K_R8.webp",
-      "alt": "MCR800 Set 1 configuration in white finish"
+      "label": "White finish",
+      "image": "/catalogs/MCR800/finishes/07_25_Metro_Lada_WHITE_detal_R5_0001.webp",
+      "alt": "MCR800 frame and desktop detail in white finish"
     },
     {
-      "id": "white-set-2",
-      "color": "white",
-      "label": "Set 2 / White",
-      "image": "/catalogs/MCR800/set/MCR_Set 2_white_wg__Shot_A__4K_R8.webp",
-      "alt": "MCR800 Set 2 configuration in white finish"
-    },
-    {
-      "id": "black-set-3",
+      "id": "black-detail",
       "color": "black",
-      "label": "Set 3 / Black",
-      "image": "/catalogs/MCR800/set/MCR_Set 3_black_gb__Shot_A__4K_R8.webp",
-      "alt": "MCR800 Set 3 configuration in black finish"
-    },
-    {
-      "id": "black-set-4",
-      "color": "black",
-      "label": "Set 4 / Black",
-      "image": "/catalogs/MCR800/set/MCR_Set 4_black_gb__Shot_A__4K_R8.webp",
-      "alt": "MCR800 Set 4 configuration in black finish"
+      "label": "Black finish",
+      "image": "/catalogs/MCR800/finishes/07_25_Metro_Lada_BLACK_detal_R5_0001.webp",
+      "alt": "MCR800 frame and desktop detail in black finish"
     }
   ]
 }
