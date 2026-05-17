@@ -27,6 +27,12 @@ export default function nextConfig(phase: string): NextConfig {
     // Keep puppeteer + chromium binary out of the function bundle so Vercel
     // can use the native serverless deps it ships with @sparticuz/chromium.
     serverExternalPackages: ['@sparticuz/chromium', 'puppeteer-core'],
+    // public/catalogs/** is large (200+ MB of WebP/MP4/PDF assets) and is served
+    // as static files — it must not be traced into serverless function bundles
+    // or each function exceeds Vercel's 250 MB unzipped limit.
+    outputFileTracingExcludes: {
+      '*': ['public/catalogs/**/*', 'public/shared/**/*'],
+    },
     experimental: {
       optimizePackageImports: ['lucide-react', 'framer-motion'],
       reactCompiler: true,

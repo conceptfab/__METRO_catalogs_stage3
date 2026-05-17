@@ -65,8 +65,8 @@
       "desc": ""
     }
   ],
-  "comparisonBasicLabel": "QS Basic",
-  "comparisonPremiumLabel": "QS Premium",
+  "comparisonBasicLabel": "FOTA Basic",
+  "comparisonPremiumLabel": "FOTA Premium",
   "comparisonTable": [
     {
       "feature": "Height adjustment",

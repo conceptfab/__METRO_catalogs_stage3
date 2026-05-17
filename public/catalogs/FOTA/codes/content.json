@@ -2,31 +2,31 @@
   "sectionLabel": "Product Codes",
   "title": "Order references",
   "description": "Use these unique codes when placing your order or specifying modules for your workspace.",
-  "image": "/catalogs/FOTA/codes/axo_QS_codes.svg",
+  "image": "/catalogs/FOTA/codes/axo_FOTA_codes.svg",
   "groups": [
     {
       "id": "single-depth-70",
       "category": "single",
-      "title": "QS single desk (depth 70 cm)",
+      "title": "FOTA single desk (depth 70 cm)",
       "rows": [
         {
-          "index": "QS1",
-          "indexR": "QS1R",
+          "index": "FOTA1",
+          "indexR": "FOTA1R",
           "dimensions": "120 × 70 × 74"
         },
         {
-          "index": "QS2",
-          "indexR": "QS2R",
+          "index": "FOTA2",
+          "indexR": "FOTA2R",
           "dimensions": "140 × 70 × 74"
         },
         {
-          "index": "QS3",
-          "indexR": "QS3R",
+          "index": "FOTA3",
+          "indexR": "FOTA3R",
           "dimensions": "160 × 70 × 74"
         },
         {
-          "index": "QS4",
-          "indexR": "QS4R",
+          "index": "FOTA4",
+          "indexR": "FOTA4R",
           "dimensions": "180 × 70 × 74"
         }
       ]
@@ -34,26 +34,26 @@
     {
       "id": "single-depth-80",
       "category": "single",
-      "title": "QS single desk (depth 80 cm)",
+      "title": "FOTA single desk (depth 80 cm)",
       "rows": [
         {
-          "index": "QS180",
-          "indexR": "QS1R80",
+          "index": "FOTA180",
+          "indexR": "FOTA1R80",
           "dimensions": "120 × 80 × 74"
         },
         {
-          "index": "QS280",
-          "indexR": "QS2R80",
+          "index": "FOTA280",
+          "indexR": "FOTA2R80",
           "dimensions": "140 × 80 × 74"
         },
         {
-          "index": "QS380",
-          "indexR": "QS3R80",
+          "index": "FOTA380",
+          "indexR": "FOTA3R80",
           "dimensions": "160 × 80 × 74"
         },
         {
-          "index": "QS480",
-          "indexR": "QS4R80",
+          "index": "FOTA480",
+          "indexR": "FOTA4R80",
           "dimensions": "180 × 80 × 74"
         }
       ]
@@ -61,26 +61,26 @@
     {
       "id": "single-extension-depth-70",
       "category": "single",
-      "title": "Extension for QS single desk (depth 70 cm)",
+      "title": "Extension for FOTA single desk (depth 70 cm)",
       "rows": [
         {
-          "index": "QS1D",
-          "indexR": "QS1RD",
+          "index": "FOTA1D",
+          "indexR": "FOTA1RD",
           "dimensions": "66.5 × 50 × 74"
         },
         {
-          "index": "QS2D",
-          "indexR": "QS2RD",
+          "index": "FOTA2D",
+          "indexR": "FOTA2RD",
           "dimensions": "86.5 × 50 × 74"
         },
         {
-          "index": "QS3D",
-          "indexR": "QS3RD",
+          "index": "FOTA3D",
+          "indexR": "FOTA3RD",
           "dimensions": "106.5 × 50 × 74"
         },
         {
-          "index": "QS4D",
-          "indexR": "QS4RD",
+          "index": "FOTA4D",
+          "indexR": "FOTA4RD",
           "dimensions": "126.5 × 50 × 74"
         }
       ]
@@ -88,26 +88,26 @@
     {
       "id": "single-extension-depth-80",
       "category": "single",
-      "title": "Extension for QS single desk (depth 80 cm)",
+      "title": "Extension for FOTA single desk (depth 80 cm)",
       "rows": [
         {
-          "index": "QS1D80",
-          "indexR": "QS1RD80",
+          "index": "FOTA1D80",
+          "indexR": "FOTA1RD80",
           "dimensions": "66.5 × 50 × 74"
         },
         {
-          "index": "QS2D80",
-          "indexR": "QS2RD80",
+          "index": "FOTA2D80",
+          "indexR": "FOTA2RD80",
           "dimensions": "86.5 × 50 × 74"
         },
         {
-          "index": "QS3D80",
-          "indexR": "QS3RD80",
+          "index": "FOTA3D80",
+          "indexR": "FOTA3RD80",
           "dimensions": "106.5 × 50 × 74"
         },
         {
-          "index": "QS4D80",
-          "indexR": "QS4RD80",
+          "index": "FOTA4D80",
+          "indexR": "FOTA4RD80",
           "dimensions": "126.5 × 50 × 74"
         }
       ]
@@ -115,26 +115,26 @@
     {
       "id": "bench-depth-140",
       "category": "bench",
-      "title": "QS bench double desk (depth 140 cm)",
+      "title": "FOTA bench double desk (depth 140 cm)",
       "rows": [
         {
-          "index": "QS10",
-          "indexR": "QS10R",
+          "index": "FOTA10",
+          "indexR": "FOTA10R",
           "dimensions": "120 × 140 × 74"
         },
         {
-          "index": "QS11",
-          "indexR": "QS11R",
+          "index": "FOTA11",
+          "indexR": "FOTA11R",
           "dimensions": "140 × 140 × 74"
         },
         {
-          "index": "QS12",
-          "indexR": "QS12R",
+          "index": "FOTA12",
+          "indexR": "FOTA12R",
           "dimensions": "160 × 140 × 74"
         },
         {
-          "index": "QS13",
-          "indexR": "QS13R",
+          "index": "FOTA13",
+          "indexR": "FOTA13R",
           "dimensions": "180 × 140 × 74"
         }
       ]
@@ -142,26 +142,26 @@
     {
       "id": "bench-depth-160",
       "category": "bench",
-      "title": "QS bench double desk (depth 160 cm)",
+      "title": "FOTA bench double desk (depth 160 cm)",
       "rows": [
         {
-          "index": "QS1080",
-          "indexR": "QS1080R",
+          "index": "FOTA1080",
+          "indexR": "FOTA1080R",
           "dimensions": "120 × 160 × 74"
         },
         {
-          "index": "QS1180",
-          "indexR": "QS1180R",
+          "index": "FOTA1180",
+          "indexR": "FOTA1180R",
           "dimensions": "140 × 160 × 74"
         },
         {
-          "index": "QS1280",
-          "indexR": "QS1280R",
+          "index": "FOTA1280",
+          "indexR": "FOTA1280R",
           "dimensions": "160 × 160 × 74"
         },
         {
-          "index": "QS1380",
-          "indexR": "QS1380R",
+          "index": "FOTA1380",
+          "indexR": "FOTA1380R",
           "dimensions": "180 × 160 × 74"
         }
       ]
@@ -169,26 +169,26 @@
     {
       "id": "bench-flaps-depth-140",
       "category": "bench",
-      "title": "QS bench double desk with access to the cable canal through the flaps (depth 140 cm)",
+      "title": "FOTA bench double desk with access to the cable canal through the flaps (depth 140 cm)",
       "rows": [
         {
-          "index": "QS15",
-          "indexR": "QS15R",
+          "index": "FOTA15",
+          "indexR": "FOTA15R",
           "dimensions": "120 × 140 × 74"
         },
         {
-          "index": "QS16",
-          "indexR": "QS16R",
+          "index": "FOTA16",
+          "indexR": "FOTA16R",
           "dimensions": "140 × 140 × 74"
         },
         {
-          "index": "QS17",
-          "indexR": "QS17R",
+          "index": "FOTA17",
+          "indexR": "FOTA17R",
           "dimensions": "160 × 140 × 74"
         },
         {
-          "index": "QS18",
-          "indexR": "QS18R",
+          "index": "FOTA18",
+          "indexR": "FOTA18R",
           "dimensions": "180 × 140 × 74"
         }
       ]
@@ -196,26 +196,26 @@
     {
       "id": "bench-flaps-depth-160",
       "category": "bench",
-      "title": "QS bench double desk with access to the cable canal through the flaps (depth 160 cm)",
+      "title": "FOTA bench double desk with access to the cable canal through the flaps (depth 160 cm)",
       "rows": [
         {
-          "index": "QS1580",
-          "indexR": "QS1580R",
+          "index": "FOTA1580",
+          "indexR": "FOTA1580R",
           "dimensions": "120 × 160 × 74"
         },
         {
-          "index": "QS1680",
-          "indexR": "QS1680R",
+          "index": "FOTA1680",
+          "indexR": "FOTA1680R",
           "dimensions": "140 × 160 × 74"
         },
         {
-          "index": "QS1780",
-          "indexR": "QS1780R",
+          "index": "FOTA1780",
+          "indexR": "FOTA1780R",
           "dimensions": "160 × 160 × 74"
         },
         {
-          "index": "QS1880",
-          "indexR": "QS1880R",
+          "index": "FOTA1880",
+          "indexR": "FOTA1880R",
           "dimensions": "180 × 160 × 74"
         }
       ]

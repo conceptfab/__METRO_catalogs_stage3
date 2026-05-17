@@ -218,42 +218,47 @@
     960,
     1440
   ],
-  "/catalogs/FOTA/features/QS_accessory_last.webp": [],
-  "/catalogs/FOTA/features/QS_assembly_last.webp": [],
-  "/catalogs/FOTA/features/QS_extend_last.webp": [],
-  "/catalogs/FOTA/features/QS_modular_last.webp": [],
-  "/catalogs/FOTA/features/QS_welds_last.webp": [],
-  "/catalogs/FOTA/gallery/04_26_Metro_QS_DETAL_.webp": [
+  "/catalogs/FOTA/features/FOTA_efficient_storage_last.webp": [],
+  "/catalogs/FOTA/features/FOTA_fast_folding_last.webp": [],
+  "/catalogs/FOTA/features/FOTA_high-strength_wheels_last.webp": [],
+  "/catalogs/FOTA/features/FOTA_smart_connection_last.webp": [],
+  "/catalogs/FOTA/gallery/12_25_Metro_FOTA_DETAL_.webp": [
     256,
     512,
     1024,
     1600
   ],
-  "/catalogs/FOTA/gallery/04_26_Metro_QS_HERO_0_0001.webp": [
+  "/catalogs/FOTA/gallery/12_25_Metro_FOTA_HOME0000.webp": [
     256,
     512,
     1024,
     1600
   ],
-  "/catalogs/FOTA/gallery/04_26_Metro_QS_HOME0000.webp": [
-    256,
-    512,
-    1024,
-    1600
-  ],
-  "/catalogs/FOTA/gallery/04_26_Metro_QS_SOLO_A_0001.webp": [
+  "/catalogs/FOTA/gallery/12_25_Metro_FOTA_SOLO_A_0000.webp": [
     400,
     800,
     1200,
     1600
   ],
-  "/catalogs/FOTA/hero/04_26_Metro_QS_SOLO_B2_hero_noise.webp": [
+  "/catalogs/FOTA/gallery/12_25_Metro_FOTA_SOLO_B_0000.webp": [
+    256,
+    512,
+    1024,
+    1600
+  ],
+  "/catalogs/FOTA/gallery/12_25_Metro_FOTA_SOLO_D_0001.webp": [
+    256,
+    512,
+    1024,
+    1600
+  ],
+  "/catalogs/FOTA/hero/12_25_Metro_FOTA_HERO_0_0000.webp": [
     640,
     1280,
     1920,
     2560
   ],
-  "/catalogs/FOTA/hero/04_26_Metro_QS_SOLO_B4_HERO_noise.webp": [
+  "/catalogs/FOTA/hero/12_25_Metro_FOTA_HERO_1_0000.webp": [
     640,
     1280,
     1920,
@@ -349,108 +354,50 @@
     1200,
     1600
   ],
-  "/catalogs/FOTA/overview/QS-overview0000.webp": [
+  "/catalogs/FOTA/overview/12_25_Metro_FOTA_SOLO_overview0000.webp": [
     400,
     800,
     1200,
     1600
   ],
-  "/catalogs/FOTA/packshots/QS11_U100_white__Shot_A__4K_R10.webp": [
+  "/catalogs/FOTA/packshots/FF1_U100_white__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/FOTA/packshots/QS11_U130_black__Shot_A__4K_R10.webp": [
+  "/catalogs/FOTA/packshots/FF1_W240_black__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/FOTA/packshots/QS11_W240_black__Shot_A__4K_R10.webp": [
+  "/catalogs/FOTA/packshots/FF2_U100_white__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/FOTA/packshots/QS17_U100_white__Shot_A__4K_R10.webp": [
+  "/catalogs/FOTA/packshots/FF2_W240_black__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/FOTA/packshots/QS17_U130_black__Shot_A__4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/FOTA/packshots/QS17_W240_black__Shot_A__4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/FOTA/packshots/QS1D_U100_white__Shot_A__4K_R8.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/FOTA/packshots/QS1D_U130_black__Shot_A__4K_R9.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/FOTA/packshots/QS1D_W240_black__Shot_A__4K_R9.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/FOTA/packshots/QS280_U100_white__Shot_A__4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/FOTA/packshots/QS280_U130_black__Shot_A__4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/FOTA/packshots/QS280_W240_black__Shot_A__4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/MCR800/features/QS_accessory_last.webp": [],
-  "/catalogs/MCR800/features/QS_assembly_last.webp": [],
-  "/catalogs/MCR800/features/QS_extend_last.webp": [],
-  "/catalogs/MCR800/features/QS_modular_last.webp": [],
-  "/catalogs/MCR800/features/QS_welds_last.webp": [],
-  "/catalogs/MCR800/gallery/04_26_Metro_QS_DETAL_.webp": [
-    256,
-    512,
-    1024,
-    1600
-  ],
-  "/catalogs/MCR800/gallery/04_26_Metro_QS_HERO_0_0001.webp": [
-    256,
-    512,
-    1024,
-    1600
-  ],
-  "/catalogs/MCR800/gallery/04_26_Metro_QS_HOME0000.webp": [
-    256,
-    512,
-    1024,
-    1600
-  ],
-  "/catalogs/MCR800/gallery/04_26_Metro_QS_SOLO_A_0001.webp": [
-    400,
-    800,
-    1200,
-    1600
-  ],
-  "/catalogs/MCR800/hero/04_26_Metro_QS_SOLO_B2_hero_noise.webp": [
+  "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_B1_R5_0000.webp": [],
+  "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_C_2_r5_0000.webp": [],
+  "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_D_2_R5_0000.webp": [],
+  "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_detal_R5_0000.webp": [],
+  "/catalogs/MCR800/features/07_25_Metro_Lada_WHITE_B_2_R5.webp": [],
+  "/catalogs/MCR800/gallery/scene_BLACK_A_2_0000.webp": [],
+  "/catalogs/MCR800/gallery/scene_BLACK_B_3_4K.webp": [],
+  "/catalogs/MCR800/gallery/scene_BLACK_C_3_4K.webp": [],
+  "/catalogs/MCR800/gallery/scene_BLACK_D_4_0000.webp": [],
+  "/catalogs/MCR800/gallery/scene_WHITE_A_4_4K.webp": [],
+  "/catalogs/MCR800/gallery/scene_WHITE_D_4_QUAD_fix0000.webp": [],
+  "/catalogs/MCR800/hero/scene_WHITE_B_4_4K.webp": [
     640,
     1280,
     1920,
     2560
   ],
-  "/catalogs/MCR800/hero/04_26_Metro_QS_SOLO_B4_HERO_noise.webp": [
+  "/catalogs/MCR800/hero/scene_WHITE_C_4_4K.webp": [
     640,
     1280,
     1920,
@@ -552,66 +499,74 @@
     1200,
     1600
   ],
-  "/catalogs/MCR800/packshots/QS11_U100_white__Shot_A__4K_R10.webp": [
+  "/catalogs/MCR800/packshots/MCR 120B2_black_gb__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/MCR800/packshots/QS11_U130_black__Shot_A__4K_R10.webp": [
+  "/catalogs/MCR800/packshots/MCR 120B2_white_wg__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/MCR800/packshots/QS11_W240_black__Shot_A__4K_R10.webp": [
+  "/catalogs/MCR800/packshots/MCR 120B_black_gb__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/MCR800/packshots/QS17_U100_white__Shot_A__4K_R10.webp": [
+  "/catalogs/MCR800/packshots/MCR 120B_white_wg__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/MCR800/packshots/QS17_U130_black__Shot_A__4K_R10.webp": [
+  "/catalogs/MCR800/packshots/MCR_80A2_black_gb__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/MCR800/packshots/QS17_W240_black__Shot_A__4K_R10.webp": [
+  "/catalogs/MCR800/packshots/MCR_80A2_white_wg__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/MCR800/packshots/QS1D_U100_white__Shot_A__4K_R8.webp": [
+  "/catalogs/MCR800/packshots/MCR_80A_black_gb__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/MCR800/packshots/QS1D_U130_black__Shot_A__4K_R9.webp": [
+  "/catalogs/MCR800/packshots/MCR_80A_white_wg__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/MCR800/packshots/QS1D_W240_black__Shot_A__4K_R9.webp": [
+  "/catalogs/MCR800/packshots/MCR_C_black_gb__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/MCR800/packshots/QS280_U100_white__Shot_A__4K_R10.webp": [
+  "/catalogs/MCR800/packshots/MCR_C_white_wg__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/MCR800/packshots/QS280_U130_black__Shot_A__4K_R10.webp": [
+  "/catalogs/MCR800/packshots/MCR_D_black_gb__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/MCR800/packshots/QS280_W240_black__Shot_A__4K_R10.webp": [
+  "/catalogs/MCR800/packshots/MCR_D_white_wg__Shot_A__4K_R8.webp": [
     480,
     960,
     1440
   ],
+  "/catalogs/MCR800/set/MCR_Set 1_black_gb__Shot_A__4K_R8.webp": [],
+  "/catalogs/MCR800/set/MCR_Set 1_white_wg__Shot_A__4K_R8.webp": [],
+  "/catalogs/MCR800/set/MCR_Set 2_black_gb__Shot_A__4K_R8.webp": [],
+  "/catalogs/MCR800/set/MCR_Set 2_white_wg__Shot_A__4K_R8.webp": [],
+  "/catalogs/MCR800/set/MCR_Set 3_black_gb__Shot_A__4K_R8.webp": [],
+  "/catalogs/MCR800/set/MCR_Set 3_white_wg__Shot_A__4K_R8.webp": [],
+  "/catalogs/MCR800/set/MCR_Set 4_black_gb__Shot_A__4K_R8.webp": [],
+  "/catalogs/MCR800/set/MCR_Set 4_white_wg__Shot_A__4K_R8.webp": [],
   "/catalogs/QS/features/QS_accessory_last.webp": [],
   "/catalogs/QS/features/QS_assembly_last.webp": [],
   "/catalogs/QS/features/QS_extend_last.webp": [],
