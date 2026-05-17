@@ -8,13 +8,15 @@ import {
 } from '@/lib/catalog-loader';
 import type { CatalogLayoutType } from '@/types/catalog';
 import CatalogPageQX from '@/layouts/qx/CatalogPageQX';
+import CatalogPageMCR800 from '@/layouts/mcr800/CatalogPageMCR800';
 import CatalogPagePlaceholder from '@/components/catalog/CatalogPagePlaceholder';
 
 const layoutMap: Record<
   CatalogLayoutType,
-  typeof CatalogPageQX | typeof CatalogPagePlaceholder
+  typeof CatalogPageQX | typeof CatalogPageMCR800 | typeof CatalogPagePlaceholder
 > = {
   qx: CatalogPageQX,
+  mcr800: CatalogPageMCR800,
   type2: CatalogPagePlaceholder,
   type3: CatalogPagePlaceholder,
 };

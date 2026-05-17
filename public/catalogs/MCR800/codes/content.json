@@ -7,26 +7,26 @@
     {
       "id": "single-depth-70",
       "category": "single",
-      "title": "QS single desk (depth 70 cm)",
+      "title": "MCR800 single desk (depth 70 cm)",
       "rows": [
         {
-          "index": "QS1",
-          "indexR": "QS1R",
+          "index": "MCR8001",
+          "indexR": "MCR8001R",
           "dimensions": "120 × 70 × 74"
         },
         {
-          "index": "QS2",
-          "indexR": "QS2R",
+          "index": "MCR8002",
+          "indexR": "MCR8002R",
           "dimensions": "140 × 70 × 74"
         },
         {
-          "index": "QS3",
-          "indexR": "QS3R",
+          "index": "MCR8003",
+          "indexR": "MCR8003R",
           "dimensions": "160 × 70 × 74"
         },
         {
-          "index": "QS4",
-          "indexR": "QS4R",
+          "index": "MCR8004",
+          "indexR": "MCR8004R",
           "dimensions": "180 × 70 × 74"
         }
       ]
@@ -34,26 +34,26 @@
     {
       "id": "single-depth-80",
       "category": "single",
-      "title": "QS single desk (depth 80 cm)",
+      "title": "MCR800 single desk (depth 80 cm)",
       "rows": [
         {
-          "index": "QS180",
-          "indexR": "QS1R80",
+          "index": "MCR800180",
+          "indexR": "MCR8001R80",
           "dimensions": "120 × 80 × 74"
         },
         {
-          "index": "QS280",
-          "indexR": "QS2R80",
+          "index": "MCR800280",
+          "indexR": "MCR8002R80",
           "dimensions": "140 × 80 × 74"
         },
         {
-          "index": "QS380",
-          "indexR": "QS3R80",
+          "index": "MCR800380",
+          "indexR": "MCR8003R80",
           "dimensions": "160 × 80 × 74"
         },
         {
-          "index": "QS480",
-          "indexR": "QS4R80",
+          "index": "MCR800480",
+          "indexR": "MCR8004R80",
           "dimensions": "180 × 80 × 74"
         }
       ]
@@ -61,26 +61,26 @@
     {
       "id": "single-extension-depth-70",
       "category": "single",
-      "title": "Extension for QS single desk (depth 70 cm)",
+      "title": "Extension for MCR800 single desk (depth 70 cm)",
       "rows": [
         {
-          "index": "QS1D",
-          "indexR": "QS1RD",
+          "index": "MCR8001D",
+          "indexR": "MCR8001RD",
           "dimensions": "66.5 × 50 × 74"
         },
         {
-          "index": "QS2D",
-          "indexR": "QS2RD",
+          "index": "MCR8002D",
+          "indexR": "MCR8002RD",
           "dimensions": "86.5 × 50 × 74"
         },
         {
-          "index": "QS3D",
-          "indexR": "QS3RD",
+          "index": "MCR8003D",
+          "indexR": "MCR8003RD",
           "dimensions": "106.5 × 50 × 74"
         },
         {
-          "index": "QS4D",
-          "indexR": "QS4RD",
+          "index": "MCR8004D",
+          "indexR": "MCR8004RD",
           "dimensions": "126.5 × 50 × 74"
         }
       ]
@@ -88,26 +88,26 @@
     {
       "id": "single-extension-depth-80",
       "category": "single",
-      "title": "Extension for QS single desk (depth 80 cm)",
+      "title": "Extension for MCR800 single desk (depth 80 cm)",
       "rows": [
         {
-          "index": "QS1D80",
-          "indexR": "QS1RD80",
+          "index": "MCR8001D80",
+          "indexR": "MCR8001RD80",
           "dimensions": "66.5 × 50 × 74"
         },
         {
-          "index": "QS2D80",
-          "indexR": "QS2RD80",
+          "index": "MCR8002D80",
+          "indexR": "MCR8002RD80",
           "dimensions": "86.5 × 50 × 74"
         },
         {
-          "index": "QS3D80",
-          "indexR": "QS3RD80",
+          "index": "MCR8003D80",
+          "indexR": "MCR8003RD80",
           "dimensions": "106.5 × 50 × 74"
         },
         {
-          "index": "QS4D80",
-          "indexR": "QS4RD80",
+          "index": "MCR8004D80",
+          "indexR": "MCR8004RD80",
           "dimensions": "126.5 × 50 × 74"
         }
       ]
@@ -115,26 +115,26 @@
     {
       "id": "bench-depth-140",
       "category": "bench",
-      "title": "QS bench double desk (depth 140 cm)",
+      "title": "MCR800 bench double desk (depth 140 cm)",
       "rows": [
         {
-          "index": "QS10",
-          "indexR": "QS10R",
+          "index": "MCR80010",
+          "indexR": "MCR80010R",
           "dimensions": "120 × 140 × 74"
         },
         {
-          "index": "QS11",
-          "indexR": "QS11R",
+          "index": "MCR80011",
+          "indexR": "MCR80011R",
           "dimensions": "140 × 140 × 74"
         },
         {
-          "index": "QS12",
-          "indexR": "QS12R",
+          "index": "MCR80012",
+          "indexR": "MCR80012R",
           "dimensions": "160 × 140 × 74"
         },
         {
-          "index": "QS13",
-          "indexR": "QS13R",
+          "index": "MCR80013",
+          "indexR": "MCR80013R",
           "dimensions": "180 × 140 × 74"
         }
       ]
@@ -142,26 +142,26 @@
     {
       "id": "bench-depth-160",
       "category": "bench",
-      "title": "QS bench double desk (depth 160 cm)",
+      "title": "MCR800 bench double desk (depth 160 cm)",
       "rows": [
         {
-          "index": "QS1080",
-          "indexR": "QS1080R",
+          "index": "MCR8001080",
+          "indexR": "MCR8001080R",
           "dimensions": "120 × 160 × 74"
         },
         {
-          "index": "QS1180",
-          "indexR": "QS1180R",
+          "index": "MCR8001180",
+          "indexR": "MCR8001180R",
           "dimensions": "140 × 160 × 74"
         },
         {
-          "index": "QS1280",
-          "indexR": "QS1280R",
+          "index": "MCR8001280",
+          "indexR": "MCR8001280R",
           "dimensions": "160 × 160 × 74"
         },
         {
-          "index": "QS1380",
-          "indexR": "QS1380R",
+          "index": "MCR8001380",
+          "indexR": "MCR8001380R",
           "dimensions": "180 × 160 × 74"
         }
       ]
@@ -169,26 +169,26 @@
     {
       "id": "bench-flaps-depth-140",
       "category": "bench",
-      "title": "QS bench double desk with access to the cable canal through the flaps (depth 140 cm)",
+      "title": "MCR800 bench double desk with access to the cable canal through the flaps (depth 140 cm)",
       "rows": [
         {
-          "index": "QS15",
-          "indexR": "QS15R",
+          "index": "MCR80015",
+          "indexR": "MCR80015R",
           "dimensions": "120 × 140 × 74"
         },
         {
-          "index": "QS16",
-          "indexR": "QS16R",
+          "index": "MCR80016",
+          "indexR": "MCR80016R",
           "dimensions": "140 × 140 × 74"
         },
         {
-          "index": "QS17",
-          "indexR": "QS17R",
+          "index": "MCR80017",
+          "indexR": "MCR80017R",
           "dimensions": "160 × 140 × 74"
         },
         {
-          "index": "QS18",
-          "indexR": "QS18R",
+          "index": "MCR80018",
+          "indexR": "MCR80018R",
           "dimensions": "180 × 140 × 74"
         }
       ]
@@ -196,26 +196,26 @@
     {
       "id": "bench-flaps-depth-160",
       "category": "bench",
-      "title": "QS bench double desk with access to the cable canal through the flaps (depth 160 cm)",
+      "title": "MCR800 bench double desk with access to the cable canal through the flaps (depth 160 cm)",
       "rows": [
         {
-          "index": "QS1580",
-          "indexR": "QS1580R",
+          "index": "MCR8001580",
+          "indexR": "MCR8001580R",
           "dimensions": "120 × 160 × 74"
         },
         {
-          "index": "QS1680",
-          "indexR": "QS1680R",
+          "index": "MCR8001680",
+          "indexR": "MCR8001680R",
           "dimensions": "140 × 160 × 74"
         },
         {
-          "index": "QS1780",
-          "indexR": "QS1780R",
+          "index": "MCR8001780",
+          "indexR": "MCR8001780R",
           "dimensions": "160 × 160 × 74"
         },
         {
-          "index": "QS1880",
-          "indexR": "QS1880R",
+          "index": "MCR8001880",
+          "indexR": "MCR8001880R",
           "dimensions": "180 × 160 × 74"
         }
       ]

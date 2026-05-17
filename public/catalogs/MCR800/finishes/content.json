@@ -1,92 +1,45 @@
 {
   "sectionLabel": "Finishes",
   "title": "Materials & Finishes",
-  "description": "Top: MFC 25mm, PVC/ABS tape 2mm.\nFrame: Steel profile 45 x 45 mm, powder coated, height adjustment (option) in the range of 64-84 cm, carried by a telescopic solution in the leg, blocking with 2 screws, black plastic foot.",
+  "description": "Two finish options for MCR800: White and Black. Powder-coated steel frame, MFC desktop, PVC/ABS edge tape 2mm.",
   "desktopColors": [
-    {
-      "name": "Natural Oak",
-      "code": "#c9a96e",
-      "ral": "Similar to RAL 1001"
-    },
-    {
-      "name": "Walnut Dark",
-      "code": "#5c3a21",
-      "ral": "Similar to RAL 8007"
-    },
-    {
-      "name": "White",
-      "code": "#f2f0ec",
-      "ral": "RAL 9010"
-    },
-    {
-      "name": "Light Grey",
-      "code": "#c8c5be",
-      "ral": "RAL 7035"
-    },
-    {
-      "name": "Anthracite",
-      "code": "#3a3a3c",
-      "ral": "RAL 7016"
-    }
+    { "name": "White", "code": "#f2f0ec", "ral": "RAL 9010" },
+    { "name": "Black", "code": "#1a1a1a", "ral": "RAL 9005" }
   ],
   "frameColors": [
-    {
-      "name": "Black",
-      "code": "#1a1a1a"
-    },
-    {
-      "name": "Silver",
-      "code": "#b0b0b0"
-    },
-    {
-      "name": "White",
-      "code": "#f0f0f0"
-    }
+    { "name": "White", "code": "#f2f0ec" },
+    { "name": "Black", "code": "#1a1a1a" }
   ],
-  "sizes": [
+  "sizes": [],
+  "comparisonTable": [],
+  "illustrations": [
     {
-      "label": "1200 × 600",
-      "desc": "Compact"
+      "id": "white-set-1",
+      "color": "white",
+      "label": "Set 1 / White",
+      "image": "/catalogs/MCR800/set/MCR_Set 1_white_wg__Shot_A__4K_R8.webp",
+      "alt": "MCR800 Set 1 configuration in white finish"
     },
     {
-      "label": "1400 × 700",
-      "desc": "Standard"
+      "id": "white-set-2",
+      "color": "white",
+      "label": "Set 2 / White",
+      "image": "/catalogs/MCR800/set/MCR_Set 2_white_wg__Shot_A__4K_R8.webp",
+      "alt": "MCR800 Set 2 configuration in white finish"
     },
     {
-      "label": "1600 × 800",
-      "desc": "Executive"
+      "id": "black-set-3",
+      "color": "black",
+      "label": "Set 3 / Black",
+      "image": "/catalogs/MCR800/set/MCR_Set 3_black_gb__Shot_A__4K_R8.webp",
+      "alt": "MCR800 Set 3 configuration in black finish"
     },
     {
-      "label": "1800 × 800",
-      "desc": "Large"
-    },
-    {
-      "label": "2000 × 900",
-      "desc": ""
-    }
-  ],
-  "comparisonBasicLabel": "QS Basic",
-  "comparisonPremiumLabel": "QS Premium",
-  "comparisonTable": [
-    {
-      "feature": "Height adjustment",
-      "basic": "Manual crank",
-      "premium": "Electric dual motor"
-    },
-    {
-      "feature": "Memory presets",
-      "basic": "—",
-      "premium": "4 positions"
-    },
-    {
-      "feature": "Cable management",
-      "basic": "Basic tray",
-      "premium": "Integrated spine + tray"
-    },
-    {
-      "feature": "Load capacity",
-      "basic": "80 kg",
-      "premium": "120 kg"
+      "id": "black-set-4",
+      "color": "black",
+      "label": "Set 4 / Black",
+      "image": "/catalogs/MCR800/set/MCR_Set 4_black_gb__Shot_A__4K_R8.webp",
+      "alt": "MCR800 Set 4 configuration in black finish"
     }
   ]
 }

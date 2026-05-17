@@ -16,7 +16,7 @@ export interface CatalogData {
   sections?: SectionConfig[];
 }
 
-export type CatalogLayoutType = 'qx' | 'type2' | 'type3';
+export type CatalogLayoutType = 'qx' | 'mcr800' | 'type2' | 'type3';
 
 interface CatalogMeta {
   title: string;
@@ -374,6 +374,10 @@ export interface FeatureItem {
   video?: {
     src: string;
     poster?: string;
+  };
+  image?: {
+    src: string;
+    alt?: string;
   };
 }
 

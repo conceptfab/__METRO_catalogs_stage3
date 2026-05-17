@@ -9,6 +9,8 @@ const QS_HERO_IMAGE = '/catalogs/QS/hero/04_26_Metro_QS_SOLO_B2_hero_noise.webp'
 const VR_HERO_IMAGE = '/catalogs/VR/hero/05_26_Metro_VR_HERO_A1_noise.webp';
 const TS_HERO_IMAGE = '/catalogs/TS/hero/07_26_Metro_TS_HERO_R1_noise.webp';
 const FM_HERO_IMAGE = '/catalogs/FM/hero/08_26_Metro_FM_HERO_R1A.webp';
+const FOTA_HERO_IMAGE = '/catalogs/FOTA/hero/12_25_Metro_FOTA_HERO_0_0000.webp';
+const MCR800_HERO_IMAGE = '/catalogs/MCR800/hero/scene_WHITE_B_4_4K.webp';
 
 export const metadata: Metadata = {
   title: 'METRO – Catalogs',
@@ -35,6 +37,8 @@ export default async function HomePage() {
   const vrCatalog = catalogs.find((c) => c.id === 'VR');
   const tsCatalog = catalogs.find((c) => c.id === 'TS');
   const fmCatalog = catalogs.find((c) => c.id === 'FM');
+  const fotaCatalog = catalogs.find((c) => c.id === 'FOTA');
+  const mcr800Catalog = catalogs.find((c) => c.id === 'MCR800');
 
   return (
     <div className="catalog-qx0">
@@ -181,10 +185,32 @@ export default async function HomePage() {
           <h2 className="section_ID px-5 font-display uppercase sm:px-8 lg:px-0">
             Conference tables
           </h2>
-          <div
-            className="mt-8 aspect-[5/1] w-full border border-border bg-background/40 lg:mt-12"
-            aria-hidden="true"
-          />
+          <div className="mt-8 aspect-[5/1] w-full lg:mt-12">
+            {fotaCatalog ? (
+              <Link
+                href={`/catalog/${fotaCatalog.id}`}
+                className="group relative block h-full w-full overflow-hidden bg-background outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-foreground"
+                aria-label={`Open ${fotaCatalog.meta.title} catalog`}
+              >
+                <Image
+                  src={FOTA_HERO_IMAGE}
+                  alt=""
+                  fill
+                  sizes="(min-width: 1440px) 1440px, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
+                <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[88px] font-black tracking-tighter text-background opacity-0 group-hover:opacity-100">
+                  FOTA
+                </span>
+              </Link>
+            ) : (
+              <div
+                className="h-full w-full border border-border bg-background/40"
+                aria-hidden="true"
+              />
+            )}
+          </div>
         </section>
 
         {/* Section 3 — Reception desks */}
@@ -193,13 +219,36 @@ export default async function HomePage() {
             Reception desks
           </h2>
           <ul className="mt-8 grid grid-cols-1 gap-0 sm:grid-cols-2 lg:mt-12">
-            {Array.from({ length: 2 }).map((_, index) => (
-              <li
-                key={`reception-${index}`}
-                className="aspect-square border border-border bg-background/40"
-                aria-hidden="true"
-              />
-            ))}
+            <li className="aspect-square">
+              {mcr800Catalog ? (
+                <Link
+                  href={`/catalog/${mcr800Catalog.id}`}
+                  className="group relative block h-full w-full overflow-hidden bg-background outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-foreground"
+                  aria-label={`Open ${mcr800Catalog.meta.title} catalog`}
+                >
+                  <Image
+                    src={MCR800_HERO_IMAGE}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1440px) 720px, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
+                  <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[88px] font-black tracking-tighter text-background opacity-0 group-hover:opacity-100">
+                    MCR800
+                  </span>
+                </Link>
+              ) : (
+                <div
+                  className="h-full w-full border border-border bg-background/40"
+                  aria-hidden="true"
+                />
+              )}
+            </li>
+            <li
+              className="aspect-square border border-border bg-background/40"
+              aria-hidden="true"
+            />
           </ul>
         </section>
       </main>

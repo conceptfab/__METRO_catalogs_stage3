@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { loadCatalog, getCatalogList } from '@/lib/catalog-loader';
 import CatalogPrintQX from '@/layouts/qx/CatalogPrintQX';
+import CatalogPrintMCR800 from '@/layouts/mcr800/CatalogPrintMCR800';
 import PrintAutoTrigger from '@/components/catalog/PrintAutoTrigger';
 import PdfDownloadButton from '@/components/catalog/PdfDownloadButton';
 
@@ -30,14 +31,16 @@ export default async function CatalogPrintPage({
     notFound();
   }
 
-  // Print route currently supports the QX layout only — extend as new layouts come online.
-  if (catalog.meta.layoutType !== 'qx') {
+  if (catalog.meta.layoutType !== 'qx' && catalog.meta.layoutType !== 'mcr800') {
     notFound();
   }
 
+  const PrintLayout =
+    catalog.meta.layoutType === 'mcr800' ? CatalogPrintMCR800 : CatalogPrintQX;
+
   return (
     <>
-      <CatalogPrintQX catalog={catalog} />
+      <PrintLayout catalog={catalog} />
       <PrintAutoTrigger />
       {/* Visible when a user manually opens /print; hidden by .print-hide
        * during Puppeteer's page.pdf() because that uses @media print. */}

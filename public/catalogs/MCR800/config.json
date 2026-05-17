@@ -5,7 +5,7 @@
     "description": "MCR800 - Modular desk system engineered for the modern workspace.",
     "brandName": "METRO MCR800",
     "collectionName": "MCR800",
-    "layoutType": "qx",
+    "layoutType": "mcr800",
     "theme": "qx0"
   },
   "sections": [
