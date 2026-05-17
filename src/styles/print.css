@@ -439,24 +439,32 @@
   gap: 40px;
 }
 
-.print-page-packshots .print-section-content {
+.print-page-packshots .print-section-content,
+.print-page-materials .print-section-content {
   flex: 0 0 auto;
 }
 
 /* Maximised vertical space for the packshot grid — scoped so it only
  * affects this print page, not other sections sharing the .print-section
  * geometry. Frame padding, heading margin and subtitle margins are all
- * tightened to give the 2×2 grid the largest possible cells. */
-.print-page-packshots .print-section-frame {
+ * tightened to give the 2×2 grid the largest possible cells.
+ * MaterialsPrintMCR800 reuses the same .packshots-print-grid (1080px tall),
+ * so its .print-page-materials wrapper needs the identical tightening — without
+ * this the bottom row's .packshots-print-meta captions get clipped by the
+ * 1358px page boundary. */
+.print-page-packshots .print-section-frame,
+.print-page-materials .print-section-frame {
   padding-top: 32px;
   padding-bottom: 32px;
 }
 
-.print-page-packshots .print-section-heading {
+.print-page-packshots .print-section-heading,
+.print-page-materials .print-section-heading {
   margin-bottom: 16px;
 }
 
-.print-page-packshots .packshots-print-subtitle {
+.print-page-packshots .packshots-print-subtitle,
+.print-page-materials .packshots-print-subtitle {
   margin: -16px 0 16px;
 }
 
