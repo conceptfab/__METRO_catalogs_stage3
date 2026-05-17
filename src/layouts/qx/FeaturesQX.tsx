@@ -19,7 +19,7 @@ interface FeatureVideoProps {
 
 function FeatureVideo({ videoRef, active, activeIndex }: FeatureVideoProps) {
   return (
-    <div className="relative aspect-square w-full overflow-hidden bg-background">
+    <div className="relative aspect-square w-full overflow-hidden bg-surface-elevated">
       {active?.video ? (
         <>
           <video
