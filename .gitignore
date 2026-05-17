@@ -38,3 +38,4 @@ tmp_manerba_styles.pretty.css
 .env*.local
 .vercel
 *.pdf
+!public/catalogs/*/Download/*.pdf
