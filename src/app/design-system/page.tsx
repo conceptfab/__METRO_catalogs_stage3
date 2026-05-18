@@ -271,6 +271,12 @@ const SHARED_COMPONENTS = [
     description:
       'Fallback dla layoutType "type2" / "type3" — tytuł, opis, badge "Layout in preparation" + footer z CONCEPTFAB.COM. Używany przez layoutMap zanim powstanie dedykowany template.',
   },
+  {
+    name: 'WebMcpProvider',
+    source: 'src/components/catalog/WebMcpProvider.tsx',
+    description:
+      'Client-only. Rejestruje narzędzia MCP w window.modelContext (chrome.ai / WebMCP). Pozwala agentowi przeglądarkowemu odpytywać aktualną stronę katalogu (readOnly tools, untrustedContentHint). Mounted globalnie w layout.tsx.',
+  },
 ];
 
 const FEATURED_SHARED_COMPONENTS = new Set([
@@ -379,6 +385,126 @@ const CATALOG_THUMBS = {
 const SCHEMAS_USED = [
   { name: 'heroContentSchema', file: 'src/lib/schemas/hero.ts', covers: 'public/catalogs/*/hero/content.json' },
   { name: 'packshotsContentSchema', file: 'src/lib/schemas/packshots.ts', covers: 'public/catalogs/*/packshots/content.json' },
+  { name: 'schemas.test.ts', file: 'src/lib/schemas/schemas.test.ts', covers: 'Walidacja parse-time wszystkich content.json przez Zod (fail-fast w build).' },
+];
+
+const AGENT_INFRASTRUCTURE = [
+  {
+    name: 'MCP server (/mcp)',
+    file: 'src/app/mcp/route.ts',
+    desc: 'JSON-RPC 2.0 endpoint zgodny z protokołem 2025-06-18. Zwraca SERVER_INFO + CAPABILITIES (resources/tools/prompts). Pozwala agentom (Claude, ChatGPT) odpytywać katalogi przez tools/list i resources/read.',
+  },
+  {
+    name: 'OAuth /oauth/authorize',
+    file: 'src/app/oauth/authorize/route.ts',
+    desc: 'OAuth 2.1 authorization endpoint — obecnie zwraca 503 temporarily_unavailable (discovery działa, interaktywna autoryzacja wyłączona dla publicznego API).',
+  },
+  {
+    name: 'OAuth /oauth/token + /oauth/jwks.json',
+    file: 'src/app/oauth/token/route.ts',
+    desc: 'Token endpoint i JSON Web Key Set. Obsługuje authorization_code + refresh_token, scopes: openid/profile/email/catalogs:read, PKCE S256.',
+  },
+  {
+    name: '.well-known/openid-configuration',
+    file: 'src/app/.well-known/openid-configuration/route.ts',
+    desc: 'OpenID Connect discovery — buildOpenIdConfiguration() z oauth-discovery.ts.',
+  },
+  {
+    name: '.well-known/oauth-authorization-server',
+    file: 'src/app/.well-known/oauth-authorization-server/route.ts',
+    desc: 'RFC 8414 metadata: issuer, authorization_endpoint, token_endpoint, jwks_uri, scopes_supported, code_challenge_methods.',
+  },
+  {
+    name: '.well-known/oauth-protected-resource',
+    file: 'src/app/.well-known/oauth-protected-resource/route.ts',
+    desc: 'RFC 9728 — deklaruje scope catalogs:read potrzebny do dostępu do API katalogów.',
+  },
+  {
+    name: '.well-known/api-catalog',
+    file: 'src/app/.well-known/api-catalog/route.ts',
+    desc: 'RFC 9727 linkset — punkt wejścia dla agentów: lista API i ich profili.',
+  },
+  {
+    name: '.well-known/mcp/server-card.json',
+    file: 'src/app/.well-known/mcp/server-card.json/route.ts',
+    desc: 'MCP server card — manifest serwera MCP (name, version, endpoint, capabilities) dla auto-discovery.',
+  },
+  {
+    name: '.well-known/agent-skills + SKILL.md',
+    file: 'src/app/.well-known/agent-skills/...',
+    desc: 'Agent Skills 0.2.0 (agentskills.io) — index.json + metro-catalog-discovery/SKILL.md. Skill instruuje LLM jak przeszukiwać katalog (homepage, Markdown negotiation, API, MCP, JSON resources).',
+  },
+  {
+    name: '/api/catalogs',
+    file: 'src/app/api/catalogs/route.ts',
+    desc: 'REST endpoint: lista i szczegóły katalogów. Zwraca JSON z CatalogData (per ID lub indeks). runtime=nodejs.',
+  },
+  {
+    name: '/agent-markdown',
+    file: 'src/app/agent-markdown/route.ts',
+    desc: 'Negocjacja Markdown dla agentów — content-negotiation zwracający katalog jako Markdown z frontmatter + nagłówki Link (api-catalog, service-desc).',
+  },
+];
+
+const BUILD_SCRIPTS = [
+  {
+    name: 'generate-thumbnails.mjs',
+    file: 'scripts/generate-thumbnails.mjs',
+    desc: 'Buduje /catalogs/{ID}/thumbs/{id}-home.webp i -nav.webp dla wszystkich 7 katalogów. Źródła: hero/ + overview packshot.',
+  },
+  {
+    name: 'generate-catalog-pdfs.mjs',
+    file: 'scripts/generate-catalog-pdfs.mjs',
+    desc: 'Puppeteer renderuje /catalog/[id]/print?puppeteer=1 i zapisuje /catalogs/{ID}/Download/metro-{id}.pdf. A4 landscape, no-zoom mode.',
+  },
+  {
+    name: 'optimize-catalog-pdfs.mjs',
+    file: 'scripts/optimize-catalog-pdfs.mjs',
+    desc: 'Post-processing PDF: kompresja, linearyzacja, optymalizacja rozmiaru (ghostscript-like).',
+  },
+  {
+    name: 'verify-catalog-pdfs.mjs',
+    file: 'scripts/verify-catalog-pdfs.mjs',
+    desc: 'Walidacja gotowych PDF — sprawdza istnienie, rozmiar, liczbę stron, brak błędów rasteryzacji.',
+  },
+  {
+    name: 'catalog-assets.mjs',
+    file: 'scripts/catalog-assets.mjs',
+    desc: 'Zarządzanie assetami katalogu — discovery sierot, walidacja struktury folderów, raporty pokrycia.',
+  },
+  {
+    name: 'process-images.mjs',
+    file: 'scripts/process-images.mjs',
+    desc: 'Generator wariantów responsywnych (sharp): -640w/-1280w/-1920w/-3840w WebP. Zapisuje src/generated/responsive-image-manifest.json.',
+  },
+  {
+    name: 'recompress-gallery-bases.mjs',
+    file: 'scripts/recompress-gallery-bases.mjs',
+    desc: 'Recompresja bazowych galerii do lepszej jakości/rozmiaru przed generowaniem wariantów.',
+  },
+  {
+    name: 'check-no-rasterized-non-webp.mjs',
+    file: 'scripts/check-no-rasterized-non-webp.mjs',
+    desc: 'CI gate — wykrywa JPEG/PNG, które powinny być WebP. Fail-fast w pre-commit.',
+  },
+  {
+    name: 'scripts/lib (image-utils + section-widths)',
+    file: 'scripts/lib/',
+    desc: 'Wspólne helpery dla skryptów: image-utils.mjs (sharp wrapper, format detection) + section-widths.mjs (mapowanie sekcja → szerokość kontenera).',
+  },
+];
+
+const HOOKS_USED = [
+  {
+    name: 'useFocusTrap(ref, isOpen)',
+    file: 'src/hooks/use-focus-trap.ts',
+    desc: 'Focus trap dla modali: Tab/Shift+Tab cyclical, body scroll lock, focus restoration on close. Używany przez Lightbox + FinishesQX preview modal. Test: jest-axe.',
+  },
+  {
+    name: 'useIsMobile()',
+    file: 'src/hooks/use-mobile.tsx',
+    desc: 'matchMedia(max-width: 767px) z subskrypcją. SSR-safe (undefined → false). Używany do warunkowego renderowania mobile/desktop variants.',
+  },
 ];
 
 const TOOLING_USED = [
@@ -389,6 +515,12 @@ const TOOLING_USED = [
   { name: 'design-tokens registry', file: 'src/lib/design-tokens.ts', desc: '40 tokenów kolorów ze synchronizacją do globals.css (test: design-tokens.test.ts).' },
   { name: 'icon-map (17 ikon)', file: 'src/lib/icon-map.tsx', desc: 'Mapa nazw → komponentów Lucide używana w features/getting-started.' },
   { name: 'motion utilities', file: 'src/lib/motion.ts', desc: 'SECTION_REVEAL_* presets + slowTransition() + CATALOG_MOTION_MULTIPLIER ×2.' },
+  { name: 'agent-skills.ts', file: 'src/lib/agent-skills.ts', desc: 'Rejestr Agent Skills (agentskills.io 0.2.0). Buduje index.json + SKILL.md dla metro-catalog-discovery. Zawiera content-hash dla cache invalidation.' },
+  { name: 'oauth-discovery.ts', file: 'src/lib/oauth-discovery.ts', desc: 'Buduje metadata OpenID/OAuth (issuer, endpoints, scopes, PKCE). + oauthEndpointHeaders() helper z CORS i Cache-Control.' },
+  { name: 'site-url.ts', file: 'src/lib/site-url.ts', desc: 'Resolver bazowego URL (env NEXT_PUBLIC_SITE_URL → Vercel deployment URL → localhost). Używany przez OAuth/MCP do absolutnych linków.' },
+  { name: 'types/catalog.ts', file: 'src/types/catalog.ts', desc: 'Centralny model domeny: CatalogData, CatalogMeta, CatalogLayoutType, ProductCodeGroup, HeroSlide, GalleryImage, FinishesContent. Współdzielony przez loader, API, MCP, layouty.' },
+  { name: 'styles/print.css', file: 'src/styles/print.css', desc: '@page A4 landscape + @media print rules. Klasy .print-hide (UI controls), .print-page (A4 boundary box w preview), .print-only. -webkit-print-color-adjust: exact dla wiernych kolorów.' },
+  { name: 'generated/responsive-image-manifest.json', file: 'src/generated/responsive-image-manifest.json', desc: 'Output process-images.mjs — mapa src → [generated widths]. Używana przez image-loader.ts i responsive-image.ts.' },
 ];
 
 const PLANNED: Array<{ category: string; items: string[] }> = [
@@ -663,6 +795,9 @@ function getDesignSystemCounts(): DesignSystemCounts {
     REVEAL_PRESETS.length +
     SCHEMAS_USED.length +
     TOOLING_USED.length +
+    AGENT_INFRASTRUCTURE.length +
+    BUILD_SCRIPTS.length +
+    HOOKS_USED.length +
     TYPOGRAPHY_SAMPLES.length;
   const plannedCount = PLANNED.reduce((sum, g) => sum + g.items.length, 0);
 
@@ -713,7 +848,10 @@ function renderDesignSystemPage({
             <a href="#motion" className="hover:text-foreground">06 · Motion</a>
             <a href="#schemas" className="hover:text-foreground">07 · Schematy</a>
             <a href="#tooling" className="hover:text-foreground">08 · Tooling</a>
-            <a href="#planned" className="hover:text-foreground">09 · Planowane</a>
+            <a href="#hooks" className="hover:text-foreground">09 · Hooks</a>
+            <a href="#agent-infrastructure" className="hover:text-foreground">10 · Agent · MCP</a>
+            <a href="#build-scripts" className="hover:text-foreground">11 · Build skrypty</a>
+            <a href="#planned" className="hover:text-foreground">12 · Planowane</a>
           </nav>
         </div>
       </section>
@@ -1416,7 +1554,7 @@ function renderDesignSystemPage({
         aria-labelledby="tooling-title"
       >
         <div className="mx-auto w-full max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
-          <SectionLabel index="08" label="Tooling" />
+          <SectionLabel index="08" label="Tooling · Helpery · Typy" />
           <h2
             id="tooling-title"
             className="section_Title mt-8 font-display font-normal"
@@ -1431,6 +1569,108 @@ function renderDesignSystemPage({
                 <SourcePath path={t.file} />
                 <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
                   {t.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOOKS =========================================================== */}
+      <section
+        id="hooks"
+        className="bg-background"
+        aria-labelledby="hooks-title"
+      >
+        <div className="mx-auto w-full max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
+          <SectionLabel index="09" label="React hooks" />
+          <h2
+            id="hooks-title"
+            className="section_Title mt-8 font-display font-normal"
+          >
+            Custom hooks
+          </h2>
+          <p className="sec_main_text mt-6 max-w-[60ch]">
+            Hooki w <code className="font-mono">src/hooks/</code> — wszystkie SSR-safe
+            i pokryte testami (use-focus-trap.test.tsx).
+          </p>
+          <div className="mt-12 grid grid-cols-1 gap-3 lg:grid-cols-2">
+            {HOOKS_USED.map((h) => (
+              <div key={h.name} className="border border-foreground/10 bg-card p-5">
+                <StatusTag kind="used" />
+                <p className="mt-3 font-mono text-sm font-bold">{h.name}</p>
+                <SourcePath path={h.file} />
+                <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
+                  {h.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* AGENT INFRASTRUCTURE ============================================ */}
+      <section
+        id="agent-infrastructure"
+        className="border-y border-foreground/10 bg-surface-elevated"
+        aria-labelledby="agent-infrastructure-title"
+      >
+        <div className="mx-auto w-full max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
+          <SectionLabel index="10" label="Agent · MCP · OAuth" />
+          <h2
+            id="agent-infrastructure-title"
+            className="section_Title mt-8 font-display font-normal"
+          >
+            Infrastruktura dla agentów AI
+          </h2>
+          <p className="sec_main_text mt-6 max-w-[60ch]">
+            Strona ma pełen stack dla agentów LLM: Model Context Protocol (JSON-RPC),
+            OAuth 2.1 + OpenID Connect discovery, Agent Skills 0.2.0 i Markdown
+            content-negotiation. Wszystkie endpointy publiczne, scope{' '}
+            <code className="font-mono">catalogs:read</code>.
+          </p>
+          <div className="mt-12 grid grid-cols-1 gap-3 lg:grid-cols-2">
+            {AGENT_INFRASTRUCTURE.map((a) => (
+              <div key={a.name} className="border border-foreground/10 bg-card p-5">
+                <StatusTag kind="used" />
+                <p className="mt-3 font-display text-base font-bold">{a.name}</p>
+                <SourcePath path={a.file} />
+                <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
+                  {a.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* BUILD SCRIPTS =================================================== */}
+      <section
+        id="build-scripts"
+        className="bg-background"
+        aria-labelledby="build-scripts-title"
+      >
+        <div className="mx-auto w-full max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
+          <SectionLabel index="11" label="Build · skrypty CLI" />
+          <h2
+            id="build-scripts-title"
+            className="section_Title mt-8 font-display font-normal"
+          >
+            Pipeline assetów i PDF
+          </h2>
+          <p className="sec_main_text mt-6 max-w-[60ch]">
+            Skrypty <code className="font-mono">scripts/*.mjs</code> generujące
+            warianty WebP, miniatury homepage, PDF katalogów (Puppeteer) i raporty
+            spójności assetów. Uruchamiane przez npm scripts (zob. package.json).
+          </p>
+          <div className="mt-12 grid grid-cols-1 gap-3 lg:grid-cols-2">
+            {BUILD_SCRIPTS.map((s) => (
+              <div key={s.name} className="border border-foreground/10 bg-card p-5">
+                <StatusTag kind="used" />
+                <p className="mt-3 font-mono text-sm font-bold">{s.name}</p>
+                <SourcePath path={s.file} />
+                <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
+                  {s.desc}
                 </p>
               </div>
             ))}
@@ -1619,7 +1859,7 @@ function renderDesignSystemPage({
       >
         <div className="mx-auto w-full max-w-[1440px] px-5 py-20 sm:px-8 lg:px-12 lg:py-32">
           <p className="font-display text-sm font-bold uppercase tracking-widest text-background/60">
-            <span className="text-background/30">09 ·</span> Planowane
+            <span className="text-background/30">12 ·</span> Planowane
           </p>
           <h2
             id="planned-title"
