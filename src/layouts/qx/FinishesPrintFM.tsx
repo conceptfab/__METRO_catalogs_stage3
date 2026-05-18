@@ -151,18 +151,7 @@ export default function FinishesPrintFM({
 
   const desktopGroup1 = orderOptions(dedupedDesktop, DESKTOP_PRICE_GROUP_1);
   const desktopGroup2 = orderOptions(dedupedDesktop, DESKTOP_PRICE_GROUP_2);
-  const knownDesktopCodes = new Set([
-    ...DESKTOP_PRICE_GROUP_1,
-    ...DESKTOP_PRICE_GROUP_2,
-  ]);
-  const desktopLeftovers = dedupedDesktop.filter(
-    (o) => !knownDesktopCodes.has(o.code),
-  );
-  const desktopOptions = [
-    ...desktopGroup1,
-    ...desktopGroup2,
-    ...desktopLeftovers,
-  ];
+  const desktopOptions = [...desktopGroup1, ...desktopGroup2];
 
   const hasConfigurator =
     frameOptions.length > 0 && desktopOptions.length > 0;
@@ -219,9 +208,6 @@ export default function FinishesPrintFM({
                       title="II-nd price group"
                       options={desktopGroup2}
                     />
-                    {desktopLeftovers.length > 0 && (
-                      <StaticGroup title="Other" options={desktopLeftovers} />
-                    )}
                   </div>
                 </div>
                 <StaticGroup
