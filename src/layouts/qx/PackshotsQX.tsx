@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import type {
   MaterialsConfiguratorData,
-  MaterialsConfiguratorOption,
   PackshotsData,
 } from '@/types/catalog';
 import { SECTION_REVEAL_SLIDE, slowTransition } from '@/lib/motion';
@@ -14,6 +13,7 @@ import { QxText } from '@/components/catalog/QxText';
 import { ColorChip } from '@/components/catalog/ColorChip';
 import { useFocusTrap } from '@/hooks/use-focus-trap';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { parsePackshotImage, pickConfiguratorOption } from '@/lib/materials-options';
 
 interface PackshotsSectionProps {
   data: PackshotsData;
@@ -22,65 +22,6 @@ interface PackshotsSectionProps {
 
 const SAMPLE_PACKSHOT_SRC =
   '/catalogs/QX/packshots/V51_W240_black__Shot_A_4K_R10.webp';
-
-const FRAME_COLOR_FROM_NAME: Record<string, string> = {
-  white: 'RAL9003',
-  black: 'RAL9005',
-  grey: 'RAL9006',
-  gray: 'RAL9006',
-};
-
-function parsePackshotImage(filename: string | undefined): {
-  topCode?: string;
-  frameCode?: string;
-} {
-  if (!filename) return {};
-  const base = filename.split('/').pop() ?? '';
-  const stem = base.replace(/\.[^.]+$/, '').split('__')[0];
-  const tokens = stem.split('_');
-  const topToken = tokens[1];
-  const frameToken = tokens[2];
-  const topCode =
-    topToken && /^[UW]\d+$/i.test(topToken) ? topToken.toUpperCase() : undefined;
-
-  let frameCode: string | undefined;
-  if (frameToken) {
-    if (/^RAL\d+$/i.test(frameToken)) {
-      frameCode = frameToken.toUpperCase();
-    } else {
-      frameCode = FRAME_COLOR_FROM_NAME[frameToken.toLowerCase()];
-    }
-  }
-  return { topCode, frameCode };
-}
-
-const METRO_ID_PATTERN = /^metro[_ -]/i;
-
-function pickOption(
-  options: MaterialsConfiguratorOption[] | undefined,
-  code: string | undefined,
-): MaterialsConfiguratorOption | undefined {
-  if (!options || !code) return undefined;
-  const upper = code.toUpperCase();
-  const matches = options.filter(
-    (option) => option.code.toUpperCase() === upper,
-  );
-  if (matches.length === 0) return undefined;
-
-  const metroEntry = matches.find((option) => METRO_ID_PATTERN.test(option.id));
-  const swatchEntry = matches.find(
-    (option) => !METRO_ID_PATTERN.test(option.id),
-  );
-
-  if (metroEntry && swatchEntry) {
-    return {
-      ...metroEntry,
-      label: swatchEntry.label,
-      thumbnail: swatchEntry.image,
-    };
-  }
-  return swatchEntry ?? metroEntry ?? matches[0];
-}
 
 const PackshotsQX = ({
   data,
@@ -188,11 +129,11 @@ const PackshotsQX = ({
           <div className="mt-12 -mx-5 grid grid-cols-1 gap-6 sm:mx-0 sm:grid-cols-2 lg:mt-[120px]">
             {packshotItems.map((item, i) => {
               const { topCode, frameCode } = parsePackshotImage(item.image);
-              const frameOption = pickOption(
+              const frameOption = pickConfiguratorOption(
                 materialsConfigurator?.frameOptions,
                 frameCode,
               );
-              const desktopOption = pickOption(
+              const desktopOption = pickConfiguratorOption(
                 materialsConfigurator?.desktopOptions,
                 topCode,
               );
