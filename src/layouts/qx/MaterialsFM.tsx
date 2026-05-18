@@ -92,21 +92,10 @@ const MaterialsFM = ({ data }: MaterialsSectionProps) => {
     () => orderOptions(dedupedDesktopOptions, DESKTOP_PRICE_GROUP_2),
     [dedupedDesktopOptions],
   );
-  const desktopLeftovers = useMemo(() => {
-    const knownCodes = new Set([
-      ...DESKTOP_PRICE_GROUP_1,
-      ...DESKTOP_PRICE_GROUP_2,
-    ]);
-    return dedupedDesktopOptions.filter(
-      (option) => !knownCodes.has(option.code),
-    );
-  }, [dedupedDesktopOptions]);
   const desktopOptions = useMemo(
-    () => [...desktopPriceGroup1, ...desktopPriceGroup2, ...desktopLeftovers],
-    [desktopPriceGroup1, desktopPriceGroup2, desktopLeftovers],
+    () => [...desktopPriceGroup1, ...desktopPriceGroup2],
+    [desktopPriceGroup1, desktopPriceGroup2],
   );
-  const hasGroupedDesktop =
-    desktopPriceGroup1.length > 0 || desktopPriceGroup2.length > 0;
   const hasConfigurator = frameOptions.length > 0 && desktopOptions.length > 0;
   const [selectedFrameId, setSelectedFrameId] = useState(
     frameOptions[0]?.id ?? '',
@@ -182,47 +171,29 @@ const MaterialsFM = ({ data }: MaterialsSectionProps) => {
         >
           {hasConfigurator ? (
             <>
-              {hasGroupedDesktop ? (
-                <div>
-                  <h3 className="mb-3 qx-emphasis-title">
-                    <QxText text="Decor" />
-                  </h3>
-                  <div className="space-y-4">
-                    {desktopPriceGroup1.length > 0 && (
-                      <MaterialsOptionGroup
-                        title="I-st price group"
-                        options={desktopPriceGroup1}
-                        selectedId={selectedDesktop?.id}
-                        onSelect={setSelectedDesktopId}
-                      />
-                    )}
-                    {desktopPriceGroup2.length > 0 && (
-                      <MaterialsOptionGroup
-                        title="II-nd price group"
-                        options={desktopPriceGroup2}
-                        selectedId={selectedDesktop?.id}
-                        onSelect={setSelectedDesktopId}
-                      />
-                    )}
-                    {desktopLeftovers.length > 0 && (
-                      <MaterialsOptionGroup
-                        title="Other"
-                        options={desktopLeftovers}
-                        selectedId={selectedDesktop?.id}
-                        onSelect={setSelectedDesktopId}
-                      />
-                    )}
-                  </div>
+              <div>
+                <h3 className="mb-3 qx-emphasis-title">
+                  <QxText text="Decor" />
+                </h3>
+                <div className="space-y-4">
+                  {desktopPriceGroup1.length > 0 && (
+                    <MaterialsOptionGroup
+                      title="I-st price group"
+                      options={desktopPriceGroup1}
+                      selectedId={selectedDesktop?.id}
+                      onSelect={setSelectedDesktopId}
+                    />
+                  )}
+                  {desktopPriceGroup2.length > 0 && (
+                    <MaterialsOptionGroup
+                      title="II-nd price group"
+                      options={desktopPriceGroup2}
+                      selectedId={selectedDesktop?.id}
+                      onSelect={setSelectedDesktopId}
+                    />
+                  )}
                 </div>
-              ) : (
-                <MaterialsOptionGroup
-                  title="Decor"
-                  options={desktopOptions}
-                  selectedId={selectedDesktop?.id}
-                  onSelect={setSelectedDesktopId}
-                  variant="primary"
-                />
-              )}
+              </div>
               <MaterialsOptionGroup
                 title="Steel parts colors"
                 options={frameOptions}
