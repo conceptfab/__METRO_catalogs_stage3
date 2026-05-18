@@ -18,7 +18,9 @@ export type ImagePreset =
   | 'packshot'
   | 'overview'
   | 'materials-full'
-  | 'materials-thumb';
+  | 'materials-thumb'
+  | 'home-tile'
+  | 'nav-tile';
 
 const PRESET_WIDTHS: Record<ImagePreset, number[]> = {
   hero: [640, 1280, 1920, 2560],
@@ -28,6 +30,8 @@ const PRESET_WIDTHS: Record<ImagePreset, number[]> = {
   overview: [400, 800, 1200, 1600],
   'materials-full': [400, 800, 1200, 1600],
   'materials-thumb': [96, 192],
+  'home-tile': [640, 1280, 1920],
+  'nav-tile': [256, 512, 1024],
 };
 
 /**
@@ -42,6 +46,8 @@ const PRESET_SIZES: Record<ImagePreset, string> = {
   overview: '(min-width: 1440px) 720px, (min-width: 1024px) 50vw, 100vw',
   'materials-full': '(min-width: 1440px) 687px, (min-width: 1024px) 50vw, 100vw',
   'materials-thumb': '96px',
+  'home-tile': '(min-width: 1024px) 85vw, 100vw',
+  'nav-tile': '(min-width: 1024px) 96px, 48px',
 };
 
 const MANAGED_PUBLIC_PREFIXES = ['/catalogs/', '/shared/'] as const;

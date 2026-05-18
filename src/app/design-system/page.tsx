@@ -253,6 +253,24 @@ const SHARED_COMPONENTS = [
     description:
       'Tokenizer tekstu: \\bQX\\b → <span class="qx-word">, /n + \\n → <br />. Używany przez wszystkie sekcje QX.',
   },
+  {
+    name: 'PdfDownloadButton',
+    source: 'src/components/catalog/PdfDownloadButton.tsx',
+    description:
+      'Floating CTA (bottom-6 right-6, z-50) z Lucide Download + niestandardową ikoną PDF. Linkuje do /catalogs/{ID}/Download/metro-{id}.pdf z atrybutem download. Klasa print-hide chowa go w wydruku. Hit-area 44×44 (WCAG 2.5.5). Renderowany w CatalogPageQX, CatalogPageMCR800 i print routes.',
+  },
+  {
+    name: 'PrintAutoTrigger',
+    source: 'src/components/catalog/PrintAutoTrigger.tsx',
+    description:
+      'Client-only, mountowany w /print routes. Dodaje body.print-preview by pokazać A4 boundaries na ekranie. Skipowany gdy ?puppeteer=1 — generator PDF potrzebuje DOM bez zoom-skali.',
+  },
+  {
+    name: 'CatalogPagePlaceholder',
+    source: 'src/components/catalog/CatalogPagePlaceholder.tsx',
+    description:
+      'Fallback dla layoutType "type2" / "type3" — tytuł, opis, badge "Layout in preparation" + footer z CONCEPTFAB.COM. Używany przez layoutMap zanim powstanie dedykowany template.',
+  },
 ];
 
 const FEATURED_SHARED_COMPONENTS = new Set([
@@ -275,7 +293,32 @@ const QX_LAYOUTS = [
   { name: 'FinishesQX', file: 'src/layouts/qx/FinishesQX.tsx', desc: 'Konfigurator + preview toggle. Reveal SETTLE.' },
   { name: 'DimensionsQX', file: 'src/layouts/qx/DimensionsQX.tsx', desc: 'Diagram + tabela specyfikacji. Reveal LIFT.' },
   { name: 'ProductCodesQX', file: 'src/layouts/qx/ProductCodesQX.tsx', desc: '3 tabele kodów (single/bench/manager) z subgrid. Nagłówki grup używają font-semibold. Reveal SETTLE.' },
-  { name: 'CatalogPageQX', file: 'src/layouts/qx/CatalogPageQX.tsx', desc: 'Orchestrator: 11 sekcji w kolejności + theme scope.' },
+  { name: 'CatalogPageQX', file: 'src/layouts/qx/CatalogPageQX.tsx', desc: 'Orchestrator: 11 sekcji w kolejności + theme scope. Renderuje PdfDownloadButton na końcu.' },
+];
+
+const MCR800_LAYOUTS = [
+  { name: 'HeroMCR800', file: 'src/layouts/mcr800/HeroMCR800.tsx', desc: 'Hero kolekcji recepcji — analog HeroQX, dedykowany dla MCR800.' },
+  { name: 'OverviewMCR800', file: 'src/layouts/mcr800/OverviewMCR800.tsx', desc: 'Dwukolumnowy overview MCR800. Reveal SLIDE.' },
+  { name: 'GalleryMCR800', file: 'src/layouts/mcr800/GalleryMCR800.tsx', desc: 'Galeria kompozycji recepcyjnych z Lightbox. Reveal LIFT.' },
+  { name: 'FeaturesMCR800', file: 'src/layouts/mcr800/FeaturesMCR800.tsx', desc: 'Features tabbar + video; analog FeaturesQX.' },
+  { name: 'GettingStartedMCR800', file: 'src/layouts/mcr800/GettingStartedMCR800.tsx', desc: 'Kroki montażu recepcji. Reveal LIFT.' },
+  { name: 'PackshotsMCR800', file: 'src/layouts/mcr800/PackshotsMCR800.tsx', desc: 'Modele recepcji z ColorChip + Lightbox.' },
+  { name: 'MaterialsMCR800', file: 'src/layouts/mcr800/MaterialsMCR800.tsx', desc: 'Biblioteka materiałów MCR800. Reveal SETTLE.' },
+  { name: 'FinishesMCR800', file: 'src/layouts/mcr800/FinishesMCR800.tsx', desc: 'Konfigurator wykończeń MCR800. Reveal SETTLE.' },
+  { name: 'DimensionsMCR800', file: 'src/layouts/mcr800/DimensionsMCR800.tsx', desc: 'Diagram + tabela wymiarów recepcji. Reveal LIFT.' },
+  { name: 'ProductCodesMCR800', file: 'src/layouts/mcr800/ProductCodesMCR800.tsx', desc: 'Tabele kodów produktowych recepcji. Reveal SETTLE.' },
+  { name: 'CatalogPageMCR800', file: 'src/layouts/mcr800/CatalogPageMCR800.tsx', desc: 'Orchestrator MCR800: sekcje w kolejności + theme scope + PdfDownloadButton.' },
+];
+
+const PRINT_LAYOUTS = [
+  { name: 'CatalogPrintQX', file: 'src/layouts/qx/CatalogPrintQX.tsx', desc: 'Wydruk QX (A4 portrait) — orkiestracja stron z page-break. Renderowany w /catalog/[id]/print.' },
+  { name: 'HeroPrintQX', file: 'src/layouts/qx/HeroPrintQX.tsx', desc: 'Statyczna strona hero dla wydruku — pojedyncza ramka A4 zamiast slidera.' },
+  { name: 'GalleryPrintQX', file: 'src/layouts/qx/GalleryPrintQX.tsx', desc: 'Galeria dla wydruku — grid bez Lightbox/lazy-load.' },
+  { name: 'FeaturesPrintQX', file: 'src/layouts/qx/FeaturesPrintQX.tsx', desc: 'Multi-page features print — wszystkie taby rozwinięte sekwencyjnie, bez video.' },
+  { name: 'FinishesPrintQX', file: 'src/layouts/qx/FinishesPrintQX.tsx', desc: 'Konfigurator dla wydruku — losowy preview + pełna lista swatchy.' },
+  { name: 'PackshotsPrintQX', file: 'src/layouts/qx/PackshotsPrintQX.tsx', desc: 'Paginowane packshoty — siatka z konfigurowalnym pacing per-strona.' },
+  { name: 'ContactPrintQX', file: 'src/layouts/qx/ContactPrintQX.tsx', desc: 'Strona kontaktu na końcu wydruku, wspólny układ dla QX i MCR800.' },
+  { name: 'CatalogPrintMCR800', file: 'src/layouts/mcr800/CatalogPrintMCR800.tsx', desc: 'Wydruk MCR800 — analog CatalogPrintQX. + 7 print sekcji MCR800 (Hero/Overview/Gallery/Features/Finishes/Packshots/Materials/Contact).' },
 ];
 
 const REVEAL_PRESETS = [
@@ -296,6 +339,43 @@ const REVEAL_PRESETS = [
   },
 ];
 
+const HOMEPAGE_PATTERNS = [
+  {
+    name: 'Tile grid · Operational furniture',
+    selector: 'src/app/page.tsx · Section 1',
+    desc: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z li.aspect-[1/2]. Każdy tile = next/image fill + hover overlay (bg-foreground/55) + brand label (88px font-black, opacity 0 → 1). Sizes: 200vw mobile / 132vw sm / 85vw lg. Źródło: /catalogs/{ID}/thumbs/{id}-home.webp.',
+  },
+  {
+    name: 'Wide hero tile · Conference tables',
+    selector: 'src/app/page.tsx · Section 2',
+    desc: 'aspect-[5/1] full-width hero — FOTA. Sizes: max 1440px / 100vw. Hover overlay + brand label identyczne jak w siatce 2×3.',
+  },
+  {
+    name: 'Square tile pair · Reception desks',
+    selector: 'src/app/page.tsx · Section 3',
+    desc: 'grid-cols-1 sm:grid-cols-2 z aspect-square. MCR800 + pusty slot border-border bg-background/40 (placeholder na kolejny katalog).',
+  },
+  {
+    name: 'EU funding banner',
+    selector: 'src/app/page.tsx · banner.webp',
+    desc: 'Logotypy "Fundusze Europejskie · RP · UE · PARP" — 2545×218px, w 90% mobile / 60% lg. Centrowany, tło bg-surface-elevated. Powtórzony w stopkach catalogów.',
+  },
+  {
+    name: 'Site footer · CONCEPTFAB credit',
+    selector: 'src/app/page.tsx · footer',
+    desc: 'bg-catalog-footer + py-10. globalConfig.footerText + klikalny CONCEPTFAB.COM (target=_blank, underline hover:text-foreground). Centrowany, font-display uppercase tracking-widest.',
+  },
+];
+
+const CATALOG_THUMBS = {
+  pattern: '/catalogs/{ID}/thumbs/{id}-{role}.webp',
+  roles: [
+    { name: '-home', purpose: 'Hero scena dla tile na homepage (object-cover, mocno wykadrowana).' },
+    { name: '-nav', purpose: 'Packshot/overview dla CatalogNav footer (overview content.json fallback).' },
+  ],
+  resolver: 'getCatalogFooterEntries() w catalog-loader: priorytet -nav.webp, fallback do overview/content.json packshot.',
+};
+
 const SCHEMAS_USED = [
   { name: 'heroContentSchema', file: 'src/lib/schemas/hero.ts', covers: 'public/catalogs/*/hero/content.json' },
   { name: 'packshotsContentSchema', file: 'src/lib/schemas/packshots.ts', covers: 'public/catalogs/*/packshots/content.json' },
@@ -303,8 +383,10 @@ const SCHEMAS_USED = [
 
 const TOOLING_USED = [
   { name: 'responsive-image (7 presets)', file: 'src/lib/responsive-image.ts', desc: 'hero / gallery / packshot / overview / finishes / materials-full / materials-thumb. Hero mobile: 200vh sizes pod pionowy object-cover. Packshot: 100vw sizes pod mobile full-bleed. Manifest-first z fallbackiem.' },
-  { name: 'catalog-loader', file: 'src/lib/catalog-loader.ts', desc: 'Parallelized loader: hero, slider, overview, gallery, finishes, dimensions, materials, features, getting-started, codes, packshots. Auto-discover heroSlides + materialsConfigurator. normalizeHeroSlides przekazuje per-slide style overrides (textStyle, mobileTextStyle, mobileContentLayout, mobileImageOffsetX).' },
-  { name: 'design-tokens registry', file: 'src/lib/design-tokens.ts', desc: '39 tokenów kolorów ze synchronizacją do globals.css (test: design-tokens.test.ts).' },
+  { name: 'image-loader (custom)', file: 'src/lib/image-loader.ts', desc: 'Custom next/image loader z generated/responsive-image-manifest.json. Dopasowuje najmniejszy wariant ≥ requested width. SVG i http:// pomijane, paths z -{w}w już zoptymalizowane.' },
+  { name: 'catalog-loader', file: 'src/lib/catalog-loader.ts', desc: 'Parallelized loader: hero, slider, overview, gallery, finishes, dimensions, materials, features, getting-started, codes, packshots. Auto-discover heroSlides + materialsConfigurator. Plus: getCatalogList, getCatalogFooterEntries (resolver -nav.webp + overview fallback), getGlobalConfig (public/config.json override).' },
+  { name: 'layoutMap (catalog dispatch)', file: 'src/app/catalog/[catalogId]/page.tsx', desc: 'Record<CatalogLayoutType, Component> mapuje meta.layoutType → CatalogPageQX | CatalogPageMCR800 | CatalogPagePlaceholder. type2/type3 fallbackują do Placeholder.' },
+  { name: 'design-tokens registry', file: 'src/lib/design-tokens.ts', desc: '40 tokenów kolorów ze synchronizacją do globals.css (test: design-tokens.test.ts).' },
   { name: 'icon-map (17 ikon)', file: 'src/lib/icon-map.tsx', desc: 'Mapa nazw → komponentów Lucide używana w features/getting-started.' },
   { name: 'motion utilities', file: 'src/lib/motion.ts', desc: 'SECTION_REVEAL_* presets + slowTransition() + CATALOG_MOTION_MULTIPLIER ×2.' },
 ];
@@ -575,6 +657,9 @@ function getDesignSystemCounts(): DesignSystemCounts {
     Z_INDEX_TOKENS.length +
     SHARED_COMPONENTS.length +
     QX_LAYOUTS.length +
+    MCR800_LAYOUTS.length +
+    PRINT_LAYOUTS.length +
+    HOMEPAGE_PATTERNS.length +
     REVEAL_PRESETS.length +
     SCHEMAS_USED.length +
     TOOLING_USED.length +
@@ -616,8 +701,8 @@ function renderDesignSystemPage({
           <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
             <Stat value={String(usedCount)} label="Elementów zaimplementowanych" />
             <Stat value={String(plannedCount)} label="Elementów planowanych" />
-            <Stat value="11" label="Layoutów QX" />
-            <Stat value="39" label="Tokenów kolorów" />
+            <Stat value={`${QX_LAYOUTS.length}+${MCR800_LAYOUTS.length}`} label="Layoutów QX + MCR800" />
+            <Stat value={String(colorTokens.length)} label="Tokenów kolorów" />
           </div>
           <nav className="mt-12 flex flex-wrap gap-x-8 gap-y-3 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
             <a href="#foundations" className="hover:text-foreground">01 · Foundations</a>
@@ -846,8 +931,65 @@ function renderDesignSystemPage({
             id="patterns-title"
             className="section_Title mt-8 font-display font-normal"
           >
-            Packshot card · materiały · tabela kodów
+            Homepage tiles · packshot card · materiały · tabela kodów
           </h2>
+
+          {/* Homepage tile grid + EU banner + footer */}
+          <div className="mt-16">
+            <div className="flex items-baseline justify-between">
+              <p className="qx-emphasis-title">Strona główna · wzorce kompozycji</p>
+              <SourcePath path="src/app/page.tsx" />
+            </div>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Homepage zestawia katalogi w trzech sekcjach o różnych proporcjach.
+              Tile = pełnoekranowy <code className="font-mono">next/image fill</code>{' '}
+              z hover overlay (<code className="font-mono">bg-foreground/55</code>)
+              + brand label 88px (<code className="font-mono">font-black tracking-tighter</code>),
+              opacity 0 → 1 na grupie. Focus-visible: outline 2px na{' '}
+              <code className="font-mono">-2px</code> offset (wewnątrz tile).
+            </p>
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {HOMEPAGE_PATTERNS.map((p) => (
+                <div key={p.name} className="border border-foreground/10 bg-card p-5">
+                  <StatusTag kind="used" />
+                  <p className="mt-3 font-display text-base font-bold">{p.name}</p>
+                  <SourcePath path={p.selector} />
+                  <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
+                    {p.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Catalog thumbnail pipeline (-home / -nav) */}
+          <div className="mt-16">
+            <div className="flex items-baseline justify-between">
+              <p className="qx-emphasis-title">Pipeline miniatur · -home / -nav</p>
+              <SourcePath path={CATALOG_THUMBS.pattern} />
+            </div>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Każdy katalog posiada dwie standardowe miniatury w{' '}
+              <code className="font-mono">/catalogs/{'{ID}'}/thumbs/</code> o różnych
+              rolach. Skrypt generujący buduje je raz dla całego portfolio (7 katalogów ×
+              2 role).
+            </p>
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {CATALOG_THUMBS.roles.map((r) => (
+                <div key={r.name} className="border border-foreground/10 bg-card p-5">
+                  <StatusTag kind="used" />
+                  <p className="mt-3 font-mono text-sm font-bold">{r.name}.webp</p>
+                  <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
+                    {r.purpose}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-[12px] text-muted-foreground">
+              <span className="font-mono text-foreground">Resolver:</span>{' '}
+              {CATALOG_THUMBS.resolver}
+            </p>
+          </div>
 
           {/* Packshot card pattern: exact replica of PackshotsQX render */}
           <div className="mt-16">
@@ -1070,16 +1212,67 @@ function renderDesignSystemPage({
             id="layouts-title"
             className="section_Title mt-8 font-display font-normal"
           >
-            11 sekcji <span className="qx-word">QX</span> · QS dziedziczy 1:1
+            <span className="qx-word">QX</span> family · MCR800 family · Print pipeline
           </h2>
           <p className="sec_main_text mt-6 max-w-[60ch]">
             Każda sekcja to osobny komponent w{' '}
-            <code className="font-mono">src/layouts/qx/</code>. Orkiestracja w{' '}
-            <code className="font-mono">CatalogPageQX</code>. QS używa identycznych
-            layoutów (theme: qx0).
+            <code className="font-mono">src/layouts/{'{family}'}/</code>. Dispatch
+            przez <code className="font-mono">layoutMap</code> w{' '}
+            <code className="font-mono">/catalog/[catalogId]/page.tsx</code>. QX
+            family obsługuje QX, QS, VR, TS, FM, FOTA (layoutType: &quot;qx&quot;);
+            MCR800 ma własny family (layoutType: &quot;mcr800&quot;).
           </p>
-          <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8">
+            <p className="qx-emphasis-title">QX family · {QX_LAYOUTS.length} layoutów</p>
+          </div>
+          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {QX_LAYOUTS.map((l) => (
+              <div key={l.name} className="border border-foreground/10 bg-card p-5">
+                <StatusTag kind="used" />
+                <p className="mt-3 font-display text-base font-bold">{l.name}</p>
+                <SourcePath path={l.file} />
+                <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
+                  {l.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16">
+            <p className="qx-emphasis-title">MCR800 family · {MCR800_LAYOUTS.length} layoutów</p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Dedykowane dla kolekcji recepcyjnej MCR800 (layoutType: &quot;mcr800&quot;).
+              Strukturalnie analog QX family, ale z osobnymi assetami i theme-scope
+              dopasowanymi pod recepcje.
+            </p>
+          </div>
+          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {MCR800_LAYOUTS.map((l) => (
+              <div key={l.name} className="border border-foreground/10 bg-card p-5">
+                <StatusTag kind="used" />
+                <p className="mt-3 font-display text-base font-bold">{l.name}</p>
+                <SourcePath path={l.file} />
+                <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
+                  {l.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16">
+            <p className="qx-emphasis-title">Print pipeline · {PRINT_LAYOUTS.length} layoutów</p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Statyczne wersje sekcji renderowane w{' '}
+              <code className="font-mono">/catalog/[id]/print</code>. Trigger:{' '}
+              <code className="font-mono">PrintAutoTrigger</code> dodaje{' '}
+              <code className="font-mono">body.print-preview</code> dla podglądu A4
+              na ekranie; <code className="font-mono">?puppeteer=1</code> wyłącza
+              zoom dla generatora PDF (Puppeteer page.pdf()). Wyniki:{' '}
+              <code className="font-mono">/catalogs/{'{ID}'}/Download/metro-{'{id}'}.pdf</code>.
+            </p>
+          </div>
+          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {PRINT_LAYOUTS.map((l) => (
               <div key={l.name} className="border border-foreground/10 bg-card p-5">
                 <StatusTag kind="used" />
                 <p className="mt-3 font-display text-base font-bold">{l.name}</p>
@@ -1167,7 +1360,7 @@ function renderDesignSystemPage({
                 { name: 'animate-fade-in-up', desc: 'opacity 0 + translateY(24px) → 1, 0.6s ease-out' },
                 { name: 'animate-accordion-down', desc: 'height 0 → content height, 0.2s' },
                 { name: 'animate-accordion-up', desc: 'height content → 0, 0.2s' },
-                { name: 'home-tile-pan', desc: 'object-position 45% → 55% → 45%, 120s loop; homepage tiles keep aspect 1/2 and request larger generated variants for sharp object-cover crops' },
+                { name: 'home-tile-pan', desc: 'object-position 45% → 55% → 45%, 120s loop (+ home-tile-pan-reverse 180s). Klasa zdefiniowana w globals.css i gotowa do podpięcia pod tile homepage gdy będzie potrzebny subtelny ken-burns; obecnie tiles homepage używają statycznego object-cover z thumbs/{id}-home.webp.' },
               ].map((k) => (
                 <div key={k.name} className="border border-foreground/10 bg-card p-4">
                   <p className="font-mono text-xs font-bold">{k.name}</p>
@@ -1472,7 +1665,7 @@ function renderDesignSystemPage({
               METRO Design System
             </p>
             <p className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
-              Zaktualizowano · 2026-05-08
+              Zaktualizowano · 2026-05-18
             </p>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm">

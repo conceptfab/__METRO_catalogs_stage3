@@ -232,6 +232,40 @@ async function processGalleryDirectory(dirPath, force = false) {
 }
 
 /**
+ * Process the per-catalog thumbs/ directory.
+ * Files are split by suffix:
+ *  - *-home.webp → homepage tiles, get wider variants (640/1280/1920)
+ *  - *-nav.webp  → footer / nav tiles, get small variants (256/512/1024)
+ */
+async function processThumbsDirectory(dirPath, force = false) {
+  if (!(await dirExists(dirPath))) return 0;
+
+  const files = await fs.readdir(dirPath);
+  let total = 0;
+
+  for (const file of files) {
+    if (!isImageFile(file)) continue;
+    if (isGeneratedThumbnail(file)) continue;
+
+    const filePath = path.join(dirPath, file);
+    const baseName = path.parse(file).name;
+
+    let widths;
+    if (baseName.endsWith('-home')) {
+      widths = SECTION_WIDTHS.home_tile;
+    } else if (baseName.endsWith('-nav')) {
+      widths = SECTION_WIDTHS.nav_tile;
+    } else {
+      continue;
+    }
+
+    total += await generateForImage(filePath, widths, force);
+  }
+
+  return total;
+}
+
+/**
  * Process materials directory with split logic:
  * - *_thumb.webp files get tiny sizes (swatches)
  * - other images get medium sizes (configurator preview)
@@ -432,12 +466,18 @@ async function main() {
     const materialsCount = await processMaterialsDirectory(materialsDir, force);
     if (materialsCount) console.log(`    materials: ${materialsCount} thumbnails`);
 
+    // Homepage / nav tiles (split by -home / -nav suffix)
+    const thumbsDir = path.join(catalogPath, 'thumbs');
+    const thumbsCount = await processThumbsDirectory(thumbsDir, force);
+    if (thumbsCount) console.log(`    thumbs: ${thumbsCount} thumbnails`);
+
     totalGenerated +=
       heroCount +
       galleryCount +
       overviewCount +
       packshotsCount +
-      materialsCount;
+      materialsCount +
+      thumbsCount;
   }
 
   // Shared materials (cross-catalog swatches)

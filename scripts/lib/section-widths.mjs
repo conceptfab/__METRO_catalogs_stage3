@@ -14,6 +14,8 @@ export const SECTION_WIDTHS = {
   overview: [400, 800, 1200, 1600],
   materials_full: [400, 800, 1200, 1600],
   materials_thumb: [96, 192],
+  home_tile: [640, 1280, 1920],
+  nav_tile: [256, 512, 1024],
 };
 
 /**

@@ -218,6 +218,16 @@
     960,
     1440
   ],
+  "/catalogs/FM/thumbs/fm-home.webp": [
+    640,
+    1280,
+    1920
+  ],
+  "/catalogs/FM/thumbs/fm-nav.webp": [
+    256,
+    512,
+    1024
+  ],
   "/catalogs/FOTA/features/FOTA_efficient_storage_last.webp": [],
   "/catalogs/FOTA/features/FOTA_fast_folding_last.webp": [],
   "/catalogs/FOTA/features/FOTA_high-strength_wheels_last.webp": [],
@@ -380,6 +390,16 @@
     960,
     1440
   ],
+  "/catalogs/FOTA/thumbs/fota-home.webp": [
+    640,
+    1280,
+    1920
+  ],
+  "/catalogs/FOTA/thumbs/fota-nav.webp": [
+    256,
+    512,
+    1024
+  ],
   "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_B1_R5_0000.webp": [],
   "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_C_2_r5_0000.webp": [],
   "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_D_2_R5_0000.webp": [],
@@ -509,6 +529,16 @@
   "/catalogs/MCR800/set/MCR_Set 3_white_wg__Shot_A__4K_R8.webp": [],
   "/catalogs/MCR800/set/MCR_Set 4_black_gb__Shot_A__4K_R8.webp": [],
   "/catalogs/MCR800/set/MCR_Set 4_white_wg__Shot_A__4K_R8.webp": [],
+  "/catalogs/MCR800/thumbs/mcr800-home.webp": [
+    640,
+    1280,
+    1920
+  ],
+  "/catalogs/MCR800/thumbs/mcr800-nav.webp": [
+    256,
+    512,
+    1024
+  ],
   "/catalogs/QS/features/QS_accessory_last.webp": [],
   "/catalogs/QS/features/QS_assembly_last.webp": [],
   "/catalogs/QS/features/QS_extend_last.webp": [],
@@ -705,6 +735,16 @@
     480,
     960,
     1440
+  ],
+  "/catalogs/QS/thumbs/qs-home.webp": [
+    640,
+    1280,
+    1920
+  ],
+  "/catalogs/QS/thumbs/qs-nav.webp": [
+    256,
+    512,
+    1024
   ],
   "/catalogs/QX/features/QX_extend_last.webp": [],
   "/catalogs/QX/features/QX_modular_last.webp": [],
@@ -960,6 +1000,16 @@
     960,
     1440
   ],
+  "/catalogs/QX/thumbs/qx-home.webp": [
+    640,
+    1280,
+    1920
+  ],
+  "/catalogs/QX/thumbs/qx-nav.webp": [
+    256,
+    512,
+    1024
+  ],
   "/catalogs/TS/features/TS_assembly_last.webp": [],
   "/catalogs/TS/features/TS_extend_last.webp": [],
   "/catalogs/TS/features/TS_footers_last.webp": [],
@@ -1138,6 +1188,16 @@
     960,
     1440
   ],
+  "/catalogs/TS/thumbs/ts-home.webp": [
+    640,
+    1280,
+    1920
+  ],
+  "/catalogs/TS/thumbs/ts-nav.webp": [
+    256,
+    512,
+    1024
+  ],
   "/catalogs/VR/features/VR_accessory_last.webp": [],
   "/catalogs/VR/features/VR_assembly_last.webp": [],
   "/catalogs/VR/features/VR_extend_last.webp": [],
@@ -1297,47 +1357,12 @@
     960,
     1440
   ],
-  "/catalogs/VR/packshots/V280-1_W240_black__Shot_A_4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/VR/packshots/V280-1_W240_white__Shot_A_4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/VR/packshots/V280SW-1_W240_black__Shot_A_4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/VR/packshots/V280SW-1_W240_white__Shot_A_4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
   "/catalogs/VR/packshots/V280SW_0__U120_grey__Shot_A__4K_R10.webp": [
     480,
     960,
     1440
   ],
-  "/catalogs/VR/packshots/V280SW_U120_grey__Shot_A__4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
   "/catalogs/VR/packshots/V280SW_W240_black__Shot_A_4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/VR/packshots/V280SW_W240_white__Shot_A_4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/VR/packshots/V280_0_U120_grey__Shot_A__4K_R10.webp": [
     480,
     960,
     1440
@@ -1392,26 +1417,6 @@
     960,
     1440
   ],
-  "/catalogs/VR/packshots/V57SW_U120_grey__Shot_A_4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/VR/packshots/V57SW_U120_grey__Shot_A__4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/VR/packshots/V57SW_W240_black__Shot_A_4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
-  "/catalogs/VR/packshots/V57SW_W240_white__Shot_A_4K_R10.webp": [
-    480,
-    960,
-    1440
-  ],
   "/catalogs/VR/packshots/V57_W240_black__Shot_A_4K_R10.webp": [
     480,
     960,
@@ -1421,6 +1426,16 @@
     480,
     960,
     1440
+  ],
+  "/catalogs/VR/thumbs/vr-home.webp": [
+    640,
+    1280,
+    1920
+  ],
+  "/catalogs/VR/thumbs/vr-nav.webp": [
+    256,
+    512,
+    1024
   ],
   "/shared/materials/RAL 7024.webp": [
     400,

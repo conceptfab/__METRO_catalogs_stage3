@@ -59,8 +59,8 @@ export default async function HomePage() {
           <h2 className="section_ID px-5 font-display uppercase sm:px-8 lg:px-0">
             Operational office furniture
           </h2>
-          <ul className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:mt-12 lg:grid-cols-5">
-            <li className="aspect-[1/2]">
+          <ul className="mt-8 grid grid-cols-1 lg:mt-12 lg:grid-cols-5">
+            <li className="aspect-[2/1] lg:aspect-[1/2]">
               {qxCatalog ? (
                 <Link
                   href={`/catalog/${qxCatalog.id}`}
@@ -72,7 +72,7 @@ export default async function HomePage() {
                     alt=""
                     fill
                     priority
-                    sizes="(min-width: 1024px) 85vw, (min-width: 640px) 132vw, 200vw"
+                    sizes="(min-width: 1024px) 85vw, 100vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
@@ -84,7 +84,7 @@ export default async function HomePage() {
                 <div className="h-full w-full bg-background" />
               )}
             </li>
-            <li className="aspect-[1/2]">
+            <li className="aspect-[2/1] lg:aspect-[1/2]">
               {qsCatalog ? (
                 <Link
                   href={`/catalog/${qsCatalog.id}`}
@@ -96,7 +96,7 @@ export default async function HomePage() {
                     alt=""
                     fill
                     priority
-                    sizes="(min-width: 1024px) 85vw, (min-width: 640px) 132vw, 200vw"
+                    sizes="(min-width: 1024px) 85vw, 100vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
@@ -108,7 +108,7 @@ export default async function HomePage() {
                 <div className="h-full w-full bg-background" />
               )}
             </li>
-            <li className="aspect-[1/2]">
+            <li className="aspect-[2/1] lg:aspect-[1/2]">
               {vrCatalog ? (
                 <Link
                   href={`/catalog/${vrCatalog.id}`}
@@ -119,7 +119,7 @@ export default async function HomePage() {
                     src={VR_HERO_IMAGE}
                     alt=""
                     fill
-                    sizes="(min-width: 1024px) 85vw, (min-width: 640px) 132vw, 200vw"
+                    sizes="(min-width: 1024px) 85vw, 100vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
@@ -131,7 +131,7 @@ export default async function HomePage() {
                 <div className="h-full w-full bg-background" />
               )}
             </li>
-            <li className="aspect-[1/2]">
+            <li className="aspect-[2/1] lg:aspect-[1/2]">
               {tsCatalog ? (
                 <Link
                   href={`/catalog/${tsCatalog.id}`}
@@ -142,7 +142,7 @@ export default async function HomePage() {
                     src={TS_HERO_IMAGE}
                     alt=""
                     fill
-                    sizes="(min-width: 1024px) 85vw, (min-width: 640px) 132vw, 200vw"
+                    sizes="(min-width: 1024px) 85vw, 100vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
@@ -154,7 +154,7 @@ export default async function HomePage() {
                 <div className="h-full w-full bg-background" />
               )}
             </li>
-            <li className="aspect-[1/2]">
+            <li className="aspect-[2/1] lg:aspect-[1/2]">
               {fmCatalog ? (
                 <Link
                   href={`/catalog/${fmCatalog.id}`}
@@ -165,7 +165,7 @@ export default async function HomePage() {
                     src={FM_HERO_IMAGE}
                     alt=""
                     fill
-                    sizes="(min-width: 1024px) 85vw, (min-width: 640px) 132vw, 200vw"
+                    sizes="(min-width: 1024px) 85vw, 100vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
@@ -185,7 +185,7 @@ export default async function HomePage() {
           <h2 className="section_ID px-5 font-display uppercase sm:px-8 lg:px-0">
             Conference tables
           </h2>
-          <div className="mt-8 aspect-[5/1] w-full lg:mt-12">
+          <div className="mt-8 aspect-[2/1] w-full lg:mt-12 lg:aspect-[5/1]">
             {fotaCatalog ? (
               <Link
                 href={`/catalog/${fotaCatalog.id}`}
@@ -218,7 +218,7 @@ export default async function HomePage() {
           <h2 className="section_ID px-5 font-display uppercase sm:px-8 lg:px-0">
             Reception desks
           </h2>
-          <ul className="mt-8 grid grid-cols-1 gap-0 sm:grid-cols-2 lg:mt-12">
+          <ul className="mt-8 grid grid-cols-1 gap-0 lg:mt-12">
             <li className="aspect-square">
               {mcr800Catalog ? (
                 <Link
@@ -230,7 +230,7 @@ export default async function HomePage() {
                     src={MCR800_HERO_IMAGE}
                     alt=""
                     fill
-                    sizes="(min-width: 1440px) 720px, (min-width: 640px) 50vw, 100vw"
+                    sizes="(min-width: 1440px) 1440px, 100vw"
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />

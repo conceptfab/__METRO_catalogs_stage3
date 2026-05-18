@@ -40,6 +40,8 @@ const SECTION_TO_PRESET: Record<string, string> = {
   overview: 'overview',
   materials_full: 'materials-full',
   materials_thumb: 'materials-thumb',
+  home_tile: 'home-tile',
+  nav_tile: 'nav-tile',
 };
 
 describe('responsive-image preset parity', () => {
