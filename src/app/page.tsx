@@ -219,7 +219,7 @@ export default async function HomePage() {
             Reception desks
           </h2>
           <ul className="mt-8 grid grid-cols-1 gap-0 lg:mt-12">
-            <li className="aspect-square">
+            <li className="aspect-[2/1] lg:aspect-[5/1]">
               {mcr800Catalog ? (
                 <Link
                   href={`/catalog/${mcr800Catalog.id}`}
@@ -246,7 +246,7 @@ export default async function HomePage() {
               )}
             </li>
             <li
-              className="aspect-square border border-border bg-background/40"
+              className="aspect-[2/1] border border-border bg-background/40 lg:aspect-[5/1]"
               aria-hidden="true"
             />
           </ul>
@@ -267,8 +267,8 @@ export default async function HomePage() {
       </main>
 
       <footer className="bg-catalog-footer">
-        <div className="mx-auto w-full max-w-[1440px] px-5 py-10 sm:px-8 lg:px-0">
-          <p className="text-center font-display text-xs uppercase tracking-widest text-foreground/65">
+        <div className="mx-auto w-full max-w-[1440px] px-5 py-4 sm:px-8 sm:py-10 lg:px-0">
+          <p className="text-center font-display text-[10px] uppercase tracking-wider text-foreground/65 sm:text-xs sm:tracking-widest">
             {globalConfig.footerText}{' '}
             <a
               href="https://conceptfab.com"
