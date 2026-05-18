@@ -7,11 +7,7 @@ import { SECTION_REVEAL_SETTLE, slowTransition } from '@/lib/motion';
 import { QxText } from '@/components/catalog/QxText';
 import { responsiveImg } from '@/lib/responsive-image';
 import { MaterialsOptionGroup } from '@/components/catalog/MaterialsOptionGroup';
-import {
-  pickConfiguratorOption,
-  dedupeByCode,
-  orderOptions,
-} from '@/lib/materials-options';
+import { dedupeByCode, orderOptions } from '@/lib/materials-options';
 
 interface MaterialsSectionProps {
   data: MaterialsData;

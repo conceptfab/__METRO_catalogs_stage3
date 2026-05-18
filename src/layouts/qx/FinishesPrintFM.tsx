@@ -7,7 +7,6 @@ import { SectionHeading } from '@/components/catalog/SectionHeading';
 import { QxText } from '@/components/catalog/QxText';
 import { responsiveImg } from '@/lib/responsive-image';
 import {
-  pickConfiguratorOption,
   dedupeByCode,
   orderOptions,
   formatOptionCode,
