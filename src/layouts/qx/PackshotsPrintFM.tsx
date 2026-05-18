@@ -16,39 +16,19 @@ const ITEMS_PER_PAGE = 4;
 const SAMPLE_PACKSHOT_SRC =
   '/catalogs/QX/packshots/V51_W240_black__Shot_A_4K_R10.webp';
 
-const FRAME_COLOR_FROM_NAME: Record<string, string> = {
-  white: 'RAL9003',
-  black: 'RAL9005',
-  grey: 'RAL9006',
-  gray: 'RAL9006',
-};
-
 const METRO_ID_PATTERN = /^metro[_ -]/i;
 
 function parsePackshotImage(filename: string | undefined): {
   topCode?: string;
-  frameCode?: string;
 } {
   if (!filename) return {};
   const base = filename.split('/').pop() ?? '';
   const stem = base.replace(/\.[^.]+$/, '').split('__')[0];
   const tokens = stem.split('_');
   const topToken = tokens[1];
-  const frameToken = tokens[2];
   const topCode =
-    topToken && /^[UW]\d+$/i.test(topToken)
-      ? topToken.toUpperCase()
-      : undefined;
-
-  let frameCode: string | undefined;
-  if (frameToken) {
-    if (/^RAL\d+$/i.test(frameToken)) {
-      frameCode = frameToken.toUpperCase();
-    } else {
-      frameCode = FRAME_COLOR_FROM_NAME[frameToken.toLowerCase()];
-    }
-  }
-  return { topCode, frameCode };
+    topToken && /^[UW]\d+$/i.test(topToken) ? topToken.toUpperCase() : undefined;
+  return { topCode };
 }
 
 function pickOption(
