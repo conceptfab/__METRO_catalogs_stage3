@@ -6,6 +6,12 @@ import type {
 import { SectionHeading } from '@/components/catalog/SectionHeading';
 import { QxText } from '@/components/catalog/QxText';
 import { responsiveImg } from '@/lib/responsive-image';
+import {
+  pickConfiguratorOption,
+  dedupeByCode,
+  orderOptions,
+  formatOptionCode,
+} from '@/lib/materials-options';
 
 interface Props {
   data: FinishesData;
@@ -17,57 +23,6 @@ const EMPTY_OPTIONS: MaterialsConfiguratorOption[] = [];
 const DESKTOP_PRICE_GROUP_1 = ['U100', 'U110', 'U120', 'U130', 'W220', 'W240'];
 const DESKTOP_PRICE_GROUP_2 = ['W200', 'W210', 'W250', 'W310', 'W330'];
 const FRAME_COLOR_ORDER = ['RAL9006'];
-
-const METRO_ID_PATTERN = /^metro[_ -]/i;
-
-function pickConfiguratorOption(
-  options: MaterialsConfiguratorOption[],
-  code: string,
-): MaterialsConfiguratorOption | undefined {
-  const matches = options.filter((option) => option.code === code);
-  if (matches.length === 0) return undefined;
-
-  const metroEntry = matches.find((option) => METRO_ID_PATTERN.test(option.id));
-  const swatchEntry = matches.find(
-    (option) => !METRO_ID_PATTERN.test(option.id),
-  );
-
-  if (metroEntry && swatchEntry) {
-    return {
-      ...metroEntry,
-      label: swatchEntry.label,
-      thumbnail: swatchEntry.image,
-    };
-  }
-  return metroEntry ?? swatchEntry ?? matches[0];
-}
-
-function dedupeByCode(options: MaterialsConfiguratorOption[]) {
-  const seen = new Set<string>();
-  const result: MaterialsConfiguratorOption[] = [];
-  for (const option of options) {
-    if (seen.has(option.code)) continue;
-    const preferred = pickConfiguratorOption(options, option.code);
-    if (!preferred) continue;
-    seen.add(option.code);
-    result.push(preferred);
-  }
-  return result;
-}
-
-function orderOptions(
-  options: MaterialsConfiguratorOption[],
-  orderedCodes: string[],
-) {
-  return orderedCodes.flatMap((code) => {
-    const option = pickConfiguratorOption(options, code);
-    return option ? [option] : [];
-  });
-}
-
-function formatOptionCode(code: string) {
-  return code.startsWith('RAL') ? `RAL ${code.slice(3)}` : code;
-}
 
 function getOptionLabelParts(option: MaterialsConfiguratorOption) {
   const code = formatOptionCode(option.code);
