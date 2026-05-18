@@ -36,7 +36,15 @@ export default function CatalogPagePlaceholder({ catalog, globalConfig }: Props)
       </section>
 
       <footer className="mt-12 text-xs uppercase tracking-widest text-muted-foreground/60">
-        {globalConfig.footerText}
+        {globalConfig.footerText}{' '}
+        <a
+          href="https://conceptfab.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-foreground"
+        >
+          CONCEPTFAB.COM
+        </a>
       </footer>
     </main>
   );

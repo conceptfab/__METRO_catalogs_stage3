@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { getCatalogList, getGlobalConfig } from '@/lib/catalog-loader';
 import CatalogNav from '@/components/catalog/CatalogNav';
 
-const QX_HERO_IMAGE = '/catalogs/QX/hero/02_26_Metro_QX_HERO_1_R3-clean_noise_thumb.webp';
-const QS_HERO_IMAGE = '/catalogs/QS/hero/04_26_Metro_QS_SOLO_B2_hero_noise.webp';
-const VR_HERO_IMAGE = '/catalogs/VR/hero/05_26_Metro_VR_HERO_A1_noise.webp';
-const TS_HERO_IMAGE = '/catalogs/TS/hero/07_26_Metro_TS_HERO_R1_noise.webp';
-const FM_HERO_IMAGE = '/catalogs/FM/hero/08_26_Metro_FM_HERO_R1A.webp';
-const FOTA_HERO_IMAGE = '/catalogs/FOTA/hero/12_25_Metro_FOTA_HERO_0_0000.webp';
-const MCR800_HERO_IMAGE = '/catalogs/MCR800/hero/scene_WHITE_B_4_4K.webp';
+const QX_HERO_IMAGE = '/catalogs/QX/thumbs/qx-home.webp';
+const QS_HERO_IMAGE = '/catalogs/QS/thumbs/qs-home.webp';
+const VR_HERO_IMAGE = '/catalogs/VR/thumbs/vr-home.webp';
+const TS_HERO_IMAGE = '/catalogs/TS/thumbs/ts-home.webp';
+const FM_HERO_IMAGE = '/catalogs/FM/thumbs/fm-home.webp';
+const FOTA_HERO_IMAGE = '/catalogs/FOTA/thumbs/fota-home.webp';
+const MCR800_HERO_IMAGE = '/catalogs/MCR800/thumbs/mcr800-home.webp';
 
 export const metadata: Metadata = {
   title: 'METRO – Catalogs',
@@ -214,7 +214,7 @@ export default async function HomePage() {
         </section>
 
         {/* Section 3 — Reception desks */}
-        <section className="mx-auto mt-16 w-full max-w-[1440px] pb-24 lg:mt-[120px] lg:pb-[160px]">
+        <section className="mx-auto mt-16 w-full max-w-[1440px] lg:mt-[120px]">
           <h2 className="section_ID px-5 font-display uppercase sm:px-8 lg:px-0">
             Reception desks
           </h2>
@@ -251,12 +251,33 @@ export default async function HomePage() {
             />
           </ul>
         </section>
+
+        <div className="bg-surface-elevated py-6">
+          <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-0">
+            <Image
+              src="/banner.webp"
+              alt="Fundusze Europejskie dla Nowoczesnej Gospodarki — Rzeczpospolita Polska — Dofinansowane przez Unię Europejską — PARP Grupa PFR"
+              width={2545}
+              height={218}
+              sizes="(min-width: 1440px) 864px, (min-width: 1024px) 60vw, 90vw"
+              className="mx-auto block h-auto w-[90%] lg:w-[60%]"
+            />
+          </div>
+        </div>
       </main>
 
       <footer className="bg-catalog-footer">
         <div className="mx-auto w-full max-w-[1440px] px-5 py-10 sm:px-8 lg:px-0">
-          <p className="font-display text-xs uppercase tracking-widest text-foreground/65">
-            {globalConfig.footerText}
+          <p className="text-center font-display text-xs uppercase tracking-widest text-foreground/65">
+            {globalConfig.footerText}{' '}
+            <a
+              href="https://conceptfab.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-foreground"
+            >
+              CONCEPTFAB.COM
+            </a>
           </p>
         </div>
       </footer>

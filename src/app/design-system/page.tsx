@@ -948,8 +948,8 @@ function renderDesignSystemPage({
                         { code: 'U110', name: 'Ash Grey' },
                         { code: 'U120', name: 'Platinium Grey' },
                         { code: 'U130', name: 'Graphite Grey' },
-                        { code: 'W200', name: 'Light Beech' },
                         { code: 'W220', name: 'Light Oak' },
+                        { code: 'W240', name: 'Natural Oak' },
                       ].map((opt) => (
                         <SwatchButton
                           key={opt.code}
@@ -966,8 +966,8 @@ function renderDesignSystemPage({
                     </h4>
                     <div className="flex flex-wrap gap-[5px]">
                       {[
+                        { code: 'W200', name: 'Light Beech' },
                         { code: 'W210', name: 'Elm' },
-                        { code: 'W240', name: 'Natural Oak' },
                         { code: 'W250', name: 'Wallnut' },
                         { code: 'W310', name: 'Dark Oak' },
                         { code: 'W330', name: 'Dark Wallnut' },

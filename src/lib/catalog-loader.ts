@@ -90,7 +90,7 @@ const DEFAULT_GLOBAL_CONFIG: GlobalConfig = {
   brandName: 'Metro',
   siteTitle: 'METRO',
   siteSubtitle: 'Product catalogs — browse by collection',
-  footerText: 'CONCEPT / CREATION / EXECUTION BY CONCEPTFAB',
+  footerText: 'CONCEPT / CREATION / EXECUTION BY',
   catalogListTitle: 'Available catalogs',
 };
 
@@ -526,18 +526,25 @@ export interface CatalogFooterEntry {
 export async function getCatalogFooterEntries(): Promise<CatalogFooterEntry[]> {
   const list = await getCatalogList();
   const overviewBase = (id: string) => `${catalogBase(id)}/overview`;
+  const thumbsBase = (id: string) => `${catalogBase(id)}/thumbs`;
 
   const entries = await Promise.all(
     list.map(async (item) => {
       const overview = await readPublicJson<OverviewData>(
         `${overviewBase(item.id)}/content.json`,
       );
-      if (!overview?.packshotImage) return null;
 
-      const thumbnail = await resolveImage(
-        overviewBase(item.id),
-        overview.packshotImage,
+      const dedicatedThumb = await resolveImage(
+        thumbsBase(item.id),
+        `${item.id.toLowerCase()}-nav.webp`,
       );
+
+      const thumbnail =
+        dedicatedThumb ??
+        (overview?.packshotImage
+          ? await resolveImage(overviewBase(item.id), overview.packshotImage)
+          : null);
+
       if (!thumbnail) return null;
 
       return {
@@ -546,7 +553,7 @@ export async function getCatalogFooterEntries(): Promise<CatalogFooterEntry[]> {
         href: `/catalog/${item.id}`,
         thumbnail,
         thumbnailAlt:
-          overview.packshotImageAlt?.trim() || `${item.id} catalogue preview`,
+          overview?.packshotImageAlt?.trim() || `${item.id} catalogue preview`,
       } satisfies CatalogFooterEntry;
     }),
   );

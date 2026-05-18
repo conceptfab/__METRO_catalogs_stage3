@@ -14,8 +14,8 @@ interface Props {
 }
 
 const EMPTY_OPTIONS: MaterialsConfiguratorOption[] = [];
-const DESKTOP_PRICE_GROUP_1 = ['U100', 'U110', 'U120', 'U130', 'W200', 'W220'];
-const DESKTOP_PRICE_GROUP_2 = ['W210', 'W240', 'W250', 'W310', 'W330'];
+const DESKTOP_PRICE_GROUP_1 = ['U100', 'U110', 'U120', 'U130', 'W220', 'W240'];
+const DESKTOP_PRICE_GROUP_2 = ['W200', 'W210', 'W250', 'W310', 'W330'];
 const FRAME_COLOR_ORDER = ['RAL9006', 'RAL9005', 'RAL9003', 'RAL7024'];
 
 const METRO_ID_PATTERN = /^metro[_ -]/i;
