@@ -81,7 +81,7 @@ function StaticChip({
   role,
 }: {
   option: MaterialsConfiguratorOption;
-  role: 'Frame' | 'Top' | 'Decor';
+  role: 'Decor';
 }) {
   const codeFormatted = formatOptionCode(option.code);
   return (
