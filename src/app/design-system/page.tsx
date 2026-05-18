@@ -1909,14 +1909,29 @@ function renderDesignSystemPage({
             </p>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <Link href="/" className="hover:underline">
+              /
+            </Link>
             <Link href="/catalog/QX" className="hover:underline">
               /catalog/QX
             </Link>
             <Link href="/catalog/QS" className="hover:underline">
               /catalog/QS
             </Link>
-            <Link href="/" className="hover:underline">
-              /
+            <Link href="/catalog/FM" className="hover:underline">
+              /catalog/FM
+            </Link>
+            <Link href="/catalog/TS" className="hover:underline">
+              /catalog/TS
+            </Link>
+            <Link href="/catalog/VR" className="hover:underline">
+              /catalog/VR
+            </Link>
+            <Link href="/catalog/FOTA" className="hover:underline">
+              /catalog/FOTA
+            </Link>
+            <Link href="/catalog/MCR800" className="hover:underline">
+              /catalog/MCR800
             </Link>
           </nav>
         </div>
