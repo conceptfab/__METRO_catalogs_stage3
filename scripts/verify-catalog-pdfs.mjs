@@ -4,8 +4,8 @@
  * verify-catalog-pdfs.mjs
  *
  * Pre-deploy gate. Confirms that every catalog declared in
- * public/catalogs/index.json that uses layoutType "qx" has a non-empty,
- * structurally-valid PDF sitting at
+ * public/catalogs/index.json that uses a printable layoutType ("qx" or
+ * "mcr800") has a non-empty, structurally-valid PDF sitting at
  * public/catalogs/<id>/Download/metro-<id>.pdf.
  *
  * Exits non-zero if anything is missing, empty, or doesn't start with the
@@ -15,6 +15,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { PRINTABLE_LAYOUTS } from './lib/printable-layouts.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -50,7 +51,8 @@ async function discoverExpected() {
   const expected = [];
   for (const id of ids) {
     const config = await readJson(path.join(CATALOGS_DIR, id, 'config.json'));
-    if (!config || config?.meta?.layoutType !== 'qx') continue;
+    const layoutType = config?.meta?.layoutType;
+    if (!config || !PRINTABLE_LAYOUTS.has(layoutType)) continue;
     expected.push({
       id,
       file: path.join(CATALOGS_DIR, id, 'Download', `metro-${id.toLowerCase()}.pdf`),
@@ -78,7 +80,7 @@ async function main() {
 
   const expected = await discoverExpected();
   if (expected.length === 0) {
-    console.log(c.yellow('  No QX catalogs found in index.json — nothing to verify.'));
+    console.log(c.yellow('  No printable catalogs (qx/mcr800) found in index.json — nothing to verify.'));
     return;
   }
 

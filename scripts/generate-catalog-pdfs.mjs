@@ -29,6 +29,7 @@ import { spawn } from 'child_process';
 import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { PRINTABLE_LAYOUTS } from './lib/printable-layouts.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -91,7 +92,7 @@ async function discoverCatalogs() {
       console.warn(c.yellow(`  ⚠ ${id}: missing config.json, skipping`));
       continue;
     }
-    if (config?.meta?.layoutType !== 'qx' && config?.meta?.layoutType !== 'mcr800') {
+    if (!PRINTABLE_LAYOUTS.has(config?.meta?.layoutType)) {
       console.warn(c.yellow(`  ⚠ ${id}: layoutType "${config?.meta?.layoutType}" is not yet supported by print/, skipping`));
       continue;
     }
