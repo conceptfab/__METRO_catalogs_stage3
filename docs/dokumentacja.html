@@ -319,6 +319,20 @@ public/
         </tbody>
       </table>
 
+      <h3>FM overrides</h3>
+      <p>FM korzysta z <code>layoutType: "qx"</code>, ale <code>CatalogPageQX</code> i <code>CatalogPrintQX</code> zawierają branch <code>catalog.id === "FM"</code>, który przekierowuje render do dedykowanych komponentów. Powód: FM to mebel płytowy — dekor pokrywa wszystkie powierzchnie (nie tylko blat), a stal występuje w jednym kolorze (RAL 9006), więc semantyka „Top / Frame combinations" jest niedopasowana.</p>
+      <table>
+        <thead><tr><th>Sekcja</th><th>QX (QS, VR, TS, FOTA, QX)</th><th>FM override</th></tr></thead>
+        <tbody>
+          <tr><td>Finishes</td><td><code>FinishesQX</code></td><td><code>FinishesFM</code> — nagłówek „Decor", Steel parts zawężone do RAL 9006</td></tr>
+          <tr><td>Customization (Materials)</td><td><code>MaterialsQX</code></td><td><code>MaterialsFM</code> — nagłówek „Decor", frame zawężony do RAL 9006</td></tr>
+          <tr><td>Models (Packshots)</td><td><code>PackshotsQX</code></td><td><code>PackshotsFM</code> — chip „Decor", bez chipa „Frame"</td></tr>
+          <tr><td>Print: Finishes</td><td><code>FinishesPrintQX</code></td><td><code>FinishesPrintFM</code> — etykieta „Decor", legenda „Decor:" + „Steel parts:"</td></tr>
+          <tr><td>Print: Packshots</td><td><code>PackshotsPrintQX</code></td><td><code>PackshotsPrintFM</code> — chip „Decor", bez chipa „Frame"</td></tr>
+        </tbody>
+      </table>
+      <p>Pozostałe katalogi z <code>layoutType: "qx"</code> (QX, QS, VR, TS, FOTA) nadal renderują się oryginalnymi komponentami QX bez zmian.</p>
+
       <h3>Statyczne generowanie</h3>
       <p><code>generateStaticParams()</code> zwraca wszystkie ID z <code>public/catalogs/index.json</code> — Next.js prerenderuje stronę dla każdego katalogu na etapie build. Sitemap działa analogicznie.</p>
     </section>
