@@ -8,8 +8,10 @@ import HeroQX from './HeroQX';
 import OverviewQX from './OverviewQX';
 import GalleryQX from './GalleryQX';
 import FinishesQX from './FinishesQX';
+import FinishesFM from './FinishesFM';
 import DimensionsQX from './DimensionsQX';
 import MaterialsQX from './MaterialsQX';
+import MaterialsFM from './MaterialsFM';
 import FeaturesQX from './FeaturesQX';
 import GettingStartedQX from './GettingStartedQX';
 import PackshotsQX from './PackshotsQX';
@@ -62,12 +64,21 @@ export default function CatalogPageQX({
           <HeroQX data={catalog.hero} />
           <OverviewQX data={catalog.overview} />
           <GalleryQX data={catalog.gallery} />
-          <FinishesQX
-            data={catalog.finishes}
-            configurator={
-              catalog.finishes.configurator ?? catalog.materials.configurator
-            }
-          />
+          {catalog.id === 'FM' ? (
+            <FinishesFM
+              data={catalog.finishes}
+              configurator={
+                catalog.finishes.configurator ?? catalog.materials.configurator
+              }
+            />
+          ) : (
+            <FinishesQX
+              data={catalog.finishes}
+              configurator={
+                catalog.finishes.configurator ?? catalog.materials.configurator
+              }
+            />
+          )}
           {catalog.packshots && (
             <PackshotsQX
               data={catalog.packshots}
@@ -75,7 +86,11 @@ export default function CatalogPageQX({
             />
           )}
           <DimensionsQX data={catalog.dimensions} />
-          <MaterialsQX data={catalog.materials} />
+          {catalog.id === 'FM' ? (
+            <MaterialsFM data={catalog.materials} />
+          ) : (
+            <MaterialsQX data={catalog.materials} />
+          )}
           <FeaturesQX data={catalog.features} />
           <GettingStartedQX data={catalog.gettingStarted} />
           <ProductCodesQX data={catalog.productCodes} />

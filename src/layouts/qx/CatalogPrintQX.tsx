@@ -3,6 +3,7 @@ import HeroPrintQX from './HeroPrintQX';
 import OverviewQX from './OverviewQX';
 import GalleryPrintQX from './GalleryPrintQX';
 import FinishesPrintQX from './FinishesPrintQX';
+import FinishesPrintFM from './FinishesPrintFM';
 import DimensionsQX from './DimensionsQX';
 import FeaturesPrintQX from './FeaturesPrintQX';
 import GettingStartedQX from './GettingStartedQX';
@@ -47,11 +48,19 @@ export default function CatalogPrintQX({ catalog }: Props) {
         {/* Use materials.configurator (the metro_*.webp layered renders from
          * /catalogs/{id}/materials/) — NOT finishes.configurator, which only
          * contains flat shared swatches and would render as solid colour. */}
-        <FinishesPrintQX
-          data={catalog.finishes}
-          configurator={catalog.materials.configurator}
-          previewMode={catalog.materials.previewMode}
-        />
+        {catalog.id === 'FM' ? (
+          <FinishesPrintFM
+            data={catalog.finishes}
+            configurator={catalog.materials.configurator}
+            previewMode={catalog.materials.previewMode}
+          />
+        ) : (
+          <FinishesPrintQX
+            data={catalog.finishes}
+            configurator={catalog.materials.configurator}
+            previewMode={catalog.materials.previewMode}
+          />
+        )}
       </div>
       {catalog.packshots && (
         // PackshotsPrintQX chunks items into pages of 4 and emits its own
