@@ -15,6 +15,7 @@ import MaterialsFM from './MaterialsFM';
 import FeaturesQX from './FeaturesQX';
 import GettingStartedQX from './GettingStartedQX';
 import PackshotsQX from './PackshotsQX';
+import PackshotsFM from './PackshotsFM';
 import ProductCodesQX from './ProductCodesQX';
 import PdfDownloadButton from '@/components/catalog/PdfDownloadButton';
 
@@ -80,10 +81,17 @@ export default function CatalogPageQX({
             />
           )}
           {catalog.packshots && (
-            <PackshotsQX
-              data={catalog.packshots}
-              materialsConfigurator={catalog.materials.configurator}
-            />
+            catalog.id === 'FM' ? (
+              <PackshotsFM
+                data={catalog.packshots}
+                materialsConfigurator={catalog.materials.configurator}
+              />
+            ) : (
+              <PackshotsQX
+                data={catalog.packshots}
+                materialsConfigurator={catalog.materials.configurator}
+              />
+            )
           )}
           <DimensionsQX data={catalog.dimensions} />
           {catalog.id === 'FM' ? (

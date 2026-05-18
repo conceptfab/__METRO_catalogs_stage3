@@ -173,7 +173,7 @@ const FinishesFM = ({ data, configurator }: FinishesSectionProps) => {
             <>
               <div>
                 <h3 className="mb-3 qx-emphasis-title">
-                  <QxText text="Desktop Finish" />
+                  <QxText text="Decor" />
                 </h3>
                 <div className="space-y-4">
                   <MaterialsOptionGroup
@@ -211,7 +211,7 @@ const FinishesFM = ({ data, configurator }: FinishesSectionProps) => {
             <>
               <div>
                 <h3 className="mb-4 qx-emphasis-title">
-                  Desktop Finish
+                  Decor
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   {data.desktopColors.map((c) => (
@@ -226,7 +226,7 @@ const FinishesFM = ({ data, configurator }: FinishesSectionProps) => {
               </div>
               <div>
                 <h3 className="mb-4 qx-emphasis-title">
-                  Frame Colour
+                  Steel parts colors
                 </h3>
                 <div className="flex flex-wrap gap-3">
                   {data.frameColors.map((c) => (

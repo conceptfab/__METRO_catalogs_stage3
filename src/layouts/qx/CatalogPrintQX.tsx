@@ -8,6 +8,7 @@ import DimensionsQX from './DimensionsQX';
 import FeaturesPrintQX from './FeaturesPrintQX';
 import GettingStartedQX from './GettingStartedQX';
 import PackshotsPrintQX from './PackshotsPrintQX';
+import PackshotsPrintFM from './PackshotsPrintFM';
 import ProductCodesQX from './ProductCodesQX';
 import ContactPrintQX from './ContactPrintQX';
 
@@ -63,12 +64,19 @@ export default function CatalogPrintQX({ catalog }: Props) {
         )}
       </div>
       {catalog.packshots && (
-        // PackshotsPrintQX chunks items into pages of 4 and emits its own
+        // PackshotsPrint* chunks items into pages of 4 and emits its own
         // .print-page wrappers — one per chunk.
-        <PackshotsPrintQX
-          data={catalog.packshots}
-          materialsConfigurator={catalog.materials.configurator}
-        />
+        catalog.id === 'FM' ? (
+          <PackshotsPrintFM
+            data={catalog.packshots}
+            materialsConfigurator={catalog.materials.configurator}
+          />
+        ) : (
+          <PackshotsPrintQX
+            data={catalog.packshots}
+            materialsConfigurator={catalog.materials.configurator}
+          />
+        )
       )}
       <div className="print-page print-page-dimensions">
         <DimensionsQX data={catalog.dimensions} />

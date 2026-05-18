@@ -120,6 +120,20 @@ Obecne mapowanie:
 - `mcr800` → MCR800 (osobny komplet komponentów w [src/layouts/mcr800/](../src/layouts/mcr800/)).
 - `type2`, `type3` → rezerwa na nowe layouty, dziś renderują `CatalogPagePlaceholder`.
 
+#### FM overrides
+
+FM korzysta z `layoutType: "qx"`, ale `CatalogPageQX` i `CatalogPrintQX` zawierają branch `catalog.id === "FM"`, który przekierowuje render do dedykowanych komponentów:
+
+| Sekcja      | QX (QS, VR, TS, FOTA, QX) | FM override                                  |
+|-------------|---------------------------|----------------------------------------------|
+| Finishes    | `FinishesQX`              | `FinishesFM` (nagłówek „Decor", tylko RAL 9006) |
+| Customization (Materials) | `MaterialsQX` | `MaterialsFM` (nagłówek „Decor", tylko RAL 9006) |
+| Models (Packshots) | `PackshotsQX`      | `PackshotsFM` (chip „Decor", bez chipa „Frame") |
+| Print: Finishes    | `FinishesPrintQX`  | `FinishesPrintFM`                             |
+| Print: Packshots   | `PackshotsPrintQX` | `PackshotsPrintFM`                            |
+
+Powód: FM to mebel płytowy — dekor pokrywa wszystkie powierzchnie (nie tylko blat), a stal występuje w jednym kolorze (RAL 9006), więc semantyka „Top / Frame combinations" jest niedopasowana. Pozostałe katalogi z `layoutType: "qx"` nadal renderują się oryginalnymi komponentami QX bez zmian.
+
 ### Statyczne generowanie
 
 `generateStaticParams()` zwraca wszystkie ID z `public/catalogs/index.json` — Next.js prerenderuje stronę dla każdego katalogu na etapie build. Sitemap działa analogicznie.

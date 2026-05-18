@@ -185,7 +185,7 @@ const MaterialsFM = ({ data }: MaterialsSectionProps) => {
               {hasGroupedDesktop ? (
                 <div>
                   <h3 className="mb-3 qx-emphasis-title">
-                    <QxText text="Desktop Finish" />
+                    <QxText text="Decor" />
                   </h3>
                   <div className="space-y-4">
                     {desktopPriceGroup1.length > 0 && (
@@ -216,7 +216,7 @@ const MaterialsFM = ({ data }: MaterialsSectionProps) => {
                 </div>
               ) : (
                 <MaterialsOptionGroup
-                  title="Desktop Finish"
+                  title="Decor"
                   options={desktopOptions}
                   selectedId={selectedDesktop?.id}
                   onSelect={setSelectedDesktopId}

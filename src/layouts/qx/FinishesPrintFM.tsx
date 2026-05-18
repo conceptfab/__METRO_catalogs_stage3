@@ -208,7 +208,7 @@ export default function FinishesPrintFM({
               <div className="finishes-print-groups">
                 <div>
                   <h3 className="mb-3 qx-emphasis-title">
-                    <QxText text="Desktop Finish" />
+                    <QxText text="Decor" />
                   </h3>
                   <div className="finishes-print-subgroups">
                     <StaticGroup
@@ -233,7 +233,7 @@ export default function FinishesPrintFM({
             ) : (
               <div className="finishes-print-groups">
                 <div>
-                  <h3 className="mb-4 qx-emphasis-title">Desktop Finish</h3>
+                  <h3 className="mb-4 qx-emphasis-title">Decor</h3>
                   <div className="finishes-print-swatch-row">
                     {data.desktopColors.map((c) => (
                       <div
@@ -246,7 +246,7 @@ export default function FinishesPrintFM({
                   </div>
                 </div>
                 <div>
-                  <h3 className="mb-4 qx-emphasis-title">Frame Colour</h3>
+                  <h3 className="mb-4 qx-emphasis-title">Steel parts colors</h3>
                   <div className="finishes-print-swatch-row">
                     {data.frameColors.map((c) => (
                       <div
@@ -299,7 +299,7 @@ export default function FinishesPrintFM({
                   {randomDesktop && (
                     <li>
                       <span className="finishes-print-preview-legend-label">
-                        Desktop finish:
+                        Decor:
                       </span>{' '}
                       <span className="finishes-print-preview-legend-value">
                         <QxText text={describeOption(randomDesktop)} />

@@ -294,9 +294,9 @@ const QX_LAYOUTS = [
   { name: 'GalleryQX', file: 'src/layouts/qx/GalleryQX.tsx', desc: 'Desktop: siatka 4 obrazów + Lightbox. Mobile: horizontal scroll-snap carousel z naturalnym aspect-ratio (bez kropowania). Reveal LIFT.' },
   { name: 'FeaturesQX', file: 'src/layouts/qx/FeaturesQX.tsx', desc: 'Zakładki z ikonami Lucide + autoplay video; mobile pokazuje animację nad tabami. Reveal SLIDE.' },
   { name: 'GettingStartedQX', file: 'src/layouts/qx/GettingStartedQX.tsx', desc: '3-kolumnowe kroki montażu z hover scale. Reveal LIFT.' },
-  { name: 'PackshotsQX', file: 'src/layouts/qx/PackshotsQX.tsx', desc: 'Modele z ColorChip frame+top; mobile full-bleed do krawędzi ekranu (negative margin) + powiększony kadr inline; desktop ma lightbox renderowany poza #packshots. Reveal SLIDE.' },
-  { name: 'MaterialsQX', file: 'src/layouts/qx/MaterialsQX.tsx', desc: 'Biblioteka swatchy desktop+mobile. Reveal SETTLE.' },
-  { name: 'FinishesQX', file: 'src/layouts/qx/FinishesQX.tsx', desc: 'Konfigurator + preview toggle. Reveal SETTLE.' },
+  { name: 'PackshotsQX', file: 'src/layouts/qx/PackshotsQX.tsx', desc: 'Modele z ColorChip frame+top; mobile full-bleed do krawędzi ekranu (negative margin) + powiększony kadr inline; desktop ma lightbox renderowany poza #packshots. Reveal SLIDE. FM ma własny PackshotsFM (chip "Decor" zamiast "Top", bez "Frame").' },
+  { name: 'MaterialsQX', file: 'src/layouts/qx/MaterialsQX.tsx', desc: 'Biblioteka swatchy desktop+mobile. Reveal SETTLE. FM ma własny MaterialsFM (nagłówek "Decor", frame zawężony do RAL 9006).' },
+  { name: 'FinishesQX', file: 'src/layouts/qx/FinishesQX.tsx', desc: 'Konfigurator + preview toggle. Reveal SETTLE. FM ma własny FinishesFM (nagłówek "Decor", Steel parts colors zawężone do RAL 9006).' },
   { name: 'DimensionsQX', file: 'src/layouts/qx/DimensionsQX.tsx', desc: 'Diagram + tabela specyfikacji. Reveal LIFT.' },
   { name: 'ProductCodesQX', file: 'src/layouts/qx/ProductCodesQX.tsx', desc: '3 tabele kodów (single/bench/manager) z subgrid. Nagłówki grup używają font-semibold. Reveal SETTLE.' },
   { name: 'CatalogPageQX', file: 'src/layouts/qx/CatalogPageQX.tsx', desc: 'Orchestrator: 11 sekcji w kolejności + theme scope. Renderuje PdfDownloadButton na końcu.' },
@@ -317,14 +317,22 @@ const MCR800_LAYOUTS = [
 ];
 
 const PRINT_LAYOUTS = [
-  { name: 'CatalogPrintQX', file: 'src/layouts/qx/CatalogPrintQX.tsx', desc: 'Wydruk QX (A4 portrait) — orkiestracja stron z page-break. Renderowany w /catalog/[id]/print.' },
+  { name: 'CatalogPrintQX', file: 'src/layouts/qx/CatalogPrintQX.tsx', desc: 'Wydruk QX (A4 portrait) — orkiestracja stron z page-break. Renderowany w /catalog/[id]/print. Dispatch FM-wariantów dla Finishes i Packshots gdy catalog.id === "FM".' },
   { name: 'HeroPrintQX', file: 'src/layouts/qx/HeroPrintQX.tsx', desc: 'Statyczna strona hero dla wydruku — pojedyncza ramka A4 zamiast slidera.' },
   { name: 'GalleryPrintQX', file: 'src/layouts/qx/GalleryPrintQX.tsx', desc: 'Galeria dla wydruku — grid bez Lightbox/lazy-load.' },
   { name: 'FeaturesPrintQX', file: 'src/layouts/qx/FeaturesPrintQX.tsx', desc: 'Multi-page features print — wszystkie taby rozwinięte sekwencyjnie, bez video.' },
-  { name: 'FinishesPrintQX', file: 'src/layouts/qx/FinishesPrintQX.tsx', desc: 'Konfigurator dla wydruku — losowy preview + pełna lista swatchy.' },
-  { name: 'PackshotsPrintQX', file: 'src/layouts/qx/PackshotsPrintQX.tsx', desc: 'Paginowane packshoty — siatka z konfigurowalnym pacing per-strona.' },
+  { name: 'FinishesPrintQX', file: 'src/layouts/qx/FinishesPrintQX.tsx', desc: 'Konfigurator dla wydruku — losowy preview + pełna lista swatchy. Współdzielony przez QX, QS, VR, TS, FOTA (FM ma własny FinishesPrintFM).' },
+  { name: 'PackshotsPrintQX', file: 'src/layouts/qx/PackshotsPrintQX.tsx', desc: 'Paginowane packshoty — siatka z konfigurowalnym pacing per-strona. Współdzielony przez QX, QS, VR, TS, FOTA (FM ma własny PackshotsPrintFM).' },
   { name: 'ContactPrintQX', file: 'src/layouts/qx/ContactPrintQX.tsx', desc: 'Strona kontaktu na końcu wydruku, wspólny układ dla QX i MCR800.' },
   { name: 'CatalogPrintMCR800', file: 'src/layouts/mcr800/CatalogPrintMCR800.tsx', desc: 'Wydruk MCR800 — analog CatalogPrintQX. + 7 print sekcji MCR800 (Hero/Overview/Gallery/Features/Finishes/Packshots/Materials/Contact).' },
+];
+
+const FM_OVERRIDES = [
+  { name: 'FinishesFM', file: 'src/layouts/qx/FinishesFM.tsx', desc: 'Klon FinishesQX dla FM: nagłówek "Decor" (mebel płytowy — dekor pokrywa wszystkie powierzchnie), Steel parts colors zawężone do RAL 9006.' },
+  { name: 'MaterialsFM', file: 'src/layouts/qx/MaterialsFM.tsx', desc: 'Klon MaterialsQX dla FM: nagłówek "Decor", lista frame zawężona do RAL 9006 (bez leftovers).' },
+  { name: 'PackshotsFM', file: 'src/layouts/qx/PackshotsFM.tsx', desc: 'Klon PackshotsQX dla FM: meta pokazuje tylko chip "Decor" pod każdym packshotem; chip "Frame" usunięty (jeden kolor stali w całej kolekcji).' },
+  { name: 'FinishesPrintFM', file: 'src/layouts/qx/FinishesPrintFM.tsx', desc: 'Print-wariant FinishesFM — etykieta "Decor", Steel parts colors zawężone do RAL 9006.' },
+  { name: 'PackshotsPrintFM', file: 'src/layouts/qx/PackshotsPrintFM.tsx', desc: 'Print-wariant PackshotsFM — chip "Decor" (StaticChip role rozszerzone o "Decor"), bez chipa "Frame".' },
 ];
 
 const REVEAL_PRESETS = [
@@ -791,6 +799,7 @@ function getDesignSystemCounts(): DesignSystemCounts {
     QX_LAYOUTS.length +
     MCR800_LAYOUTS.length +
     PRINT_LAYOUTS.length +
+    FM_OVERRIDES.length +
     HOMEPAGE_PATTERNS.length +
     REVEAL_PRESETS.length +
     SCHEMAS_USED.length +
@@ -1350,7 +1359,7 @@ function renderDesignSystemPage({
             id="layouts-title"
             className="section_Title mt-8 font-display font-normal"
           >
-            <span className="qx-word">QX</span> family · MCR800 family · Print pipeline
+            <span className="qx-word">QX</span> family · FM overrides · MCR800 family · Print pipeline
           </h2>
           <p className="sec_main_text mt-6 max-w-[60ch]">
             Każda sekcja to osobny komponent w{' '}
@@ -1358,13 +1367,43 @@ function renderDesignSystemPage({
             przez <code className="font-mono">layoutMap</code> w{' '}
             <code className="font-mono">/catalog/[catalogId]/page.tsx</code>. QX
             family obsługuje QX, QS, VR, TS, FM, FOTA (layoutType: &quot;qx&quot;);
-            MCR800 ma własny family (layoutType: &quot;mcr800&quot;).
+            MCR800 ma własny family (layoutType: &quot;mcr800&quot;). FM dodatkowo
+            przechwytuje dispatch w CatalogPageQX/CatalogPrintQX i renderuje
+            dedykowane warianty Finishes / Materials / Packshots (mebel płytowy
+            — etykiety i kolory dopasowane do kontekstu).
           </p>
           <div className="mt-8">
             <p className="qx-emphasis-title">QX family · {QX_LAYOUTS.length} layoutów</p>
           </div>
           <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {QX_LAYOUTS.map((l) => (
+              <div key={l.name} className="border border-foreground/10 bg-card p-5">
+                <StatusTag kind="used" />
+                <p className="mt-3 font-display text-base font-bold">{l.name}</p>
+                <SourcePath path={l.file} />
+                <p className="mt-3 text-[12px] leading-relaxed text-muted-foreground">
+                  {l.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16">
+            <p className="qx-emphasis-title">FM overrides · {FM_OVERRIDES.length} komponentów</p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Klony QX-wariantów Finishes / Materials / Packshots (plus ich wersje
+              print) wpięte przez branch <code className="font-mono">catalog.id === &quot;FM&quot;</code> w{' '}
+              <code className="font-mono">CatalogPageQX</code> /{' '}
+              <code className="font-mono">CatalogPrintQX</code>. Powód: FM to mebel
+              płytowy — dekor pokrywa wszystkie powierzchnie (etykieta
+              &quot;Decor&quot; zamiast &quot;Desktop Finish&quot; / &quot;Top&quot;),
+              jeden kolor stali (RAL 9006), brak chipa &quot;Frame&quot; pod
+              packshotami. Pozostałe katalogi z layoutType &quot;qx&quot; (QX, QS,
+              VR, TS, FOTA) nadal renderują się oryginalnymi komponentami QX.
+            </p>
+          </div>
+          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {FM_OVERRIDES.map((l) => (
               <div key={l.name} className="border border-foreground/10 bg-card p-5">
                 <StatusTag kind="used" />
                 <p className="mt-3 font-display text-base font-bold">{l.name}</p>
