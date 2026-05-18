@@ -5,6 +5,11 @@ import type {
 } from '@/types/catalog';
 import { SectionHeading } from '@/components/catalog/SectionHeading';
 import { QxText } from '@/components/catalog/QxText';
+import {
+  parsePackshotImage,
+  pickConfiguratorOption,
+  formatOptionCode,
+} from '@/lib/materials-options';
 
 interface Props {
   data: PackshotsData;
@@ -15,51 +20,6 @@ const ITEMS_PER_PAGE = 4;
 
 const SAMPLE_PACKSHOT_SRC =
   '/catalogs/QX/packshots/V51_W240_black__Shot_A_4K_R10.webp';
-
-const METRO_ID_PATTERN = /^metro[_ -]/i;
-
-function parsePackshotImage(filename: string | undefined): {
-  topCode?: string;
-} {
-  if (!filename) return {};
-  const base = filename.split('/').pop() ?? '';
-  const stem = base.replace(/\.[^.]+$/, '').split('__')[0];
-  const tokens = stem.split('_');
-  const topToken = tokens[1];
-  const topCode =
-    topToken && /^[UW]\d+$/i.test(topToken) ? topToken.toUpperCase() : undefined;
-  return { topCode };
-}
-
-function pickOption(
-  options: MaterialsConfiguratorOption[] | undefined,
-  code: string | undefined,
-): MaterialsConfiguratorOption | undefined {
-  if (!options || !code) return undefined;
-  const upper = code.toUpperCase();
-  const matches = options.filter(
-    (option) => option.code.toUpperCase() === upper,
-  );
-  if (matches.length === 0) return undefined;
-
-  const metroEntry = matches.find((option) => METRO_ID_PATTERN.test(option.id));
-  const swatchEntry = matches.find(
-    (option) => !METRO_ID_PATTERN.test(option.id),
-  );
-
-  if (metroEntry && swatchEntry) {
-    return {
-      ...metroEntry,
-      label: swatchEntry.label,
-      thumbnail: swatchEntry.image,
-    };
-  }
-  return swatchEntry ?? metroEntry ?? matches[0];
-}
-
-function formatOptionCode(code: string) {
-  return code.startsWith('RAL') ? `RAL ${code.slice(3)}` : code;
-}
 
 function chunk<T>(arr: T[], size: number): T[][] {
   const result: T[][] = [];
@@ -145,7 +105,7 @@ export default function PackshotsPrintFM({
                 <div className="packshots-print-grid">
                   {pageItems.map((item) => {
                     const { topCode } = parsePackshotImage(item.image);
-                    const desktopOption = pickOption(
+                    const desktopOption = pickConfiguratorOption(
                       materialsConfigurator?.desktopOptions,
                       topCode,
                     );
