@@ -110,7 +110,7 @@ export default function FinishesPrintFM({
   const hasConfigurator =
     frameOptions.length > 0 && desktopOptions.length > 0;
 
-  const randomFrame = pickRandom(frameOptions);
+  const randomFrame = frameOptions[0];
   const randomDesktop = pickRandom(desktopOptions);
 
   const previewAlt =
