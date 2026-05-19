@@ -77,17 +77,16 @@ function anchorToFlexClasses(anchor: HeroAnchor): string {
 }
 
 function descriptionPositionClasses(position: HeroDescriptionPosition): string {
+  // Returns horizontal anchoring only. Vertical anchoring (top vs bottom) is
+  // applied via inline `top` / `bottom` in `descriptionInlineStyle`.
   switch (position) {
     case 'bottom-left':
-      return 'left-6';
-    case 'bottom-right':
-      return 'right-6';
     case 'top-left':
       return 'left-6';
+    case 'bottom-right':
     case 'top-right':
       return 'right-6';
     case 'top-center':
-      return 'left-1/2 -translate-x-1/2';
     case 'bottom-center':
     default:
       return 'left-1/2 -translate-x-1/2';
