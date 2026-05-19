@@ -34,7 +34,7 @@ describe('responsiveProps', () => {
     expect(result!.srcSet).toContain(
       '/catalogs/QX/hero/02_26_Metro_QX_HERO_1_R3-clean_noise_thumb.webp 4000w',
     );
-    expect(result!.sizes).toBe('(max-width: 767px) 200vh, 100vw');
+    expect(result!.sizes).toBe('100vw');
   });
 
   it('uses sizesOverride when provided', () => {

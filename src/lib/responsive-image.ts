@@ -39,7 +39,13 @@ const PRESET_WIDTHS: Record<ImagePreset, number[]> = {
  * These are reasonable defaults – components can override.
  */
 const PRESET_SIZES: Record<ImagePreset, string> = {
-  hero: '(max-width: 767px) 200vh, 100vw',
+  // Hero is full-bleed (h-full w-full, object-cover) at every breakpoint, so its
+  // layout width is exactly the viewport width -> 100vw. The previous `200vh`
+  // mobile hint over-provisioned: on high-DPR phones the resolved width exceeded
+  // 2560 and the browser selected the `4000w` candidate (the ~220 KB un-resized
+  // original); on the Lighthouse Moto G profile it forced the 1920w/2560w variant.
+  // 100vw caps selection at the right small variant (~10-29 KB) on every device.
+  hero: '100vw',
   gallery: '(min-width: 1440px) 1081px, (min-width: 1024px) 75vw, 200vw',
   'gallery-thumb': '(min-width: 1440px) 255px, (min-width: 1024px) 18vw, 200vw',
   packshot: '(min-width: 1440px) 710px, (min-width: 640px) 46vw, 100vw',
