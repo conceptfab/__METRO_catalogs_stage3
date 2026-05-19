@@ -58,6 +58,15 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
     return () => window.removeEventListener('keydown', handler);
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -111,14 +120,14 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
             src={images[index!].src}
             {...responsiveImg(images[index!].src, 'gallery', '100vw')}
             alt={images[index!].alt}
-            draggable
+            draggable={false}
             className="max-h-[85vh] max-w-full rounded-lg object-contain"
             onClick={(event) => event.stopPropagation()}
           />
           <p
             id={counterId}
             className="absolute bottom-6 text-sm text-white/70"
-            aria-live="polite"
+            aria-live="off"
           >
             Image {index! + 1} of {images.length}: {images[index!].alt}
           </p>
