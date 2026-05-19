@@ -289,7 +289,7 @@ const SUPPORTING_SHARED_COMPONENTS = SHARED_COMPONENTS.filter(
 );
 
 const QX_LAYOUTS = [
-  { name: 'HeroQX', file: 'src/layouts/qx/HeroQX.tsx', desc: 'Pełnoekranowy slider z auto-advance i klawiaturą; mobile hero używa sizes 200vh pod object-cover. CTA arrow ma subtelny hover translate zamiast ciągłego bounce. Per-slide overrides: textStyle, mobileTextStyle, mobileContentLayout, mobileImageOffsetX (CSS custom props).' },
+  { name: 'HeroQX', file: 'src/layouts/qx/HeroQX.tsx', desc: 'Pełnoekranowy slider z auto-advance i klawiaturą; hero używa sizes 100vw (pełnoekranowy object-cover). CTA arrow ma subtelny hover translate zamiast ciągłego bounce. Per-slide overrides: textStyle, mobileTextStyle, mobileContentLayout, mobileImageOffsetX (CSS custom props).' },
   { name: 'OverviewQX', file: 'src/layouts/qx/OverviewQX.tsx', desc: 'Dwukolumnowy: tekst + packshot. Reveal SLIDE.' },
   { name: 'GalleryQX', file: 'src/layouts/qx/GalleryQX.tsx', desc: 'Desktop: siatka 4 obrazów + Lightbox. Mobile: horizontal scroll-snap carousel z naturalnym aspect-ratio (bez kropowania). Reveal LIFT.' },
   { name: 'FeaturesQX', file: 'src/layouts/qx/FeaturesQX.tsx', desc: 'Zakładki z ikonami Lucide + autoplay video; mobile pokazuje animację nad tabami. Reveal SLIDE.' },
@@ -516,7 +516,7 @@ const HOOKS_USED = [
 ];
 
 const TOOLING_USED = [
-  { name: 'responsive-image (7 presets)', file: 'src/lib/responsive-image.ts', desc: 'hero / gallery / packshot / overview / finishes / materials-full / materials-thumb. Hero mobile: 200vh sizes pod pionowy object-cover. Packshot: 100vw sizes pod mobile full-bleed. Manifest-first z fallbackiem.' },
+  { name: 'responsive-image (7 presets)', file: 'src/lib/responsive-image.ts', desc: 'hero / gallery / packshot / overview / finishes / materials-full / materials-thumb. Hero: 100vw sizes (pełnoekranowy object-cover). Packshot: 100vw sizes pod mobile full-bleed. Manifest-first z fallbackiem.' },
   { name: 'image-loader (custom)', file: 'src/lib/image-loader.ts', desc: 'Custom next/image loader z generated/responsive-image-manifest.json. Dopasowuje najmniejszy wariant ≥ requested width. SVG i http:// pomijane, paths z -{w}w już zoptymalizowane.' },
   { name: 'catalog-loader', file: 'src/lib/catalog-loader.ts', desc: 'Parallelized loader: hero, slider, overview, gallery, finishes, dimensions, materials, features, getting-started, codes, packshots. Auto-discover heroSlides + materialsConfigurator. Plus: getCatalogList, getCatalogFooterEntries (resolver -nav.webp + overview fallback), getGlobalConfig (public/config.json override).' },
   { name: 'layoutMap (catalog dispatch)', file: 'src/app/catalog/[catalogId]/page.tsx', desc: 'Record<CatalogLayoutType, Component> mapuje meta.layoutType → CatalogPageQX | CatalogPageMCR800 | CatalogPagePlaceholder. type2/type3 fallbackują do Placeholder.' },
