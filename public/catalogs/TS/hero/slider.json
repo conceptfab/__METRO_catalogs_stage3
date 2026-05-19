@@ -23,7 +23,7 @@
       "contentLayout": {
         "anchor": "top-left",
         "textAlign": "left",
-        "maxWidth": "640px",
+        "maxWidth": "900px",
         "paddingTop": "12rem",
         "paddingBottom": "0",
         "offsetX": "0",
@@ -46,7 +46,7 @@
       "contentLayout": {
         "anchor": "top-center",
         "textAlign": "left",
-        "maxWidth": "640px",
+        "maxWidth": "900px",
         "paddingTop": "10rem",
         "paddingBottom": "0",
         "offsetX": "5rem",

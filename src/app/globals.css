@@ -608,7 +608,7 @@ html {
   .hero-text {
     line-height: 1.15;
     font-weight: var(--hero-text-weight-mobile, 300);
-    font-size: var(--hero-text-size-mobile, var(--hero-text-size, 2.4rem));
+    font-size: calc(var(--hero-text-size-mobile, var(--hero-text-size, 2.4rem)) * 0.8);
   }
 
   /* Mobile: dark text only — no background. Default color matches the hero
