@@ -382,6 +382,8 @@ function renderHeroMCR800({
             exit={{ opacity: 0, scale: 1.006 }}
             transition={slideTransition}
             loading={currentIndex === 0 ? 'eager' : 'lazy'}
+            fetchPriority={currentIndex === 0 ? 'high' : 'auto'}
+            decoding="async"
           />
         </AnimatePresence>
       </div>

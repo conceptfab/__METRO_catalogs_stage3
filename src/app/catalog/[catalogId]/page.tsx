@@ -1,15 +1,28 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import ReactDOM from 'react-dom';
 import {
   loadCatalog,
   getGlobalConfig,
   getCatalogList,
   getCatalogFooterEntries,
 } from '@/lib/catalog-loader';
-import type { CatalogLayoutType } from '@/types/catalog';
+import type { CatalogLayoutType, HeroData } from '@/types/catalog';
+import { responsiveProps } from '@/lib/responsive-image';
 import CatalogPageQX from '@/layouts/qx/CatalogPageQX';
 import CatalogPageMCR800 from '@/layouts/mcr800/CatalogPageMCR800';
 import CatalogPagePlaceholder from '@/components/catalog/CatalogPagePlaceholder';
+
+function getFirstHeroSrc(hero: HeroData): string | undefined {
+  const initialIdx = Math.max(0, hero.slider?.initialSlide ?? 0);
+  if (hero.heroSlides?.length) {
+    return hero.heroSlides[Math.min(initialIdx, hero.heroSlides.length - 1)]?.src;
+  }
+  if (hero.heroImages?.length) {
+    return hero.heroImages[Math.min(initialIdx, hero.heroImages.length - 1)];
+  }
+  return hero.heroImage;
+}
 
 const layoutMap: Record<
   CatalogLayoutType,
@@ -57,6 +70,17 @@ export default async function CatalogPage({
 
   if (!catalog) {
     notFound();
+  }
+
+  const firstHeroSrc = getFirstHeroSrc(catalog.hero);
+  if (firstHeroSrc) {
+    const responsive = responsiveProps(firstHeroSrc, 'hero');
+    ReactDOM.preload(firstHeroSrc, {
+      as: 'image',
+      fetchPriority: 'high',
+      imageSrcSet: responsive?.srcSet,
+      imageSizes: responsive?.sizes,
+    });
   }
 
   const LayoutComponent = layoutMap[catalog.meta.layoutType];
