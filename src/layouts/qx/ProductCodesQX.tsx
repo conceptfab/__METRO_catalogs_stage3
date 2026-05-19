@@ -86,8 +86,10 @@ const ProductCodesQX = ({ data }: ProductCodesSectionProps) => {
   const managerGroups = data.groups.filter(
     (group) => group.category === 'manager',
   );
-  const gridClass =
-    data.gridColumns === 2
+  const hasPlaceholders = Boolean(data.placeholders && data.placeholders.length > 0);
+  const gridClass = hasPlaceholders
+    ? 'grid grid-cols-1 grid-rows-[auto_auto] gap-y-1 lg:grid-cols-[auto_1fr] lg:gap-x-6 lg:gap-y-1'
+    : data.gridColumns === 2
       ? 'grid grid-cols-1 grid-rows-[auto_auto] gap-y-6 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-10'
       : 'grid grid-cols-1 grid-rows-[auto_auto] gap-y-6 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-4 lg:gap-x-[calc((100%-1372px)/3)]';
   const legendColSpan = data.gridColumns === 2 ? 'lg:col-span-1' : 'lg:col-span-3';
@@ -157,6 +159,30 @@ const ProductCodesQX = ({ data }: ProductCodesSectionProps) => {
                 {singleDeskGroups.map((group) => (
                   <ProductCodeTable key={group.id} group={group} open={desktopOpen} />
                 ))}
+                {hasPlaceholders && (
+                  <div className="mt-4 flex flex-row gap-3 sm:gap-4 lg:mt-0 lg:col-start-2 lg:row-start-2 lg:gap-3 lg:self-stretch">
+                    {data.placeholders!.map((placeholder, index) => (
+                      <div
+                        key={`${placeholder.label}-${index}`}
+                        className="flex flex-1 flex-col items-center gap-2 lg:h-full lg:flex-none"
+                      >
+                        <div className="relative aspect-square w-full max-w-[160px] overflow-hidden rounded-sm border border-foreground/10 bg-product-muted lg:w-auto lg:max-w-none lg:h-[calc(100%-1.75rem)]">
+                          {placeholder.image ? (
+                            <Image
+                              src={placeholder.image}
+                              alt={placeholder.label}
+                              fill
+                              className="object-contain"
+                            />
+                          ) : null}
+                        </div>
+                        <span className="font-body text-[13px] leading-tight text-foreground/70">
+                          {placeholder.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           )}

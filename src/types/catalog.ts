@@ -427,6 +427,11 @@ export interface ProductCodeGroup {
   rows: ProductCodeRow[];
 }
 
+export interface ProductCodePlaceholder {
+  label: string;
+  image?: string;
+}
+
 export interface ProductCodesData {
   sectionLabel: string;
   title: string;
@@ -435,6 +440,7 @@ export interface ProductCodesData {
   legend?: string;
   gridColumns?: 2 | 4;
   groups: ProductCodeGroup[];
+  placeholders?: ProductCodePlaceholder[];
 }
 
 export interface SectionConfig {

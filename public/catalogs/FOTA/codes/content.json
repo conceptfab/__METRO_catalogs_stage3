@@ -3,220 +3,56 @@
   "title": "Order references",
   "description": "Use these unique codes when placing your order or specifying modules for your workspace.",
   "image": "/catalogs/FOTA/codes/axo_FOTA_codes.svg",
+  "gridColumns": 2,
+  "placeholders": [
+    {
+      "label": "Placeholder 1",
+      "image": ""
+    },
+    {
+      "label": "Placeholder 2",
+      "image": ""
+    },
+    {
+      "label": "Placeholder 3",
+      "image": ""
+    }
+  ],
   "groups": [
     {
-      "id": "single-depth-70",
+      "id": "meeting-mobile-table",
       "category": "single",
-      "title": "FOTA single desk (depth 70 cm)",
+      "title": "Meeting mobile table",
       "rows": [
         {
-          "index": "FOTA1",
-          "indexR": "FOTA1R",
-          "dimensions": "120 × 70 × 74"
-        },
-        {
-          "index": "FOTA2",
-          "indexR": "FOTA2R",
+          "index": "FF1",
+          "indexR": "",
           "dimensions": "140 × 70 × 74"
         },
         {
-          "index": "FOTA3",
-          "indexR": "FOTA3R",
+          "index": "FF2",
+          "indexR": "",
           "dimensions": "160 × 70 × 74"
         },
         {
-          "index": "FOTA4",
-          "indexR": "FOTA4R",
+          "index": "FF3",
+          "indexR": "",
           "dimensions": "180 × 70 × 74"
-        }
-      ]
-    },
-    {
-      "id": "single-depth-80",
-      "category": "single",
-      "title": "FOTA single desk (depth 80 cm)",
-      "rows": [
-        {
-          "index": "FOTA180",
-          "indexR": "FOTA1R80",
-          "dimensions": "120 × 80 × 74"
         },
         {
-          "index": "FOTA280",
-          "indexR": "FOTA2R80",
+          "index": "FF4",
+          "indexR": "",
           "dimensions": "140 × 80 × 74"
         },
         {
-          "index": "FOTA380",
-          "indexR": "FOTA3R80",
+          "index": "FF5",
+          "indexR": "",
           "dimensions": "160 × 80 × 74"
         },
         {
-          "index": "FOTA480",
-          "indexR": "FOTA4R80",
+          "index": "FF6",
+          "indexR": "",
           "dimensions": "180 × 80 × 74"
-        }
-      ]
-    },
-    {
-      "id": "single-extension-depth-70",
-      "category": "single",
-      "title": "Extension for FOTA single desk (depth 70 cm)",
-      "rows": [
-        {
-          "index": "FOTA1D",
-          "indexR": "FOTA1RD",
-          "dimensions": "66.5 × 50 × 74"
-        },
-        {
-          "index": "FOTA2D",
-          "indexR": "FOTA2RD",
-          "dimensions": "86.5 × 50 × 74"
-        },
-        {
-          "index": "FOTA3D",
-          "indexR": "FOTA3RD",
-          "dimensions": "106.5 × 50 × 74"
-        },
-        {
-          "index": "FOTA4D",
-          "indexR": "FOTA4RD",
-          "dimensions": "126.5 × 50 × 74"
-        }
-      ]
-    },
-    {
-      "id": "single-extension-depth-80",
-      "category": "single",
-      "title": "Extension for FOTA single desk (depth 80 cm)",
-      "rows": [
-        {
-          "index": "FOTA1D80",
-          "indexR": "FOTA1RD80",
-          "dimensions": "66.5 × 50 × 74"
-        },
-        {
-          "index": "FOTA2D80",
-          "indexR": "FOTA2RD80",
-          "dimensions": "86.5 × 50 × 74"
-        },
-        {
-          "index": "FOTA3D80",
-          "indexR": "FOTA3RD80",
-          "dimensions": "106.5 × 50 × 74"
-        },
-        {
-          "index": "FOTA4D80",
-          "indexR": "FOTA4RD80",
-          "dimensions": "126.5 × 50 × 74"
-        }
-      ]
-    },
-    {
-      "id": "bench-depth-140",
-      "category": "bench",
-      "title": "FOTA bench double desk (depth 140 cm)",
-      "rows": [
-        {
-          "index": "FOTA10",
-          "indexR": "FOTA10R",
-          "dimensions": "120 × 140 × 74"
-        },
-        {
-          "index": "FOTA11",
-          "indexR": "FOTA11R",
-          "dimensions": "140 × 140 × 74"
-        },
-        {
-          "index": "FOTA12",
-          "indexR": "FOTA12R",
-          "dimensions": "160 × 140 × 74"
-        },
-        {
-          "index": "FOTA13",
-          "indexR": "FOTA13R",
-          "dimensions": "180 × 140 × 74"
-        }
-      ]
-    },
-    {
-      "id": "bench-depth-160",
-      "category": "bench",
-      "title": "FOTA bench double desk (depth 160 cm)",
-      "rows": [
-        {
-          "index": "FOTA1080",
-          "indexR": "FOTA1080R",
-          "dimensions": "120 × 160 × 74"
-        },
-        {
-          "index": "FOTA1180",
-          "indexR": "FOTA1180R",
-          "dimensions": "140 × 160 × 74"
-        },
-        {
-          "index": "FOTA1280",
-          "indexR": "FOTA1280R",
-          "dimensions": "160 × 160 × 74"
-        },
-        {
-          "index": "FOTA1380",
-          "indexR": "FOTA1380R",
-          "dimensions": "180 × 160 × 74"
-        }
-      ]
-    },
-    {
-      "id": "bench-flaps-depth-140",
-      "category": "bench",
-      "title": "FOTA bench double desk with access to the cable canal through the flaps (depth 140 cm)",
-      "rows": [
-        {
-          "index": "FOTA15",
-          "indexR": "FOTA15R",
-          "dimensions": "120 × 140 × 74"
-        },
-        {
-          "index": "FOTA16",
-          "indexR": "FOTA16R",
-          "dimensions": "140 × 140 × 74"
-        },
-        {
-          "index": "FOTA17",
-          "indexR": "FOTA17R",
-          "dimensions": "160 × 140 × 74"
-        },
-        {
-          "index": "FOTA18",
-          "indexR": "FOTA18R",
-          "dimensions": "180 × 140 × 74"
-        }
-      ]
-    },
-    {
-      "id": "bench-flaps-depth-160",
-      "category": "bench",
-      "title": "FOTA bench double desk with access to the cable canal through the flaps (depth 160 cm)",
-      "rows": [
-        {
-          "index": "FOTA1580",
-          "indexR": "FOTA1580R",
-          "dimensions": "120 × 160 × 74"
-        },
-        {
-          "index": "FOTA1680",
-          "indexR": "FOTA1680R",
-          "dimensions": "140 × 160 × 74"
-        },
-        {
-          "index": "FOTA1780",
-          "indexR": "FOTA1780R",
-          "dimensions": "160 × 160 × 74"
-        },
-        {
-          "index": "FOTA1880",
-          "indexR": "FOTA1880R",
-          "dimensions": "180 × 160 × 74"
         }
       ]
     }
