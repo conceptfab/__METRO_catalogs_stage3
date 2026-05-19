@@ -17,14 +17,14 @@
       "id": "white-detail",
       "color": "white",
       "label": "White finish",
-      "image": "/catalogs/MCR800/finishes/07_25_Metro_Lada_WHITE_C_2_R5.png",
+      "image": "/catalogs/MCR800/finishes/07_25_Metro_Lada_WHITE_C_2_R5.webp",
       "alt": "MCR800 frame and desktop detail in white finish"
     },
     {
       "id": "black-detail",
       "color": "black",
       "label": "Black finish",
-      "image": "/catalogs/MCR800/finishes/07_25_Metro_Lada_BLACK_C_2_r5_0000.png",
+      "image": "/catalogs/MCR800/finishes/07_25_Metro_Lada_BLACK_C_2_r5_0000.webp",
       "alt": "MCR800 frame and desktop detail in black finish"
     }
   ]
