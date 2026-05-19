@@ -60,3 +60,15 @@ describe('brand button', () => {
     expect(btn.className).toMatch(/min-w-\[44px\]/);
   });
 });
+
+describe('focus-visible ring on nav links', () => {
+  it('renders focus-visible outline on every section link', () => {
+    const { container } = render(<CatalogNav />);
+    const links = container.querySelectorAll('button.catalog-nav-link');
+    expect(links.length).toBeGreaterThan(0);
+    links.forEach((link) => {
+      expect(link.className).toContain('focus-visible:outline');
+      expect(link.className).toContain('focus-visible:outline-foreground');
+    });
+  });
+});
