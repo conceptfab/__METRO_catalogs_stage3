@@ -58,15 +58,6 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
     return () => window.removeEventListener('keydown', handler);
   }, [isOpen]);
 
-  useEffect(() => {
-    if (!isOpen) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [isOpen]);
-
   return (
     <AnimatePresence>
       {isOpen && (
