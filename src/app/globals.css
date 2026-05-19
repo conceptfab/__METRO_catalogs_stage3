@@ -820,3 +820,13 @@ html {
     contain-intrinsic-size: 1px 4000px;
   }
 }
+
+@media (prefers-contrast: more) {
+  /* MaterialsOptionGroup tiles use border-transparent by default to avoid
+     visual noise. Under prefers-contrast: more, render the border to
+     re-establish the grid structure for low-vision users. */
+  [role='radiogroup'] [role='radio']:not([aria-checked='true']) {
+    border-color: var(--foreground) !important;
+    border-width: 1px !important;
+  }
+}
