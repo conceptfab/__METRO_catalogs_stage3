@@ -13,7 +13,19 @@ export interface CatalogData {
   gettingStarted: GettingStartedData;
   productCodes: ProductCodesData;
   packshots?: PackshotsData;
+  arrangements?: ArrangementsData;
   sections?: SectionConfig[];
+}
+
+export interface ArrangementsPlaceholder {
+  label: string;
+  image?: string;
+}
+
+export interface ArrangementsData {
+  sectionLabel: string;
+  title: string;
+  placeholders: ArrangementsPlaceholder[];
 }
 
 export type CatalogLayoutType = 'qx' | 'mcr800' | 'type2' | 'type3';
@@ -317,6 +329,11 @@ interface SpecItem {
   value: string;
 }
 
+export interface DimensionsModule {
+  image: string;
+  label: string;
+}
+
 export interface DimensionsData {
   sectionLabel: string;
   title: string;
@@ -324,6 +341,7 @@ export interface DimensionsData {
   image?: string;
   specs: SpecItem[];
   certifications: string[];
+  modules?: DimensionsModule[];
   dimensionDiagram?: {
     width: string;
     depth: string;
@@ -441,6 +459,7 @@ export interface ProductCodesData {
   gridColumns?: 2 | 4;
   groups: ProductCodeGroup[];
   placeholders?: ProductCodePlaceholder[];
+  modules?: DimensionsModule[];
 }
 
 export interface SectionConfig {

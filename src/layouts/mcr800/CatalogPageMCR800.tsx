@@ -2,13 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { CatalogData } from '@/types/catalog';
 import type { CatalogFooterEntry, GlobalConfig } from '@/lib/catalog-loader';
-import CatalogNav from '@/components/catalog/CatalogNav';
+import CatalogNavMCR800 from '@/components/catalog/CatalogNavMCR800';
 import CatalogMotion from '@/components/catalog/CatalogMotion';
 import HeroMCR800 from './HeroMCR800';
 import OverviewMCR800 from './OverviewMCR800';
 import GalleryMCR800 from './GalleryMCR800';
 import FinishesMCR800 from './FinishesMCR800';
 import DimensionsMCR800 from './DimensionsMCR800';
+import ArrangementsMCR800 from './ArrangementsMCR800';
 import MaterialsMCR800 from './MaterialsMCR800';
 import FeaturesMCR800 from './FeaturesMCR800';
 import GettingStartedMCR800 from './GettingStartedMCR800';
@@ -46,13 +47,12 @@ export default function CatalogPageMCR800({
           Skip to main content
         </a>
 
-        <CatalogNav
+        <CatalogNavMCR800
           sections={catalog.sections}
           brandLabel={(
             catalog.meta.brandName ?? globalConfig?.brandName ?? catalog.hero.brandLabel
           ).toUpperCase()}
           brandLogoSrc="/catalogs/MCR800/metro_logo.svg"
-          variant="qx0"
         />
 
         <main
@@ -65,6 +65,7 @@ export default function CatalogPageMCR800({
           <FinishesMCR800 data={catalog.finishes} />
           {catalog.packshots && <PackshotsMCR800 data={catalog.packshots} />}
           <DimensionsMCR800 data={catalog.dimensions} />
+          <ArrangementsMCR800 data={catalog.arrangements} />
           <MaterialsMCR800 data={catalog.materials} />
           <FeaturesMCR800 data={catalog.features} />
           <GettingStartedMCR800 data={catalog.gettingStarted} />

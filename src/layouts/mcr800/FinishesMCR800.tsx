@@ -48,14 +48,14 @@ const FinishesMCR800 = ({ data }: FinishesSectionProps) => {
       aria-labelledby="finishes-title"
     >
       <div
-        className="mx-auto w-full max-w-[1440px] px-5 pt-6 pb-12 sm:px-8 sm:pt-8 lg:px-12 lg:pt-16 lg:pb-20"
+        className="relative mx-auto w-full max-w-[1440px] px-5 pt-6 pb-12 sm:px-8 sm:pt-8 lg:px-0 lg:py-0"
         ref={ref}
       >
         <m.div
           initial={reveal.header.initial}
           animate={isInView ? reveal.header.animate : {}}
           transition={slowTransition({ duration: 0.6 })}
-          className="flex flex-col lg:max-w-[720px]"
+          className="relative z-10 flex flex-col lg:max-w-[720px] lg:pt-3"
         >
           <p className="section_ID font-display uppercase">
             <QxText text={data.sectionLabel} />

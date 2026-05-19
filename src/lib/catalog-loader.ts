@@ -14,6 +14,7 @@ import type {
   GettingStartedData,
   ProductCodesData,
   PackshotsData,
+  ArrangementsData,
 } from '@/types/catalog';
 import fs from 'fs/promises';
 import path from 'path';
@@ -487,6 +488,7 @@ interface CatalogContentFiles {
   gettingStarted: GettingStartedData;
   productCodes: ProductCodesData;
   packshots: RawPackshotsData | null;
+  arrangements: ArrangementsData | null;
 }
 
 /** Lightweight loader for list view */
@@ -579,6 +581,7 @@ async function readCatalogContent(
     gettingStarted,
     productCodes,
     packshots,
+    arrangements,
   ] = await Promise.all([
     readPublicJson<HeroData>(`${base}/hero/content.json`),
     readPublicJson<HeroSliderFile>(`${base}/hero/slider.json`),
@@ -594,6 +597,7 @@ async function readCatalogContent(
     readPublicJson<GettingStartedData>(`${base}/getting-started/content.json`),
     readPublicJson<ProductCodesData>(`${base}/codes/content.json`),
     readPublicJson<RawPackshotsData>(`${base}/packshots/content.json`),
+    readPublicJson<ArrangementsData>(`${base}/arrangements/content.json`),
   ]);
 
   return hero &&
@@ -618,6 +622,7 @@ async function readCatalogContent(
         gettingStarted,
         productCodes,
         packshots,
+        arrangements,
       }
     : null;
 }
@@ -656,6 +661,7 @@ export async function loadCatalog(
     gettingStarted,
     productCodes,
     packshots,
+    arrangements,
   } = content;
 
   parseHeroContent(hero);
@@ -783,5 +789,6 @@ export async function loadCatalog(
     gettingStarted,
     productCodes,
     ...(resolvedPackshots ? { packshots: resolvedPackshots } : {}),
+    ...(arrangements ? { arrangements } : {}),
   };
 }

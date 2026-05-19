@@ -86,8 +86,11 @@ const ProductCodesMCR800 = ({ data }: ProductCodesSectionProps) => {
   const managerGroups = data.groups.filter(
     (group) => group.category === 'manager',
   );
-  const gridClass =
-    data.gridColumns === 2
+  const showCategoryHeaders = data.groups.length > 1;
+  const hasModules = Boolean(data.modules && data.modules.length > 0);
+  const gridClass = hasModules
+    ? 'grid grid-cols-1 grid-rows-[auto_auto] gap-y-1'
+    : data.gridColumns === 2
       ? 'grid grid-cols-1 grid-rows-[auto_auto] gap-y-6 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-10'
       : 'grid grid-cols-1 grid-rows-[auto_auto] gap-y-6 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-4 lg:gap-x-[calc((100%-1372px)/3)]';
   const legendColSpan = data.gridColumns === 2 ? 'lg:col-span-1' : 'lg:col-span-3';
@@ -150,22 +153,53 @@ const ProductCodesMCR800 = ({ data }: ProductCodesSectionProps) => {
         >
           {singleDeskGroups.length > 0 && (
             <div>
-              <h3 className="mb-2 font-display text-sm font-semibold uppercase text-foreground/70">
-                Single desks
-              </h3>
-              <div className={gridClass}>
-                {singleDeskGroups.map((group) => (
-                  <ProductCodeTable key={group.id} group={group} open={desktopOpen} />
-                ))}
+              {showCategoryHeaders && (
+                <h3 className="mb-2 font-display text-sm font-semibold uppercase text-foreground/70">
+                  Single desks
+                </h3>
+              )}
+              <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
+                <div className={`${gridClass} lg:shrink-0`}>
+                  {singleDeskGroups.map((group) => (
+                    <ProductCodeTable key={group.id} group={group} open={desktopOpen} />
+                  ))}
+                </div>
+                {data.modules && data.modules.length > 0 && (
+                  <m.div
+                    initial={reveal.content.initial}
+                    animate={isInView ? reveal.content.animate : {}}
+                    transition={slowTransition({ duration: 0.6, delay: 0.25 })}
+                    className="grid flex-1 grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:gap-6"
+                  >
+                    {data.modules.map((module, idx) => (
+                      <div key={`${module.label}-${idx}`} className="flex flex-col items-center gap-2">
+                        <div className="relative aspect-square w-[80%] overflow-hidden">
+                          <Image
+                            src={module.image}
+                            alt={module.label}
+                            fill
+                            sizes="(min-width: 1024px) 16vw, (min-width: 640px) 25vw, 40vw"
+                            className="object-contain"
+                          />
+                        </div>
+                        <span className="font-display text-xs font-semibold uppercase tracking-[0.15em] text-foreground sm:text-sm">
+                          {module.label}
+                        </span>
+                      </div>
+                    ))}
+                  </m.div>
+                )}
               </div>
             </div>
           )}
 
           {benchGroups.length > 0 && (
             <div>
-              <h3 className="mb-2 font-display text-sm font-semibold uppercase text-foreground/70">
-                Bench desks
-              </h3>
+              {showCategoryHeaders && (
+                <h3 className="mb-2 font-display text-sm font-semibold uppercase text-foreground/70">
+                  Bench desks
+                </h3>
+              )}
               <div className={gridClass}>
                 {benchGroups.map((group) => (
                   <ProductCodeTable key={group.id} group={group} open={desktopOpen} />
@@ -176,7 +210,7 @@ const ProductCodesMCR800 = ({ data }: ProductCodesSectionProps) => {
 
           {(managerGroups.length > 0 || data.legend) && (
             <div>
-              {managerGroups.length > 0 && (
+              {showCategoryHeaders && managerGroups.length > 0 && (
                 <h3 className="mb-2 font-display text-sm font-semibold uppercase text-foreground/70">
                   Manager desk
                 </h3>

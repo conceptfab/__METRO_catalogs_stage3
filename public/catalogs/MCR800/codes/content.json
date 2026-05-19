@@ -3,220 +3,55 @@
   "title": "Order references",
   "description": "Use these unique codes when placing your order or specifying modules for your workspace.",
   "image": "/catalogs/MCR800/codes/axo_QS_codes.svg",
+  "gridColumns": 2,
+  "modules": [
+    { "image": "/catalogs/MCR800/dimensions/RC801.svg", "label": "RC801" },
+    { "image": "/catalogs/MCR800/dimensions/RC801FS.svg", "label": "RC801FS" },
+    { "image": "/catalogs/MCR800/dimensions/RC802.svg", "label": "RC802" },
+    { "image": "/catalogs/MCR800/dimensions/RC802FS.svg", "label": "RC802FS" },
+    { "image": "/catalogs/MCR800/dimensions/RC803.svg", "label": "RC803" },
+    { "image": "/catalogs/MCR800/dimensions/RC804L_R.svg", "label": "RC804L / RC804R" }
+  ],
   "groups": [
     {
-      "id": "single-depth-70",
+      "id": "mcr800-modules",
       "category": "single",
-      "title": "MCR800 single desk (depth 70 cm)",
+      "title": "MCR800 modules",
       "rows": [
         {
-          "index": "MCR8001",
-          "indexR": "MCR8001R",
-          "dimensions": "120 × 70 × 74"
+          "index": "RC801",
+          "indexR": "",
+          "dimensions": "82 × 82 × 110"
         },
         {
-          "index": "MCR8002",
-          "indexR": "MCR8002R",
-          "dimensions": "140 × 70 × 74"
+          "index": "RC801FS",
+          "indexR": "",
+          "dimensions": "85 × 82 × 110"
         },
         {
-          "index": "MCR8003",
-          "indexR": "MCR8003R",
-          "dimensions": "160 × 70 × 74"
+          "index": "RC802",
+          "indexR": "",
+          "dimensions": "120 × 82 × 110"
         },
         {
-          "index": "MCR8004",
-          "indexR": "MCR8004R",
-          "dimensions": "180 × 70 × 74"
-        }
-      ]
-    },
-    {
-      "id": "single-depth-80",
-      "category": "single",
-      "title": "MCR800 single desk (depth 80 cm)",
-      "rows": [
-        {
-          "index": "MCR800180",
-          "indexR": "MCR8001R80",
-          "dimensions": "120 × 80 × 74"
+          "index": "RC802FS",
+          "indexR": "",
+          "dimensions": "124 × 82 × 110"
         },
         {
-          "index": "MCR800280",
-          "indexR": "MCR8002R80",
-          "dimensions": "140 × 80 × 74"
+          "index": "RC803",
+          "indexR": "",
+          "dimensions": "84 × 82 × 110"
         },
         {
-          "index": "MCR800380",
-          "indexR": "MCR8003R80",
-          "dimensions": "160 × 80 × 74"
+          "index": "RC804L",
+          "indexR": "",
+          "dimensions": "84 × 112 × 74"
         },
         {
-          "index": "MCR800480",
-          "indexR": "MCR8004R80",
-          "dimensions": "180 × 80 × 74"
-        }
-      ]
-    },
-    {
-      "id": "single-extension-depth-70",
-      "category": "single",
-      "title": "Extension for MCR800 single desk (depth 70 cm)",
-      "rows": [
-        {
-          "index": "MCR8001D",
-          "indexR": "MCR8001RD",
-          "dimensions": "66.5 × 50 × 74"
-        },
-        {
-          "index": "MCR8002D",
-          "indexR": "MCR8002RD",
-          "dimensions": "86.5 × 50 × 74"
-        },
-        {
-          "index": "MCR8003D",
-          "indexR": "MCR8003RD",
-          "dimensions": "106.5 × 50 × 74"
-        },
-        {
-          "index": "MCR8004D",
-          "indexR": "MCR8004RD",
-          "dimensions": "126.5 × 50 × 74"
-        }
-      ]
-    },
-    {
-      "id": "single-extension-depth-80",
-      "category": "single",
-      "title": "Extension for MCR800 single desk (depth 80 cm)",
-      "rows": [
-        {
-          "index": "MCR8001D80",
-          "indexR": "MCR8001RD80",
-          "dimensions": "66.5 × 50 × 74"
-        },
-        {
-          "index": "MCR8002D80",
-          "indexR": "MCR8002RD80",
-          "dimensions": "86.5 × 50 × 74"
-        },
-        {
-          "index": "MCR8003D80",
-          "indexR": "MCR8003RD80",
-          "dimensions": "106.5 × 50 × 74"
-        },
-        {
-          "index": "MCR8004D80",
-          "indexR": "MCR8004RD80",
-          "dimensions": "126.5 × 50 × 74"
-        }
-      ]
-    },
-    {
-      "id": "bench-depth-140",
-      "category": "bench",
-      "title": "MCR800 bench double desk (depth 140 cm)",
-      "rows": [
-        {
-          "index": "MCR80010",
-          "indexR": "MCR80010R",
-          "dimensions": "120 × 140 × 74"
-        },
-        {
-          "index": "MCR80011",
-          "indexR": "MCR80011R",
-          "dimensions": "140 × 140 × 74"
-        },
-        {
-          "index": "MCR80012",
-          "indexR": "MCR80012R",
-          "dimensions": "160 × 140 × 74"
-        },
-        {
-          "index": "MCR80013",
-          "indexR": "MCR80013R",
-          "dimensions": "180 × 140 × 74"
-        }
-      ]
-    },
-    {
-      "id": "bench-depth-160",
-      "category": "bench",
-      "title": "MCR800 bench double desk (depth 160 cm)",
-      "rows": [
-        {
-          "index": "MCR8001080",
-          "indexR": "MCR8001080R",
-          "dimensions": "120 × 160 × 74"
-        },
-        {
-          "index": "MCR8001180",
-          "indexR": "MCR8001180R",
-          "dimensions": "140 × 160 × 74"
-        },
-        {
-          "index": "MCR8001280",
-          "indexR": "MCR8001280R",
-          "dimensions": "160 × 160 × 74"
-        },
-        {
-          "index": "MCR8001380",
-          "indexR": "MCR8001380R",
-          "dimensions": "180 × 160 × 74"
-        }
-      ]
-    },
-    {
-      "id": "bench-flaps-depth-140",
-      "category": "bench",
-      "title": "MCR800 bench double desk with access to the cable canal through the flaps (depth 140 cm)",
-      "rows": [
-        {
-          "index": "MCR80015",
-          "indexR": "MCR80015R",
-          "dimensions": "120 × 140 × 74"
-        },
-        {
-          "index": "MCR80016",
-          "indexR": "MCR80016R",
-          "dimensions": "140 × 140 × 74"
-        },
-        {
-          "index": "MCR80017",
-          "indexR": "MCR80017R",
-          "dimensions": "160 × 140 × 74"
-        },
-        {
-          "index": "MCR80018",
-          "indexR": "MCR80018R",
-          "dimensions": "180 × 140 × 74"
-        }
-      ]
-    },
-    {
-      "id": "bench-flaps-depth-160",
-      "category": "bench",
-      "title": "MCR800 bench double desk with access to the cable canal through the flaps (depth 160 cm)",
-      "rows": [
-        {
-          "index": "MCR8001580",
-          "indexR": "MCR8001580R",
-          "dimensions": "120 × 160 × 74"
-        },
-        {
-          "index": "MCR8001680",
-          "indexR": "MCR8001680R",
-          "dimensions": "140 × 160 × 74"
-        },
-        {
-          "index": "MCR8001780",
-          "indexR": "MCR8001780R",
-          "dimensions": "160 × 160 × 74"
-        },
-        {
-          "index": "MCR8001880",
-          "indexR": "MCR8001880R",
-          "dimensions": "180 × 160 × 74"
+          "index": "RC804R",
+          "indexR": "",
+          "dimensions": "84 × 112 × 74"
         }
       ]
     }
