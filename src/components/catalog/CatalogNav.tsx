@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { m, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
 import type { SectionConfig } from '@/types/catalog';
 import { QxText } from './QxText';
@@ -123,6 +123,7 @@ function useCatalogNavController({
     { activeSection: 'cover', scrolled: false },
   );
   const [isOpen, setIsOpen] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
   const scrollAnimationRef = useRef<number | null>(null);
   const scrollingToSectionRef = useRef<string | null>(null);
   const navExpanded = !scrolled;
@@ -212,10 +213,18 @@ function useCatalogNavController({
     const initialTarget = computeTargetTop();
     const startTop = window.scrollY;
     const initialDistance = initialTarget - startTop;
-    const duration = Math.min(Math.max(Math.abs(initialDistance) * 0.55, 420), 900);
+    const duration = prefersReducedMotion
+      ? 0
+      : Math.min(Math.max(Math.abs(initialDistance) * 0.55, 240), 500);
     const startTime = window.performance.now();
 
     setIsOpen(false);
+
+    if (duration === 0) {
+      window.scrollTo(0, computeTargetTop());
+      scrollingToSectionRef.current = null;
+      return;
+    }
 
     const animateScroll = (time: number) => {
       const elapsed = time - startTime;
