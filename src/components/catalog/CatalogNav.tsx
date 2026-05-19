@@ -293,7 +293,7 @@ function renderCatalogNav({
           className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
             scrolled || isOpen
               ? 'bg-surface-elevated shadow-[0_8px_24px_rgba(0,0,0,0.08)]'
-              : 'shadow-none'
+              : 'shadow-none bg-gradient-to-b from-black/15 to-transparent'
           }`}
         >
           <div className="mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-0">
@@ -394,7 +394,7 @@ function renderCatalogNav({
         className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
           scrolled || isOpen
             ? 'bg-surface-elevated py-3 shadow-[0_8px_24px_rgba(0,0,0,0.08)]'
-            : 'shadow-none'
+            : 'shadow-none bg-gradient-to-b from-black/15 to-transparent'
         }`}
       >
         <div className="mx-auto max-w-[1440px] px-6 sm:px-8">
