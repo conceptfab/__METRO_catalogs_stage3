@@ -6,16 +6,16 @@
   "gridColumns": 2,
   "placeholders": [
     {
-      "label": "Placeholder 1",
-      "image": ""
+      "label": "FF ??",
+      "image": "/catalogs/FOTA/codes/img_01.svg"
     },
     {
-      "label": "Placeholder 2",
-      "image": ""
+      "label": "FF ??",
+      "image": "/catalogs/FOTA/codes/img_02.svg"
     },
     {
-      "label": "Placeholder 3",
-      "image": ""
+      "label": "FF10",
+      "image": "/catalogs/FOTA/codes/img_03.svg"
     }
   ],
   "groups": [

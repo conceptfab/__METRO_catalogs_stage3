@@ -166,7 +166,7 @@ const ProductCodesQX = ({ data }: ProductCodesSectionProps) => {
                         key={`${placeholder.label}-${index}`}
                         className="flex flex-1 flex-col items-center gap-2 lg:h-full lg:flex-none"
                       >
-                        <div className="relative aspect-square w-full max-w-[160px] overflow-hidden rounded-sm border border-foreground/10 bg-product-muted lg:w-auto lg:max-w-none lg:h-[calc(100%-1.75rem)]">
+                        <div className="relative aspect-square w-full max-w-[160px] overflow-hidden lg:w-auto lg:max-w-none lg:h-[calc(100%-1.75rem)]">
                           {placeholder.image ? (
                             <Image
                               src={placeholder.image}
