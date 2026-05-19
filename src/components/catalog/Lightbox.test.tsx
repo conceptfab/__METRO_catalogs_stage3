@@ -39,4 +39,40 @@ describe('<Lightbox />', () => {
     fireEvent.keyDown(window, { key: 'Escape' });
     expect(onClose).toHaveBeenCalledOnce();
   });
+
+  it('locks body scroll while open and restores on close', () => {
+    const previous = document.body.style.overflow;
+    const { rerender } = render(
+      <Lightbox
+        images={[{ src: '/a.webp', alt: 'a' }]}
+        index={0}
+        onClose={() => {}}
+        onNavigate={() => {}}
+      />,
+    );
+    expect(document.body.style.overflow).toBe('hidden');
+    rerender(
+      <Lightbox
+        images={[{ src: '/a.webp', alt: 'a' }]}
+        index={null}
+        onClose={() => {}}
+        onNavigate={() => {}}
+      />,
+    );
+    expect(document.body.style.overflow).toBe(previous);
+  });
+
+  it('renders the image with draggable=false to disable native ghost drag', () => {
+    const { container } = render(
+      <Lightbox
+        images={[{ src: '/a.webp', alt: 'a' }]}
+        index={0}
+        onClose={() => {}}
+        onNavigate={() => {}}
+      />,
+    );
+    const img = container.querySelector('img');
+    expect(img).not.toBeNull();
+    expect(img!.draggable).toBe(false);
+  });
 });

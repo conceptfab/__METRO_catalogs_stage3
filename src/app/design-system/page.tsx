@@ -838,8 +838,11 @@ function renderDesignSystemPage({
             <QxText text="METRO Catalogs" />
           </h1>
           <p className="sec_main_text mt-10 max-w-[60ch]">
-            Co realnie działa w katalogach <span className="qx-word">QX</span> i{' '}
-            <span className="qx-word">QS</span>, z renderem, ścieżką źródła i
+            Co realnie działa w katalogach <span className="qx-word">QX</span>,{' '}
+            <span className="qx-word">QS</span>, <span className="qx-word">VR</span>,{' '}
+            <span className="qx-word">TS</span>, <span className="qx-word">FM</span>,{' '}
+            <span className="qx-word">FOTA</span> i{' '}
+            <span className="qx-word">MCR800</span>, z renderem, ścieżką źródła i
             tokenami. Plus to, co dopiero powstanie.
           </p>
           <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
@@ -1231,7 +1234,7 @@ function renderDesignSystemPage({
                     <h4 className="mb-2 font-display text-lg font-normal text-foreground">
                       I-st price group
                     </h4>
-                    <div className="flex flex-wrap gap-[5px]">
+                    <div role="radiogroup" aria-label="I-st price group desktop finish" className="flex flex-wrap gap-[5px]">
                       {[
                         { code: 'U100', name: 'White', selected: true },
                         { code: 'U110', name: 'Ash Grey' },
@@ -1253,7 +1256,7 @@ function renderDesignSystemPage({
                     <h4 className="mb-2 font-display text-lg font-normal text-foreground">
                       II-nd price group
                     </h4>
-                    <div className="flex flex-wrap gap-[5px]">
+                    <div role="radiogroup" aria-label="II-nd price group desktop finish" className="flex flex-wrap gap-[5px]">
                       {[
                         { code: 'W200', name: 'Light Beech' },
                         { code: 'W210', name: 'Elm' },
@@ -1271,7 +1274,7 @@ function renderDesignSystemPage({
               {/* Steel parts colors (frame): variant primary, qx-emphasis-title */}
               <div className="mt-8">
                 <h3 className="mb-3 qx-emphasis-title">Steel parts colors</h3>
-                <div className="flex flex-wrap gap-[5px]">
+                <div role="radiogroup" aria-label="Steel parts colors" className="flex flex-wrap gap-[5px]">
                   {[
                     { code: 'RAL9006', name: 'Aluminium Grey', selected: true },
                     { code: 'RAL9005', name: 'Jet Black' },
@@ -1787,14 +1790,14 @@ function renderDesignSystemPage({
           </A11yNote>
 
           <A11yNote>
-            <strong className="font-semibold">Group semantics (MaterialsOptionGroup):</strong>{' '}
-            container has <code>role=&quot;group&quot;</code> +{' '}
+            <strong className="font-semibold">Radiogroup semantics (MaterialsOptionGroup):</strong>{' '}
+            container has <code>role=&quot;radiogroup&quot;</code> +{' '}
             <code>aria-labelledby</code> pointing at the{' '}
             <code>&lt;h3&gt;</code>. Each option is a{' '}
-            <code>&lt;button aria-pressed&gt;</code>. (Choice of{' '}
-            <code>group</code> over <code>radiogroup</code>: no arrow-key
-            navigation needed; if added later, migrate to{' '}
-            <code>radiogroup</code> + roving tabindex.)
+            <code>&lt;button role=&quot;radio&quot; aria-checked&gt;</code>{' '}
+            with roving tabindex (<code>tabIndex={'{'}isSelected ? 0 : -1{'}'}</code>):
+            focus enters only the selected option, then native Arrow keys
+            navigate between siblings.
           </A11yNote>
           <A11yNote>
             <strong className="font-semibold">Border contrast:</strong> hover
@@ -1887,6 +1890,92 @@ function renderDesignSystemPage({
             layer over the bottom 2/3, guaranteeing hero-text contrast over
             variable slide imagery.
           </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Catalog nav focus ring:</strong>{' '}
+            every <code>.catalog-nav-link</code> button (qx0 desktop, qx0 mobile
+            drawer, default desktop, default mobile drawer) carries{' '}
+            <code>
+              focus-visible:outline focus-visible:outline-2
+              focus-visible:outline-offset-2
+              focus-visible:outline-foreground
+            </code>
+            . Keyboard users always see a 2 px black ring on the focused link.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Catalog nav smooth-scroll:</strong>{' '}
+            duration is clamped to <code>240–500 ms</code> (was 420–900 ms) and
+            collapses to <code>0 ms</code> (instant <code>window.scrollTo</code>)
+            when <code>useReducedMotion()</code> returns true. Keeps motion under
+            the WCAG / Material 500 ms ceiling for vestibular-safe navigation.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Catalog nav transparent scrim:</strong>{' '}
+            when not scrolled, both nav variants apply{' '}
+            <code>bg-gradient-to-b from-black/15 to-transparent</code> so the
+            brand logo and links stay legible over light <em>and</em> dark hero
+            imagery. Scrim disappears as soon as the nav switches to{' '}
+            <code>bg-surface-elevated</code> on scroll.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Hero arrow-key scope:</strong>{' '}
+            the global ArrowLeft / ArrowRight listener in <code>HeroQX</code> is
+            gated by an <code>IntersectionObserver</code> on{' '}
+            <code>#cover</code> at <code>threshold: 0.25</code>. Arrow keys only
+            advance the hero slider while the cover section is in view — they no
+            longer silently flip slides while the user reads lower sections.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Hero autoplay focus pause:</strong>{' '}
+            the hero <code>&lt;section&gt;</code> wires{' '}
+            <code>onFocusCapture</code> + <code>onBlurCapture</code> into the
+            same <code>isHoveredRef</code> as the mouse handlers (with a{' '}
+            <code>currentTarget.contains(relatedTarget)</code> guard so focus
+            moving between dots / arrows does not unpause). Keyboard users
+            tabbing into the slider controls get autoplay paused, matching
+            mouse hover behaviour.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Hero text line-height:</strong>{' '}
+            <code>.hero-text</code> uses <code>line-height: 1.22</code> (was
+            1.15) at both desktop and mobile breakpoints. Prevents uppercase
+            descenders / ascenders colliding with the row below on small Polish
+            phrases (e.g. <em>&quot;KOLEKCJA / OFFICE&quot;</em>) at 320–375 px.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Lightbox image hardening:</strong>{' '}
+            the modal image is rendered with <code>draggable={'{false}'}</code>{' '}
+            to suppress native OS ghost-drag, and the &bdquo;Image N of M&rdquo;
+            counter uses <code>aria-live=&quot;off&quot;</code> so screen
+            readers do not re-announce on every arrow-key navigation (the
+            dialog itself is already named via <code>aria-labelledby</code>).
+            Body scroll lock + focus trap come from{' '}
+            <code>useFocusTrap</code> only — no duplicated effect.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">color-scheme: light:</strong>{' '}
+            <code>:root</code> pins <code>color-scheme: light</code> so
+            browser-native scrollbars and form controls render in light theme
+            regardless of the user&apos;s OS dark-mode setting. The catalog UI
+            is light-only by design; <code>.dark</code> tokens defined in{' '}
+            <code>globals.css</code> are not currently applied by any consumer.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">prefers-contrast: more:</strong>{' '}
+            under high-contrast mode, unselected{' '}
+            <code>[role=&quot;radiogroup&quot;] [role=&quot;radio&quot;]</code>{' '}
+            tiles render with a 1 px <code>border-foreground</code> instead of{' '}
+            <code>border-transparent</code> so the swatch grid structure stays
+            visible for low-vision users without changing default visuals.
+          </A11yNote>
         </div>
       </section>
 
@@ -1944,7 +2033,7 @@ function renderDesignSystemPage({
               METRO Design System
             </p>
             <p className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
-              Zaktualizowano · 2026-05-18
+              Zaktualizowano · 2026-05-19
             </p>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
@@ -2037,7 +2126,8 @@ function ProductCodeTablePreview({
 }
 
 /**
- * Exact replica of MaterialsOptionGroup.tsx button (L51–73). Static, no onSelect.
+ * Static replica of MaterialsOptionGroup.tsx button. No onSelect, no roving
+ * tabindex (this is a design preview, not an interactive widget).
  * Image source: /shared/materials/{CODE NAME}_thumb.webp (flat swatch, jak
  * w produkcji), nie /catalogs/QX/materials/metro {CODE}.webp (3D render).
  */
@@ -2057,11 +2147,12 @@ function SwatchButton({
   const thumbnailUrl = `/shared/materials/${filename}`;
   return (
     <div
-      aria-pressed={selected}
+      role="radio"
+      aria-checked={selected}
       className={`relative h-[9.75rem] w-[7.25rem] shrink-0 border bg-background p-1 pt-[7rem] text-left transition-colors ${
         selected
-          ? 'border-foreground shadow-[0_0_0_2px_rgba(0,0,0,0.18)]'
-          : 'border-transparent hover:border-foreground/20'
+          ? 'border-foreground border-2 shadow-[0_0_0_2px_rgba(0,0,0,0.18)]'
+          : 'border-transparent hover:border-foreground/50'
       }`}
     >
       <div

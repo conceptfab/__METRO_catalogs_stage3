@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    color-scheme: light;
     /* Base: #f8f8f8 = 0 0% 97.25% */
     --background: #f8f8f8;
 
@@ -598,7 +599,7 @@ html {
   font-family: var(--font-body);
   font-weight: var(--hero-text-weight, 300);
   font-size: var(--hero-text-size, 2.4rem);
-  line-height: 1.15;
+  line-height: 1.22;
   letter-spacing: 0;
   text-transform: uppercase;
   color: var(--hero-text-color, #b8b3b2);
@@ -606,7 +607,7 @@ html {
 
 @media (max-width: 767px) {
   .hero-text {
-    line-height: 1.15;
+    line-height: 1.22;
     font-weight: var(--hero-text-weight-mobile, 300);
     font-size: calc(var(--hero-text-size-mobile, var(--hero-text-size, 2.4rem)) * 0.8);
   }
@@ -689,6 +690,12 @@ html {
   }
   .catalog-id-qs .hero-image {
     object-position: calc(50% - var(--hero-mobile-image-offset-x, 0px)) 40% !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-image {
+    animation: none !important;
   }
 }
 
@@ -794,5 +801,15 @@ html {
   .catalog-qx0 #features {
     content-visibility: auto;
     contain-intrinsic-size: 1px 4000px;
+  }
+}
+
+@media (prefers-contrast: more) {
+  /* MaterialsOptionGroup tiles use border-transparent by default to avoid
+     visual noise. Under prefers-contrast: more, render the border to
+     re-establish the grid structure for low-vision users. */
+  [role='radiogroup'] [role='radio']:not([aria-checked='true']) {
+    border-color: var(--foreground) !important;
+    border-width: 1px !important;
   }
 }

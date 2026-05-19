@@ -41,7 +41,7 @@ export function MaterialsOptionGroup({
       </h3>
 
       <div
-        role="group"
+        role="radiogroup"
         aria-labelledby={titleId}
         className="flex flex-wrap gap-[5px]"
       >
@@ -53,8 +53,10 @@ export function MaterialsOptionGroup({
             <button
               key={option.id}
               type="button"
+              role="radio"
+              aria-checked={isSelected}
+              tabIndex={isSelected ? 0 : -1}
               onClick={() => onSelect(option.id)}
-              aria-pressed={isSelected}
               className={`relative h-[6.5rem] w-[5rem] sm:h-[9.75rem] sm:w-[7.25rem] shrink-0 border bg-background p-1 pt-[4.5rem] sm:pt-[7rem] text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                 isSelected
                   ? 'border-foreground border-2 shadow-[0_0_0_2px_rgba(0,0,0,0.18)]'

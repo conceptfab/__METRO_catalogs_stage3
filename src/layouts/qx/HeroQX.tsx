@@ -77,17 +77,16 @@ function anchorToFlexClasses(anchor: HeroAnchor): string {
 }
 
 function descriptionPositionClasses(position: HeroDescriptionPosition): string {
+  // Returns horizontal anchoring only. Vertical anchoring (top vs bottom) is
+  // applied via inline `top` / `bottom` in `descriptionInlineStyle`.
   switch (position) {
     case 'bottom-left':
-      return 'left-6';
-    case 'bottom-right':
-      return 'right-6';
     case 'top-left':
       return 'left-6';
+    case 'bottom-right':
     case 'top-right':
       return 'right-6';
     case 'top-center':
-      return 'left-1/2 -translate-x-1/2';
     case 'bottom-center':
     default:
       return 'left-1/2 -translate-x-1/2';
@@ -115,6 +114,7 @@ function useHeroQXViewModel(data: HeroData) {
     displaySlides.length - 1,
   );
   const [currentIndex, setCurrentIndex] = useState(initialIdx);
+  const [isCoverVisible, setIsCoverVisible] = useState(true);
   const isHoveredRef = useRef(false);
   const currentSlide = displaySlides[currentIndex] ?? displaySlides[0];
 
@@ -250,8 +250,20 @@ function useHeroQXViewModel(data: HeroData) {
   }, [goPrev, goNext]);
 
   useEffect(() => {
+    const cover = document.getElementById('cover');
+    if (!cover) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsCoverVisible(entry.isIntersecting),
+      { threshold: 0.25 },
+    );
+    observer.observe(cover);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!hasSlider || !isCoverVisible) return;
+
     const onKeyDown = (event: KeyboardEvent) => {
-      if (!hasSlider) return;
       const target = event.target as HTMLElement;
       if (
         target.tagName === 'INPUT' ||
@@ -274,7 +286,7 @@ function useHeroQXViewModel(data: HeroData) {
 
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [hasSlider]);
+  }, [hasSlider, isCoverVisible]);
 
   const ctaButton = (extraClassName?: string) => (
     <button
@@ -350,6 +362,14 @@ function renderHeroQX({
       }}
       onMouseLeave={() => {
         isHoveredRef.current = false;
+      }}
+      onFocusCapture={() => {
+        isHoveredRef.current = true;
+      }}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          isHoveredRef.current = false;
+        }
       }}
     >
       <div

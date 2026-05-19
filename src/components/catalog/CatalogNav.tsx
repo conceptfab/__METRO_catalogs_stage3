@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { m, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Image from 'next/image';
 import type { SectionConfig } from '@/types/catalog';
 import { QxText } from './QxText';
@@ -123,6 +123,7 @@ function useCatalogNavController({
     { activeSection: 'cover', scrolled: false },
   );
   const [isOpen, setIsOpen] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
   const scrollAnimationRef = useRef<number | null>(null);
   const scrollingToSectionRef = useRef<string | null>(null);
   const navExpanded = !scrolled;
@@ -212,10 +213,18 @@ function useCatalogNavController({
     const initialTarget = computeTargetTop();
     const startTop = window.scrollY;
     const initialDistance = initialTarget - startTop;
-    const duration = Math.min(Math.max(Math.abs(initialDistance) * 0.55, 420), 900);
+    const duration = prefersReducedMotion
+      ? 0
+      : Math.min(Math.max(Math.abs(initialDistance) * 0.55, 240), 500);
     const startTime = window.performance.now();
 
     setIsOpen(false);
+
+    if (duration === 0) {
+      window.scrollTo(0, computeTargetTop());
+      scrollingToSectionRef.current = null;
+      return;
+    }
 
     const animateScroll = (time: number) => {
       const elapsed = time - startTime;
@@ -284,7 +293,7 @@ function renderCatalogNav({
           className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
             scrolled || isOpen
               ? 'bg-surface-elevated shadow-[0_8px_24px_rgba(0,0,0,0.08)]'
-              : 'shadow-none'
+              : 'shadow-none bg-gradient-to-b from-black/15 to-transparent'
           }`}
         >
           <div className="mx-auto max-w-[1440px] px-6 sm:px-8 lg:px-0">
@@ -309,7 +318,7 @@ function renderCatalogNav({
                       <li key={section.id} className="h-full">
                         <button
                           onClick={() => scrollTo(section.id)}
-                          className={`catalog-nav-link flex h-full items-center px-3 text-sm font-medium transition-colors !rounded-none ${
+                          className={`catalog-nav-link flex h-full items-center px-3 text-sm font-medium transition-colors !rounded-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                             index === visibleSections.length - 1 ? 'pr-0' : ''
                           } ${
                             isSectionHighlighted(section.id)
@@ -355,7 +364,7 @@ function renderCatalogNav({
                   <li key={section.id}>
                     <button
                       onClick={() => scrollTo(section.id)}
-                      className={`catalog-nav-link w-full border-b border-muted p-5 text-left text-base font-medium transition-colors last:border-0 !rounded-none ${
+                      className={`catalog-nav-link w-full border-b border-muted p-5 text-left text-base font-medium transition-colors last:border-0 !rounded-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                         isSectionHighlighted(section.id)
                           ? '!font-bold !text-foreground'
                           : 'text-muted-foreground hover:text-foreground'
@@ -383,7 +392,7 @@ function renderCatalogNav({
         className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
           scrolled || isOpen
             ? 'bg-surface-elevated py-3 shadow-[0_8px_24px_rgba(0,0,0,0.08)]'
-            : 'shadow-none'
+            : 'shadow-none bg-gradient-to-b from-black/15 to-transparent'
         }`}
       >
         <div className="mx-auto max-w-[1440px] px-6 sm:px-8">
@@ -407,7 +416,7 @@ function renderCatalogNav({
                   <li key={section.id} className="flex-1">
                     <button
                       onClick={() => scrollTo(section.id)}
-                      className={`catalog-nav-link flex w-full items-center justify-center border-b-2 px-3 py-2 text-sm font-medium transition-colors ${
+                      className={`catalog-nav-link flex w-full items-center justify-center border-b-2 px-3 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                         isSectionHighlighted(section.id)
                           ? '!border-foreground !font-bold !text-foreground'
                           : 'border-transparent text-muted-foreground hover:border-foreground hover:text-foreground'
@@ -448,7 +457,7 @@ function renderCatalogNav({
                 <li key={section.id}>
                   <button
                     onClick={() => scrollTo(section.id)}
-                    className={`catalog-nav-link w-full p-4 text-left text-base font-medium transition-colors ${
+                    className={`catalog-nav-link w-full p-4 text-left text-base font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                         isSectionHighlighted(section.id)
                           ? '!font-bold !text-foreground'
                           : 'text-muted-foreground hover:text-foreground'
