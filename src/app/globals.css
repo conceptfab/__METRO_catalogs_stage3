@@ -559,23 +559,6 @@ html {
   font-weight: 200 !important;
 }
 
-/* Prevent layout shift when active catalog nav link toggles to bold.
-   The ::after pseudo reserves the bold-weight width invisibly so the link
-   box does not resize when font-weight changes. */
-.catalog-nav-link {
-  position: relative;
-}
-
-.catalog-nav-link::after {
-  content: attr(data-label);
-  display: block;
-  font-weight: 700;
-  height: 0;
-  overflow: hidden;
-  visibility: hidden;
-  pointer-events: none;
-}
-
 .catalog-qx0 :is(#overview, #finishes, #materials, #gallery, #dimensions, #features, #packshots) h2.font-display:not(.section_Title) {
   font-size: clamp(2.52rem, 5.76vw, 3.96rem) !important;
 }
