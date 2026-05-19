@@ -95,7 +95,7 @@ describe('MaterialsOptionGroup', () => {
     expect(radios[1].getAttribute('aria-checked')).toBe('false');
   });
 
-  it('renders a visible Check indicator on the selected tile', () => {
+  it('selected tile shows a high-contrast outer ring (border + offset shadow)', () => {
     const { getAllByRole } = render(
       <MaterialsOptionGroup
         title="Finish"
@@ -104,7 +104,10 @@ describe('MaterialsOptionGroup', () => {
         onSelect={() => {}}
       />,
     );
-    const selected = getAllByRole('radio')[0];
-    expect(selected.querySelector('[data-testid="materials-check"]')).not.toBeNull();
+    const [selected, other] = getAllByRole('radio');
+    expect(selected.className).toContain('border-foreground');
+    expect(selected.className).toMatch(/shadow-\[.*var\(--foreground\)\]/);
+    expect(other.className).toContain('border-transparent');
+    expect(other.className).not.toMatch(/shadow-\[.*var\(--foreground\)\]/);
   });
 });
