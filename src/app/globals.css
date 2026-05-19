@@ -692,6 +692,12 @@ html {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .hero-image {
+    animation: none !important;
+  }
+}
+
 .hero-text .qx-word {
   font-family: inherit !important;
   font-weight: inherit !important;
