@@ -615,7 +615,7 @@ html {
   font-family: var(--font-body);
   font-weight: var(--hero-text-weight, 300);
   font-size: var(--hero-text-size, 2.4rem);
-  line-height: 1.15;
+  line-height: 1.22;
   letter-spacing: 0;
   text-transform: uppercase;
   color: var(--hero-text-color, #b8b3b2);
@@ -623,7 +623,7 @@ html {
 
 @media (max-width: 767px) {
   .hero-text {
-    line-height: 1.15;
+    line-height: 1.22;
     font-weight: var(--hero-text-weight-mobile, 300);
     font-size: calc(var(--hero-text-size-mobile, var(--hero-text-size, 2.4rem)) * 0.8);
   }
