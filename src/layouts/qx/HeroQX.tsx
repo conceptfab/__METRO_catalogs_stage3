@@ -364,6 +364,14 @@ function renderHeroQX({
       onMouseLeave={() => {
         isHoveredRef.current = false;
       }}
+      onFocusCapture={() => {
+        isHoveredRef.current = true;
+      }}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+          isHoveredRef.current = false;
+        }
+      }}
     >
       <div
         className="absolute inset-0"
