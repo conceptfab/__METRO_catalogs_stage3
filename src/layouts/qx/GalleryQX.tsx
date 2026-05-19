@@ -26,15 +26,7 @@ const GalleryQX = ({ data }: GallerySectionProps) => {
     'lg:top-[705px]',
   ];
 
-  const openLightbox = (index: number) => {
-    if (
-      typeof window !== 'undefined' &&
-      window.matchMedia('(max-width: 1023px)').matches
-    ) {
-      return;
-    }
-    setLightboxIndex(index);
-  };
+  const openLightbox = (index: number) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
 
   const navigate = (dir: 1 | -1) => {
