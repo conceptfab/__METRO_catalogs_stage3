@@ -115,6 +115,7 @@ function useHeroQXViewModel(data: HeroData) {
     displaySlides.length - 1,
   );
   const [currentIndex, setCurrentIndex] = useState(initialIdx);
+  const [isCoverVisible, setIsCoverVisible] = useState(true);
   const isHoveredRef = useRef(false);
   const currentSlide = displaySlides[currentIndex] ?? displaySlides[0];
 
@@ -250,8 +251,20 @@ function useHeroQXViewModel(data: HeroData) {
   }, [goPrev, goNext]);
 
   useEffect(() => {
+    const cover = document.getElementById('cover');
+    if (!cover) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsCoverVisible(entry.isIntersecting),
+      { threshold: 0.25 },
+    );
+    observer.observe(cover);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!hasSlider || !isCoverVisible) return;
+
     const onKeyDown = (event: KeyboardEvent) => {
-      if (!hasSlider) return;
       const target = event.target as HTMLElement;
       if (
         target.tagName === 'INPUT' ||
@@ -274,7 +287,7 @@ function useHeroQXViewModel(data: HeroData) {
 
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [hasSlider]);
+  }, [hasSlider, isCoverVisible]);
 
   const ctaButton = (extraClassName?: string) => (
     <button
