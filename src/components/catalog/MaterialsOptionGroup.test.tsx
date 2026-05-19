@@ -22,7 +22,7 @@ const opts: MaterialsConfiguratorOption[] = [
 ];
 
 describe('MaterialsOptionGroup', () => {
-  it('exposes group semantics with aria-labelledby pointing to title', () => {
+  it('exposes radiogroup with aria-labelledby pointing to title', () => {
     const { getByRole, getByText } = render(
       <MaterialsOptionGroup
         title="Desktop Finish"
@@ -31,7 +31,7 @@ describe('MaterialsOptionGroup', () => {
         onSelect={() => {}}
       />,
     );
-    const group = getByRole('group');
+    const group = getByRole('radiogroup');
     const heading = getByText('Desktop Finish');
     expect(group.getAttribute('aria-labelledby')).toBe(heading.id);
     expect(heading.id).toBeTruthy();
@@ -58,11 +58,53 @@ describe('MaterialsOptionGroup', () => {
         onSelect={() => {}}
       />,
     );
-    const tile = screen.getAllByRole('button')[0];
+    const tile = screen.getAllByRole('radio')[0];
     // mobile-first compact, sm: original size
     expect(tile.className).toMatch(/h-\[6\.5rem\]/);
     expect(tile.className).toMatch(/w-\[5rem\]/);
     expect(tile.className).toMatch(/sm:h-\[9\.75rem\]/);
     expect(tile.className).toMatch(/sm:w-\[7\.25rem\]/);
+  });
+
+  it('uses gap-2 (8px) between tiles to meet touch spacing minimum', () => {
+    const { getByRole } = render(
+      <MaterialsOptionGroup
+        title="Finish"
+        options={opts}
+        selectedId="opt1"
+        onSelect={() => {}}
+      />,
+    );
+    const group = getByRole('radiogroup');
+    expect(group.className).toMatch(/gap-2(?!\d)/);
+  });
+
+  it('exposes radiogroup semantics with radio children', () => {
+    const { getAllByRole, getByRole } = render(
+      <MaterialsOptionGroup
+        title="Finish"
+        options={opts}
+        selectedId="opt1"
+        onSelect={() => {}}
+      />,
+    );
+    expect(getByRole('radiogroup')).toBeTruthy();
+    const radios = getAllByRole('radio');
+    expect(radios).toHaveLength(2);
+    expect(radios[0].getAttribute('aria-checked')).toBe('true');
+    expect(radios[1].getAttribute('aria-checked')).toBe('false');
+  });
+
+  it('renders a visible Check indicator on the selected tile', () => {
+    const { getAllByRole } = render(
+      <MaterialsOptionGroup
+        title="Finish"
+        options={opts}
+        selectedId="opt1"
+        onSelect={() => {}}
+      />,
+    );
+    const selected = getAllByRole('radio')[0];
+    expect(selected.querySelector('[data-testid="materials-check"]')).not.toBeNull();
   });
 });

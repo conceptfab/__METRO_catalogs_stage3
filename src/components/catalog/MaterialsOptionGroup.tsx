@@ -1,6 +1,7 @@
 'use client';
 
 import { useId } from 'react';
+import { Check } from 'lucide-react';
 import type { MaterialsConfiguratorOption } from '@/types/catalog';
 import { QxText } from '@/components/catalog/QxText';
 
@@ -41,9 +42,9 @@ export function MaterialsOptionGroup({
       </h3>
 
       <div
-        role="group"
+        role="radiogroup"
         aria-labelledby={titleId}
-        className="flex flex-wrap gap-[5px]"
+        className="flex flex-wrap gap-2"
       >
         {options.map((option) => {
           const isSelected = option.id === selectedId;
@@ -53,8 +54,10 @@ export function MaterialsOptionGroup({
             <button
               key={option.id}
               type="button"
+              role="radio"
+              aria-checked={isSelected}
+              tabIndex={isSelected ? 0 : -1}
               onClick={() => onSelect(option.id)}
-              aria-pressed={isSelected}
               className={`relative h-[6.5rem] w-[5rem] sm:h-[9.75rem] sm:w-[7.25rem] shrink-0 border bg-background p-1 pt-[4.5rem] sm:pt-[7rem] text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                 isSelected
                   ? 'border-foreground border-2 shadow-[0_0_0_2px_rgba(0,0,0,0.18)]'
@@ -66,6 +69,15 @@ export function MaterialsOptionGroup({
                 className="absolute left-1 right-1 top-1 aspect-square bg-cover bg-center transition-transform duration-300 hover:scale-105"
                 style={{ backgroundImage: `url("${option.thumbnail}")` }}
               />
+              {isSelected && (
+                <span
+                  aria-hidden="true"
+                  data-testid="materials-check"
+                  className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center bg-foreground text-background"
+                >
+                  <Check size={14} strokeWidth={2.5} />
+                </span>
+              )}
               <p className="text-[11px] font-medium leading-tight text-foreground sm:text-xs">
                 <span className="block"><QxText text={label.code} /></span>
                 {label.name && (
