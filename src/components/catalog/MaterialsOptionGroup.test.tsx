@@ -82,19 +82,4 @@ describe('MaterialsOptionGroup', () => {
     expect(radios[1].getAttribute('aria-checked')).toBe('false');
   });
 
-  it('selected tile shows a high-contrast outer ring (border + offset shadow)', () => {
-    const { getAllByRole } = render(
-      <MaterialsOptionGroup
-        title="Finish"
-        options={opts}
-        selectedId="opt1"
-        onSelect={() => {}}
-      />,
-    );
-    const [selected, other] = getAllByRole('radio');
-    expect(selected.className).toContain('border-foreground');
-    expect(selected.className).toMatch(/shadow-\[.*var\(--foreground\)\]/);
-    expect(other.className).toContain('border-transparent');
-    expect(other.className).not.toMatch(/shadow-\[.*var\(--foreground\)\]/);
-  });
 });

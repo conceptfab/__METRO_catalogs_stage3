@@ -57,9 +57,9 @@ export function MaterialsOptionGroup({
               aria-checked={isSelected}
               tabIndex={isSelected ? 0 : -1}
               onClick={() => onSelect(option.id)}
-              className={`relative h-[6.5rem] w-[5rem] sm:h-[9.75rem] sm:w-[7.25rem] shrink-0 border bg-background p-1 pt-[4.5rem] sm:pt-[7rem] text-left transition-[box-shadow,border-color] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
+              className={`relative h-[6.5rem] w-[5rem] sm:h-[9.75rem] sm:w-[7.25rem] shrink-0 border bg-background p-1 pt-[4.5rem] sm:pt-[7rem] text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                 isSelected
-                  ? 'border-foreground shadow-[0_0_0_2px_var(--background),0_0_0_4px_var(--foreground)]'
+                  ? 'border-foreground border-2 shadow-[0_0_0_2px_rgba(0,0,0,0.18)]'
                   : 'border-transparent hover:border-foreground/50'
               }`}
             >
