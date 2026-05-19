@@ -1887,6 +1887,92 @@ function renderDesignSystemPage({
             layer over the bottom 2/3, guaranteeing hero-text contrast over
             variable slide imagery.
           </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Catalog nav focus ring:</strong>{' '}
+            every <code>.catalog-nav-link</code> button (qx0 desktop, qx0 mobile
+            drawer, default desktop, default mobile drawer) carries{' '}
+            <code>
+              focus-visible:outline focus-visible:outline-2
+              focus-visible:outline-offset-2
+              focus-visible:outline-foreground
+            </code>
+            . Keyboard users always see a 2 px black ring on the focused link.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Catalog nav smooth-scroll:</strong>{' '}
+            duration is clamped to <code>240–500 ms</code> (was 420–900 ms) and
+            collapses to <code>0 ms</code> (instant <code>window.scrollTo</code>)
+            when <code>useReducedMotion()</code> returns true. Keeps motion under
+            the WCAG / Material 500 ms ceiling for vestibular-safe navigation.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Catalog nav transparent scrim:</strong>{' '}
+            when not scrolled, both nav variants apply{' '}
+            <code>bg-gradient-to-b from-black/15 to-transparent</code> so the
+            brand logo and links stay legible over light <em>and</em> dark hero
+            imagery. Scrim disappears as soon as the nav switches to{' '}
+            <code>bg-surface-elevated</code> on scroll.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Hero arrow-key scope:</strong>{' '}
+            the global ArrowLeft / ArrowRight listener in <code>HeroQX</code> is
+            gated by an <code>IntersectionObserver</code> on{' '}
+            <code>#cover</code> at <code>threshold: 0.25</code>. Arrow keys only
+            advance the hero slider while the cover section is in view — they no
+            longer silently flip slides while the user reads lower sections.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Hero autoplay focus pause:</strong>{' '}
+            the hero <code>&lt;section&gt;</code> wires{' '}
+            <code>onFocusCapture</code> + <code>onBlurCapture</code> into the
+            same <code>isHoveredRef</code> as the mouse handlers (with a{' '}
+            <code>currentTarget.contains(relatedTarget)</code> guard so focus
+            moving between dots / arrows does not unpause). Keyboard users
+            tabbing into the slider controls get autoplay paused, matching
+            mouse hover behaviour.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Hero text line-height:</strong>{' '}
+            <code>.hero-text</code> uses <code>line-height: 1.22</code> (was
+            1.15) at both desktop and mobile breakpoints. Prevents uppercase
+            descenders / ascenders colliding with the row below on small Polish
+            phrases (e.g. <em>&quot;KOLEKCJA / OFFICE&quot;</em>) at 320–375 px.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">Lightbox image hardening:</strong>{' '}
+            the modal image is rendered with <code>draggable={'{false}'}</code>{' '}
+            to suppress native OS ghost-drag, and the &bdquo;Image N of M&rdquo;
+            counter uses <code>aria-live=&quot;off&quot;</code> so screen
+            readers do not re-announce on every arrow-key navigation (the
+            dialog itself is already named via <code>aria-labelledby</code>).
+            Body scroll lock + focus trap come from{' '}
+            <code>useFocusTrap</code> only — no duplicated effect.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">color-scheme: light:</strong>{' '}
+            <code>:root</code> pins <code>color-scheme: light</code> so
+            browser-native scrollbars and form controls render in light theme
+            regardless of the user&apos;s OS dark-mode setting. The catalog UI
+            is light-only by design; <code>.dark</code> tokens defined in{' '}
+            <code>globals.css</code> are not currently applied by any consumer.
+          </A11yNote>
+
+          <A11yNote>
+            <strong className="font-semibold">prefers-contrast: more:</strong>{' '}
+            under high-contrast mode, unselected{' '}
+            <code>[role=&quot;radiogroup&quot;] [role=&quot;radio&quot;]</code>{' '}
+            tiles render with a 1 px <code>border-foreground</code> instead of{' '}
+            <code>border-transparent</code> so the swatch grid structure stays
+            visible for low-vision users without changing default visuals.
+          </A11yNote>
         </div>
       </section>
 
