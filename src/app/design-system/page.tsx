@@ -838,8 +838,11 @@ function renderDesignSystemPage({
             <QxText text="METRO Catalogs" />
           </h1>
           <p className="sec_main_text mt-10 max-w-[60ch]">
-            Co realnie działa w katalogach <span className="qx-word">QX</span> i{' '}
-            <span className="qx-word">QS</span>, z renderem, ścieżką źródła i
+            Co realnie działa w katalogach <span className="qx-word">QX</span>,{' '}
+            <span className="qx-word">QS</span>, <span className="qx-word">VR</span>,{' '}
+            <span className="qx-word">TS</span>, <span className="qx-word">FM</span>,{' '}
+            <span className="qx-word">FOTA</span> i{' '}
+            <span className="qx-word">MCR800</span>, z renderem, ścieżką źródła i
             tokenami. Plus to, co dopiero powstanie.
           </p>
           <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8">
@@ -2030,7 +2033,7 @@ function renderDesignSystemPage({
               METRO Design System
             </p>
             <p className="mt-1 text-[11px] uppercase tracking-widest text-muted-foreground">
-              Zaktualizowano · 2026-05-18
+              Zaktualizowano · 2026-05-19
             </p>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
