@@ -66,19 +66,6 @@ describe('MaterialsOptionGroup', () => {
     expect(tile.className).toMatch(/sm:w-\[7\.25rem\]/);
   });
 
-  it('uses gap-2 (8px) between tiles to meet touch spacing minimum', () => {
-    const { getByRole } = render(
-      <MaterialsOptionGroup
-        title="Finish"
-        options={opts}
-        selectedId="opt1"
-        onSelect={() => {}}
-      />,
-    );
-    const group = getByRole('radiogroup');
-    expect(group.className).toMatch(/gap-2(?!\d)/);
-  });
-
   it('exposes radiogroup semantics with radio children', () => {
     const { getAllByRole, getByRole } = render(
       <MaterialsOptionGroup

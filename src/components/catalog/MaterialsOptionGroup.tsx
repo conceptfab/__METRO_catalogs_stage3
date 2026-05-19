@@ -43,7 +43,7 @@ export function MaterialsOptionGroup({
       <div
         role="radiogroup"
         aria-labelledby={titleId}
-        className="flex flex-wrap gap-2"
+        className="flex flex-wrap gap-[5px]"
       >
         {options.map((option) => {
           const isSelected = option.id === selectedId;
