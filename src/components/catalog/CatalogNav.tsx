@@ -318,6 +318,7 @@ function renderCatalogNav({
                       <li key={section.id} className="h-full">
                         <button
                           onClick={() => scrollTo(section.id)}
+                          data-label={section.label}
                           className={`catalog-nav-link flex h-full items-center px-3 text-sm font-medium transition-colors !rounded-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                             index === visibleSections.length - 1 ? 'pr-0' : ''
                           } ${
@@ -364,6 +365,7 @@ function renderCatalogNav({
                   <li key={section.id}>
                     <button
                       onClick={() => scrollTo(section.id)}
+                      data-label={section.label}
                       className={`catalog-nav-link w-full border-b border-muted p-5 text-left text-base font-medium transition-colors last:border-0 !rounded-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                         isSectionHighlighted(section.id)
                           ? '!font-bold !text-foreground'
@@ -416,6 +418,7 @@ function renderCatalogNav({
                   <li key={section.id} className="flex-1">
                     <button
                       onClick={() => scrollTo(section.id)}
+                      data-label={section.label}
                       className={`catalog-nav-link flex w-full items-center justify-center border-b-2 px-3 py-2 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                         isSectionHighlighted(section.id)
                           ? '!border-foreground !font-bold !text-foreground'
@@ -457,6 +460,7 @@ function renderCatalogNav({
                 <li key={section.id}>
                   <button
                     onClick={() => scrollTo(section.id)}
+                    data-label={section.label}
                     className={`catalog-nav-link w-full p-4 text-left text-base font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                         isSectionHighlighted(section.id)
                           ? '!font-bold !text-foreground'
