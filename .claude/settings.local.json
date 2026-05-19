@@ -121,7 +121,10 @@
       "Bash(node f:/tmp/rebrand-catalog.mjs TS FM)",
       "Bash(python -c 'from PIL import Image, ImageStat; *)",
       "Bash(python -c 'from PIL import Image, ImageStat *)",
-      "Bash(npx --no-install tsc --noEmit)"
+      "Bash(npx --no-install tsc --noEmit)",
+      "Bash(awk '{print $5, $9}')",
+      "Bash(cat > *)",
+      "Bash(node --input-type=module -e ' *)"
     ],
     "additionalDirectories": [
       "/tmp"
