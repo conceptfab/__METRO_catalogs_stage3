@@ -1231,7 +1231,7 @@ function renderDesignSystemPage({
                     <h4 className="mb-2 font-display text-lg font-normal text-foreground">
                       I-st price group
                     </h4>
-                    <div className="flex flex-wrap gap-[5px]">
+                    <div role="radiogroup" aria-label="I-st price group desktop finish" className="flex flex-wrap gap-[5px]">
                       {[
                         { code: 'U100', name: 'White', selected: true },
                         { code: 'U110', name: 'Ash Grey' },
@@ -1253,7 +1253,7 @@ function renderDesignSystemPage({
                     <h4 className="mb-2 font-display text-lg font-normal text-foreground">
                       II-nd price group
                     </h4>
-                    <div className="flex flex-wrap gap-[5px]">
+                    <div role="radiogroup" aria-label="II-nd price group desktop finish" className="flex flex-wrap gap-[5px]">
                       {[
                         { code: 'W200', name: 'Light Beech' },
                         { code: 'W210', name: 'Elm' },
@@ -1271,7 +1271,7 @@ function renderDesignSystemPage({
               {/* Steel parts colors (frame): variant primary, qx-emphasis-title */}
               <div className="mt-8">
                 <h3 className="mb-3 qx-emphasis-title">Steel parts colors</h3>
-                <div className="flex flex-wrap gap-[5px]">
+                <div role="radiogroup" aria-label="Steel parts colors" className="flex flex-wrap gap-[5px]">
                   {[
                     { code: 'RAL9006', name: 'Aluminium Grey', selected: true },
                     { code: 'RAL9005', name: 'Jet Black' },
@@ -1787,14 +1787,14 @@ function renderDesignSystemPage({
           </A11yNote>
 
           <A11yNote>
-            <strong className="font-semibold">Group semantics (MaterialsOptionGroup):</strong>{' '}
-            container has <code>role=&quot;group&quot;</code> +{' '}
+            <strong className="font-semibold">Radiogroup semantics (MaterialsOptionGroup):</strong>{' '}
+            container has <code>role=&quot;radiogroup&quot;</code> +{' '}
             <code>aria-labelledby</code> pointing at the{' '}
             <code>&lt;h3&gt;</code>. Each option is a{' '}
-            <code>&lt;button aria-pressed&gt;</code>. (Choice of{' '}
-            <code>group</code> over <code>radiogroup</code>: no arrow-key
-            navigation needed; if added later, migrate to{' '}
-            <code>radiogroup</code> + roving tabindex.)
+            <code>&lt;button role=&quot;radio&quot; aria-checked&gt;</code>{' '}
+            with roving tabindex (<code>tabIndex={'{'}isSelected ? 0 : -1{'}'}</code>):
+            focus enters only the selected option, then native Arrow keys
+            navigate between siblings.
           </A11yNote>
           <A11yNote>
             <strong className="font-semibold">Border contrast:</strong> hover
@@ -2037,7 +2037,8 @@ function ProductCodeTablePreview({
 }
 
 /**
- * Exact replica of MaterialsOptionGroup.tsx button (L51–73). Static, no onSelect.
+ * Static replica of MaterialsOptionGroup.tsx button. No onSelect, no roving
+ * tabindex (this is a design preview, not an interactive widget).
  * Image source: /shared/materials/{CODE NAME}_thumb.webp (flat swatch, jak
  * w produkcji), nie /catalogs/QX/materials/metro {CODE}.webp (3D render).
  */
@@ -2057,11 +2058,12 @@ function SwatchButton({
   const thumbnailUrl = `/shared/materials/${filename}`;
   return (
     <div
-      aria-pressed={selected}
+      role="radio"
+      aria-checked={selected}
       className={`relative h-[9.75rem] w-[7.25rem] shrink-0 border bg-background p-1 pt-[7rem] text-left transition-colors ${
         selected
-          ? 'border-foreground shadow-[0_0_0_2px_rgba(0,0,0,0.18)]'
-          : 'border-transparent hover:border-foreground/20'
+          ? 'border-foreground border-2 shadow-[0_0_0_2px_rgba(0,0,0,0.18)]'
+          : 'border-transparent hover:border-foreground/50'
       }`}
     >
       <div
