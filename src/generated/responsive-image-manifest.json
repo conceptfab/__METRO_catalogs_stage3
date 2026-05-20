@@ -387,8 +387,8 @@
   ],
   "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_B1_R5_0000.webp": [],
   "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_C_2_r5_0000.webp": [],
-  "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_D_2_R5_0000.webp": [],
   "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_detal_R5_0000.webp": [],
+  "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_D_2_R5_0000.webp": [],
   "/catalogs/MCR800/features/07_25_Metro_Lada_WHITE_B_2_R5.webp": [],
   "/catalogs/MCR800/finishes/07_25_Metro_Lada_BLACK_C_2_r5_0000.webp": [],
   "/catalogs/MCR800/finishes/07_25_Metro_Lada_WHITE_C_2_R5.webp": [],
@@ -731,11 +731,11 @@
     512,
     1024
   ],
+  "/catalogs/QX/features/ac_last.webp": [],
+  "/catalogs/QX/features/assembly_last.webp": [],
   "/catalogs/QX/features/QX_extend_last.webp": [],
   "/catalogs/QX/features/QX_modular_last.webp": [],
   "/catalogs/QX/features/QX_welds_last.webp": [],
-  "/catalogs/QX/features/ac_last.webp": [],
-  "/catalogs/QX/features/assembly_last.webp": [],
   "/catalogs/QX/gallery/02_26_Metro_QX_HERO_3_R2_VIZ0001.webp": [
     256,
     512,

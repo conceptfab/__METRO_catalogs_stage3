@@ -124,7 +124,9 @@
       "Bash(npx --no-install tsc --noEmit)",
       "Bash(awk '{print $5, $9}')",
       "Bash(cat > *)",
-      "Bash(node --input-type=module -e ' *)"
+      "Bash(node --input-type=module -e ' *)",
+      "Bash(curl -sI \"https://metro-catalogs-stage3.vercel.app/catalog/QX/print?auto=0\")",
+      "Bash(curl -sI \"https://metro-catalogs-stage3.vercel.app/catalog/QX\")"
     ],
     "additionalDirectories": [
       "/tmp"
