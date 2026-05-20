@@ -598,7 +598,7 @@ html {
 .hero-text {
   font-family: var(--font-body);
   font-weight: var(--hero-text-weight, 300);
-  font-size: var(--hero-text-size, 2.4rem);
+  font-size: var(--hero-text-size, 3.12rem);
   line-height: 1.22;
   letter-spacing: 0;
   text-transform: uppercase;
@@ -609,7 +609,7 @@ html {
   .hero-text {
     line-height: 1.22;
     font-weight: var(--hero-text-weight-mobile, 300);
-    font-size: calc(var(--hero-text-size-mobile, var(--hero-text-size, 2.4rem)) * 0.8);
+    font-size: calc(var(--hero-text-size-mobile, var(--hero-text-size, 3.12rem)) * 0.8);
   }
 
   /* Mobile: dark text only — no background. Default color matches the hero

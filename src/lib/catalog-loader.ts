@@ -91,7 +91,7 @@ const DEFAULT_GLOBAL_CONFIG: GlobalConfig = {
   brandName: 'Metro',
   siteTitle: 'METRO',
   siteSubtitle: 'Product catalogs — browse by collection',
-  footerText: 'CONCEPT / CREATION / EXECUTION BY',
+  footerText: 'CONCEPT / CREATION / PRODUCTION BY',
   catalogListTitle: 'Available catalogs',
 };
 

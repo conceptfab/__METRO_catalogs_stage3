@@ -30,9 +30,6 @@
         "contentLift": "0",
         "ctaPosition": "floating",
         "ctaFloatingBottom": "2rem"
-      },
-      "mobileTextStyle": {
-        "color": "#2a2a2a"
       }
     },
     {
