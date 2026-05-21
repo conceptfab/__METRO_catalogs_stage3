@@ -1,86 +1,93 @@
 <claude-mem-context>
 # Memory Context
 
-- Double-check your output before presenting it. Verify that your changes actually address what the user asked for.
-- Re-read the user's last message before responding. Follow through on every instruction completely.
-- When the user corrects you, stop and re-read their message. Quote back what they asked for and confirm before proceeding.
-- When stuck, summarize what you've tried and ask the user for guidance instead of retrying the same approach.
-- Read the full file before editing. Plan all changes, then make ONE complete edit. If you've edited a file 3+ times, stop and re-read the user's requirements.
-- After 2 consecutive tool failures, stop and change your approach entirely. Explain what failed and try a different strategy.
-- Every few turns, re-read the original request to make sure you haven't drifted from the goal.
-
-# [__METRO_catalogs] recent context, 2026-05-09 2:15pm GMT+2
+# [__METRO_catalogs_stage3] recent context, 2026-05-21 7:16pm GMT+2
 
 Legend: 🎯session 🔴bugfix 🟣feature 🔄refactor ✅change 🔵discovery ⚖️decision 🚨security_alert 🔐security_note
 Format: ID TIME TYPE TITLE
 Fetch details: get_observations([IDs]) | Search: mem-search skill
 
-Stats: 50 obs (15,798t read) | 556,812t work | 97% savings
+Stats: 50 obs (15,836t read) | 599,358t work | 97% savings
 
-### May 8, 2026
-S1363 Code review of stage_2 branch — check improvements, dead code, optimizations — write conclusions in raport.md; extended with detailed ColorChip performance analysis (May 8 at 11:49 PM)
-S1364 Code review: find improvements, dead code, optimizations — write conclusions in raport.md (Polish: "kod działa prawidłowo, sprawdź co można poprawić, martwy kod, optymalizacje") (May 8 at 11:57 PM)
-S1365 react-doctor audit of metro-catalogs project with results saved to react_raport.md (May 8 at 11:57 PM)
-### May 9, 2026
-S1366 Execute React audit fixes from react_raport.md — planning phase with scope clarification before implementation (May 9 at 10:18 AM)
-S1367 Execute high-priority React audit fixes from react_raport.md on __METRO_catalogs project (branch stage_2) (May 9 at 10:19 AM)
-S1368 react-doctor audit after recent fixes — score comparison and remaining issues analysis (May 9 at 10:24 AM)
-S1369 react-doctor audit of __METRO_catalogs project — create remediation plan and save to react_raport.md / plan_poprawek.md (May 9 at 10:26 AM)
-S1370 Execute plan_poprawek.md — a multi-task cleanup and quality improvement plan for the metro-catalogs Next.js project on the stage_2 branch (May 9 at 10:33 AM)
-2677 10:40a 🔄 HeroQX.tsx fully migrated; OverviewQX.tsx read with 2 call sites identified
-2678 " 🔄 OverviewQX and GalleryQX fully migrated to QxText component
-2679 10:44a 🔄 FeaturesQX: Extracted FeatureVideo render function into standalone component
-2680 10:45a 🔄 FeaturesQX FeatureVideo extraction committed to stage_2 branch
-2681 " 🔄 ColorChip: Tailwind h-11 w-11 consolidated to size-11 shorthand
-2682 " 🔄 Tailwind size-* shorthand applied across ColorChip, Lightbox, and FinishesQX
-2683 " 🔄 Tailwind size-* shorthand cleanup extended to FinishesQX zoom icon and design-system page indicators
-2684 11:00a 🔵 Knip audit revealed 40+ unused exports, types, and devDependencies
-2685 " 🔵 Knip false positives identified for several "unused" exports
-2686 11:01a 🔵 schemas/index.ts barrel file is entirely unused — no imports reference it
-2687 " 🔵 loadCatalogMeta is a lightweight catalog list-view loader with no external consumers
-2688 11:02a 🔄 loadCatalogMeta de-exported — made internal helper to getCatalogList
-2689 " 🔵 agent-skills.ts internal exports are building blocks for public route functions
-2690 " 🔄 Removed unnecessary export keywords from ColorChip, motion, and agent-skills modules
-2691 " 🔄 sha256Digest also de-exported from agent-skills.ts — fully private module
-2692 " ✅ TypeCheck, tests, and build all pass after knip de-export cleanup
-2693 " ✅ Committed knip de-export cleanup to stage_2 branch
-2694 " 🔴 a11y-helpers test fixed to use createElement for intentional missing-alt test case
-2695 11:03a ✅ Committed a11y-helpers test fix to stage_2 branch
-2696 " ✅ react-doctor score is 89/100 after stage_2 cleanup work
-2697 11:04a ✅ stage_2 branch: 16 commits completing plan_poprawek.md cleanup tasks
-S1371 react-doctor code audit of metro-catalogs project (May 9 at 11:04 AM)
-2698 11:05a 🔵 react-doctor audit of metro-catalogs: score 89/100, 97 issues across 21 files
-2699 11:06a 🔵 Knip dead-code investigation: CatalogMeta used internally but not imported externally; schema exports genuinely unused
-2700 11:08a 🔵 Knip JSON reveals 19 unused types in catalog.ts and most flagged img tags are framer-motion m.img (not migratable)
-2701 " 🔵 metro-catalogs uses a custom responsive image pipeline via responsiveImg() that replaces next/image functionality
-2702 " 🔵 parseHeroContent and parsePackshotsContent ARE consumed by catalog-loader.ts; only the raw schema exports are truly dead
-2703 11:09a 🔴 Deleted dead schemas barrel file src/lib/schemas/index.ts
-2704 11:10a 🔵 Deleting schemas/index.ts breaks catalog-loader.ts import — import path './schemas' now has no index to resolve
-2705 11:11a 🔴 Fixed catalog-loader.ts import after schemas barrel deletion — now imports directly from individual schema files
-2706 11:13a 🔄 Made heroContentSchema module-private in schemas/hero.ts; removed unused export
-2707 " 🔄 All Zod schema objects and derived types made module-private in hero.ts and packshots.ts
-2708 " 🔄 Started removing unused export keywords from catalog.ts types — CatalogMeta made module-private
-2709 " 🔄 Mass de-export of unused types in catalog.ts — 19 types made module-private
-2710 11:17a 🔄 PackshotsQX migrated from native img to Next.js Image component
-2711 11:18a 🔵 responsiveImg helper still used in FinishesQX and MaterialsQX after PackshotsQX migration
-2712 " 🔵 design-system page uses raw img tags and lacks next/image import
-2713 " 🔄 design-system page fully migrated to next/image with explicit aspect ratios
-S1372 react-doctor audit (`/react-doctor zrob audyt kodu`) — full code quality remediation of metro-catalogs Next.js app (May 9 at 11:19 AM)
-2714 11:25a 🔵 Lightbox broken on packshot images
-2715 " 🔵 Responsive image manifest structure for catalog images
-2716 11:26a 🔵 PackshotsQX lightbox only wired on desktop, not mobile
-2717 " 🔵 Lightbox render condition explicitly excludes mobile in PackshotsQX
-2718 11:27a 🔵 QX packshot files confirmed present with responsive variants
-2719 11:28a 🔵 QX and QS packshots confirmed present in responsive-image-manifest.json
-2720 " 🔵 QX catalog SSR HTML contains no packshot image URLs in JSON data
-2721 " 🔵 QX packshot images correctly SSR-rendered with full responsive srcsets
-2722 " 🔵 All QX packshot static files served correctly via dev server HTTP 200
-2723 11:29a 🔵 PackshotsQX.tsx has no uncommitted changes — bug exists in committed code
-2724 11:30a 🔵 Most recent PackshotsQX.tsx commit introduced image-loader utility refactor
-2725 " 🔵 Commit 5f74d97 modified Lightbox.tsx, PackshotsQX.tsx, and packshots schema — prime regression candidate
-2726 " 🔵 Custom image-loader breaks SVG images — missing width implementation causes Next.js warnings
+### May 19, 2026
+S1704 LCP optimization for hero images in METRO catalogs — finish the implementation (May 19 at 10:37 PM)
+4841 10:40p 🔵 HeroMCR800 Has Identical Missing fetchPriority Issue as HeroQX
+4842 10:41p 🔵 HeroData Type Reveals First Hero Image URL Resolvable Server-Side
+4843 " 🔵 CatalogPageQX Passes catalog.hero Directly to HeroQX — Preload Injection Point Confirmed
+4844 11:12p 🟣 Hero image LCP optimization with fetchPriority and decoding attributes
+4845 " 🟣 LCP image optimization applied to HeroMCR800 layout
+4846 11:13p 🟣 Server-side hero image preload via ReactDOM.preload in catalog page
+4847 " 🔵 TypeScript check and full test suite pass after LCP optimization changes
+S1705 Mobile performance improvement plan for metro-catalogs Next.js project — analyze PageSpeed mobile report and write actionable improvement plan (May 19 at 11:13 PM)
+4848 11:31p 🔵 metro-catalogs Next.js Project Structure Identified
+4849 11:32p 🔵 metro-catalogs Has MCP/OAuth Integration and Responsive Image Infrastructure
+4850 " 🔵 Responsive Image System: Feature Images Have No Responsive Variants
+4851 " 🔵 HeroQX and HeroMCR800 Are Near-Identical Duplicates with framer-motion Animations
+4852 " 🔵 Next.js Config: React Compiler Enabled, Custom Image Loader, No Analytics Scripts
+4853 " 🔵 CatalogPage Pre-loads LCP Hero Image with ReactDOM.preload
+4854 " 🔵 content-visibility: auto Already Applied to Below-Fold Catalog Sections
+4855 11:33p 🔵 WebMcpProvider Is Zero-Cost for Regular Users — Exits Immediately Without modelContext
+4856 " 🔵 Home Tile Pan Animations Use object-position — Non-Composited, Causes Repaints
+4857 " 🔵 public/catalogs Directory Is 255MB of Static Assets Excluded from Vercel Bundles
+4858 11:34p 🔵 print.css (729 Lines) Loaded Globally Without media="print" Attribute
+4859 " 🔵 Full Mobile Performance Audit Summary: No Render-Blocking Scripts, Fonts Optimal, Robots Valid
+4860 11:35p 🔵 FOTA Hero Images Are Massively Larger Than Other Catalogs at All Breakpoints
+4861 " 🔵 Thumbnail Generator Uses Fixed quality=85 with No Per-Catalog Override — FOTA Heaviness Is Source Content
+4862 " 🔵 Hero Thumbnails Have No Aspect Ratio Constraint — Full Source Dimensions Preserved
+4863 11:36p 🔵 Hero Mobile sizes='200vh' Causes Browser to Select 1280w–1920w Variant Instead of 640w on Mobile
+4864 11:37p 🔵 Gallery and Gallery-Thumb Mobile sizes Hints Are Also Oversized (200vw)
+4865 11:39p 🔵 Hero Slides Are Configured via JSON Files Per Catalog — slider.json Drives LCP Image Selection
+S1706 Mobile performance optimization: fix hero `sizes` LCP bug + doc cleanup in design-system page (May 19 at 11:48 PM)
+S1722 Replace "EXECUTION" with "PRODUCTION" in the ConceptFab.com footer tagline across the METRO catalogs Stage 3 project (May 19 at 11:59 PM)
+### May 20, 2026
+4982 5:58p ✅ Updated footer tagline from EXECUTION to PRODUCTION
+4983 " 🔵 CONCEPTFAB footer text defined in two source locations
+4984 5:59p ✅ Updated footerText default in catalog-loader.ts
+4985 " ✅ Footer tagline fully updated to PRODUCTION in both source files
+S1723 Shorten hero taglines for FM, VR, TS catalogs to single-line headline phrases (May 20 at 5:59 PM)
+4986 6:02p 🔵 VR catalog hero tagline contains literal "/n" instead of newline escape
+4987 6:03p 🔵 FM/VR/TS slider.json files share identical generic slide descriptions
+4988 " ✅ FM hero tagline shortened to single-line form
+4989 " ✅ VR and TS hero taglines shortened to single-line headlines
+S1725 Mobile PageSpeed performance improvement — analyze report and create/execute improvement plan; hero font size increased 30% as one action (May 20 at 6:03 PM)
+4991 6:11p 🔵 Hero Text Font-Size Architecture in METRO Catalogs
+4992 " 🔵 HeroQX Mobile Custom Properties Include Layout Alignment and Offset
+4994 6:12p 🔵 Catalog Hero JSON Uses fontSizePx for Description Text, Not Hero Title
+4995 " 🔵 Hero Text Mobile Alignment Defaults to Left; qx-word Inherits All Typography
+4996 " ✅ Hero Text Default Font Size Increased from 2.4rem to 3.12rem
+S1734 Mobile performance improvement — analyzing PageSpeed report and standardizing QX hero slider mobile text styles (May 20 at 6:13 PM)
+5010 6:18p ✅ Mobile HERO Section Text Styling Update to Match QX Slide 2
+5011 6:19p 🔵 QX Hero Slider JSON Structure — Slide 2 Has No mobileTextStyle
+5012 " 🔵 globals.css Mobile HERO Text Architecture — Per-Catalog and Per-Slide CSS Overrides
+5015 6:21p 🔵 FOTA Uses QX Layout; MCR800 Has No Mobile Hero Override in globals.css
+5016 " 🔵 Only QX Slide 1 Has a mobileTextStyle Override Across All Catalogs
+5022 6:30p ✅ Removed mobileTextStyle override from QX hero slider slide 1
+5023 6:31p 🔵 No mobileTextStyle overrides remain in any catalog hero JSON files
+S1741 Diagnose and resolve diverged git branches in METRO_catalogs_stage3 repo (user asked "co jest?" about a git error in VS Code) (May 20 at 6:31 PM)
+5038 6:48p 🔵 METRO_catalogs_stage3 Git Branch Diverged
+5040 6:50p 🔵 METRO_catalogs_stage3 Divergence: 4 Overlapping Binary Files Risk Merge Conflict
+5041 6:51p 🔵 METRO_catalogs_stage3 Merge Confirmed Conflict-Free
+S1742 Resolve diverged git branches in METRO_catalogs_stage3 — diagnosis, conflict check, and rebase execution (May 20 at 6:51 PM)
+5042 6:52p ✅ METRO_catalogs_stage3 Rebase Completed Successfully
+5043 6:53p ✅ METRO_catalogs_stage3 Pushed to GitHub — Branches Fully Synchronized
+S1743 Resolve diverged git branches in METRO_catalogs_stage3 — full cycle: diagnosis → rebase → push (May 20 at 6:53 PM)
+**Investigated**: Git state, branch divergence, merge base, per-commit file lists, blob-hash comparison of overlapping binary files, merge-tree dry run.
 
-Access 557k tokens of past work via get_observations([IDs]) or mem-search skill.
+**Learned**: - A remote commit (e477554) pushed 221 regenerated webp assets + responsive-image-manifest.json from a build machine/second workstation, causing the divergence.
+    - All 4 apparently overlapping FM RAL 9006 webp files had identical blob hashes — no true conflict existed.
+    - Rebase produces cleaner linear history than merge for this type of single-commit divergence.
+
+**Completed**: - Diagnosed divergence: local 0f0d653 vs remote e477554, common ancestor 7342f84.
+    - Confirmed zero conflicts via blob-hash comparison and merge-tree dry run.
+    - Executed git pull --rebase origin main — local chore commit re-hashed to b487c76, placed on top of e477554.
+    - Executed git push — origin/main advanced from e477554 to b487c76.
+    - Local and remote main are fully synchronized; VS Code git error resolved.
+    - Live on GitHub: footer "PRODUCTION", FM/VR/TS taglines shortened, hero font +30%, QX slider color unified.
+
+**Next Steps**: No active git task — repository is clean and fully synced. Awaiting next user task.
+
+
+Access 599k tokens of past work via get_observations([IDs]) or mem-search skill.
 </claude-mem-context>
 
 ## Design System — obowiązkowe

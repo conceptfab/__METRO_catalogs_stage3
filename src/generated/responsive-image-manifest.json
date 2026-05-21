@@ -203,10 +203,13 @@
     960,
     1440
   ],
-  "/catalogs/FM/thumbs/fm-home.webp": [
+  "/catalogs/FM/thumbs/fm-home-mobile.webp": [
     640,
     1280,
     1920
+  ],
+  "/catalogs/FM/thumbs/fm-home.webp": [
+    640
   ],
   "/catalogs/FM/thumbs/fm-nav.webp": [
     256,
@@ -375,6 +378,11 @@
     960,
     1440
   ],
+  "/catalogs/FOTA/thumbs/fota-home-mobile.webp": [
+    640,
+    1280,
+    1920
+  ],
   "/catalogs/FOTA/thumbs/fota-home.webp": [
     640,
     1280,
@@ -387,8 +395,8 @@
   ],
   "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_B1_R5_0000.webp": [],
   "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_C_2_r5_0000.webp": [],
-  "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_detal_R5_0000.webp": [],
   "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_D_2_R5_0000.webp": [],
+  "/catalogs/MCR800/features/07_25_Metro_Lada_BLACK_detal_R5_0000.webp": [],
   "/catalogs/MCR800/features/07_25_Metro_Lada_WHITE_B_2_R5.webp": [],
   "/catalogs/MCR800/finishes/07_25_Metro_Lada_BLACK_C_2_r5_0000.webp": [],
   "/catalogs/MCR800/finishes/07_25_Metro_Lada_WHITE_C_2_R5.webp": [],
@@ -514,6 +522,11 @@
   "/catalogs/MCR800/set/MCR_Set 3_white_wg__Shot_A__4K_R8.webp": [],
   "/catalogs/MCR800/set/MCR_Set 4_black_gb__Shot_A__4K_R8.webp": [],
   "/catalogs/MCR800/set/MCR_Set 4_white_wg__Shot_A__4K_R8.webp": [],
+  "/catalogs/MCR800/thumbs/mcr800-home-mobile.webp": [
+    640,
+    1280,
+    1920
+  ],
   "/catalogs/MCR800/thumbs/mcr800-home.webp": [
     640,
     1280,
@@ -721,21 +734,24 @@
     960,
     1440
   ],
-  "/catalogs/QS/thumbs/qs-home.webp": [
+  "/catalogs/QS/thumbs/qs-home-mobile.webp": [
     640,
     1280,
     1920
+  ],
+  "/catalogs/QS/thumbs/qs-home.webp": [
+    640
   ],
   "/catalogs/QS/thumbs/qs-nav.webp": [
     256,
     512,
     1024
   ],
-  "/catalogs/QX/features/ac_last.webp": [],
-  "/catalogs/QX/features/assembly_last.webp": [],
   "/catalogs/QX/features/QX_extend_last.webp": [],
   "/catalogs/QX/features/QX_modular_last.webp": [],
   "/catalogs/QX/features/QX_welds_last.webp": [],
+  "/catalogs/QX/features/ac_last.webp": [],
+  "/catalogs/QX/features/assembly_last.webp": [],
   "/catalogs/QX/gallery/02_26_Metro_QX_HERO_3_R2_VIZ0001.webp": [
     256,
     512,
@@ -985,10 +1001,13 @@
     960,
     1440
   ],
-  "/catalogs/QX/thumbs/qx-home.webp": [
+  "/catalogs/QX/thumbs/qx-home-mobile.webp": [
     640,
     1280,
     1920
+  ],
+  "/catalogs/QX/thumbs/qx-home.webp": [
+    640
   ],
   "/catalogs/QX/thumbs/qx-nav.webp": [
     256,
@@ -1173,10 +1192,13 @@
     960,
     1440
   ],
-  "/catalogs/TS/thumbs/ts-home.webp": [
+  "/catalogs/TS/thumbs/ts-home-mobile.webp": [
     640,
     1280,
     1920
+  ],
+  "/catalogs/TS/thumbs/ts-home.webp": [
+    640
   ],
   "/catalogs/TS/thumbs/ts-nav.webp": [
     256,
@@ -1412,10 +1434,13 @@
     960,
     1440
   ],
-  "/catalogs/VR/thumbs/vr-home.webp": [
+  "/catalogs/VR/thumbs/vr-home-mobile.webp": [
     640,
     1280,
     1920
+  ],
+  "/catalogs/VR/thumbs/vr-home.webp": [
+    640
   ],
   "/catalogs/VR/thumbs/vr-nav.webp": [
     256,

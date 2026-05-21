@@ -357,7 +357,7 @@ const HOMEPAGE_PATTERNS = [
   {
     name: 'Tile grid · Operational furniture',
     selector: 'src/app/page.tsx · Section 1',
-    desc: 'grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 z li.aspect-[1/2]. Każdy tile = next/image fill + hover overlay (bg-foreground/55) + brand label (88px font-black, opacity 0 → 1). Sizes: 200vw mobile / 132vw sm / 85vw lg. Źródło: /catalogs/{ID}/thumbs/{id}-home.webp.',
+    desc: 'grid-cols-1 lg:grid-cols-5 z li.aspect-[2/1] / lg:aspect-[1/2]. Każdy tile = picture + next/image fill + hover overlay (bg-foreground/55) + brand label (88px font-black, opacity 0 → 1). Sizes: 100vw mobile / 85vw lg. Źródło: /catalogs/{ID}/thumbs/{id}-home.webp; mobile, jeśli istnieje: {id}-home-mobile.webp.',
   },
   {
     name: 'Wide hero tile · Conference tables',
@@ -385,6 +385,7 @@ const CATALOG_THUMBS = {
   pattern: '/catalogs/{ID}/thumbs/{id}-{role}.webp',
   roles: [
     { name: '-home', purpose: 'Hero scena dla tile na homepage (object-cover, mocno wykadrowana).' },
+    { name: '-home-mobile', purpose: 'Mobilny kadr homepage tile, używany przez <source media="(max-width: 639px)"> gdy plik istnieje.' },
     { name: '-nav', purpose: 'Packshot/overview dla CatalogNav footer (overview content.json fallback).' },
   ],
   resolver: 'getCatalogFooterEntries() w catalog-loader: priorytet -nav.webp, fallback do overview/content.json packshot.',
@@ -458,7 +459,7 @@ const BUILD_SCRIPTS = [
   {
     name: 'generate-thumbnails.mjs',
     file: 'scripts/generate-thumbnails.mjs',
-    desc: 'Buduje /catalogs/{ID}/thumbs/{id}-home.webp i -nav.webp dla wszystkich 7 katalogów. Źródła: hero/ + overview packshot.',
+    desc: 'Buduje warianty responsywne dla /catalogs/{ID}/thumbs/{id}-home.webp, opcjonalnego -home-mobile.webp i -nav.webp dla wszystkich katalogów.',
   },
   {
     name: 'generate-catalog-pdfs.mjs',
@@ -1372,8 +1373,8 @@ function renderDesignSystemPage({
             family obsługuje QX, QS, VR, TS, FM, FOTA (layoutType: &quot;qx&quot;);
             MCR800 ma własny family (layoutType: &quot;mcr800&quot;). FM dodatkowo
             przechwytuje dispatch w CatalogPageQX/CatalogPrintQX i renderuje
-            dedykowane warianty Finishes / Materials / Packshots (mebel płytowy
-            — etykiety i kolory dopasowane do kontekstu).
+            dedykowane warianty Finishes / Materials / Packshots (mebel płytowy,
+            etykiety i kolory dopasowane do kontekstu).
           </p>
           <div className="mt-8">
             <p className="qx-emphasis-title">QX family · {QX_LAYOUTS.length} layoutów</p>
@@ -1398,7 +1399,7 @@ function renderDesignSystemPage({
               print) wpięte przez branch <code className="font-mono">catalog.id === &quot;FM&quot;</code> w{' '}
               <code className="font-mono">CatalogPageQX</code> /{' '}
               <code className="font-mono">CatalogPrintQX</code>. Powód: FM to mebel
-              płytowy — dekor pokrywa wszystkie powierzchnie (etykieta
+              płytowy, dekor pokrywa wszystkie powierzchnie (etykieta
               &quot;Decor&quot; zamiast &quot;Desktop Finish&quot; / &quot;Top&quot;),
               jeden kolor stali (RAL 9006), brak chipa &quot;Frame&quot; pod
               packshotami. Pozostałe katalogi z layoutType &quot;qx&quot; (QX, QS,
@@ -1633,7 +1634,7 @@ function renderDesignSystemPage({
             Custom hooks
           </h2>
           <p className="sec_main_text mt-6 max-w-[60ch]">
-            Hooki w <code className="font-mono">src/hooks/</code> — wszystkie SSR-safe
+            Hooki w <code className="font-mono">src/hooks/</code>, wszystkie SSR-safe
             i pokryte testami (use-focus-trap.test.tsx).
           </p>
           <div className="mt-12 grid grid-cols-1 gap-3 lg:grid-cols-2">
@@ -1925,7 +1926,7 @@ function renderDesignSystemPage({
             the global ArrowLeft / ArrowRight listener in <code>HeroQX</code> is
             gated by an <code>IntersectionObserver</code> on{' '}
             <code>#cover</code> at <code>threshold: 0.25</code>. Arrow keys only
-            advance the hero slider while the cover section is in view — they no
+            advance the hero slider while the cover section is in view; they no
             longer silently flip slides while the user reads lower sections.
           </A11yNote>
 
@@ -1956,7 +1957,7 @@ function renderDesignSystemPage({
             readers do not re-announce on every arrow-key navigation (the
             dialog itself is already named via <code>aria-labelledby</code>).
             Body scroll lock + focus trap come from{' '}
-            <code>useFocusTrap</code> only — no duplicated effect.
+            <code>useFocusTrap</code> only, no duplicated effect.
           </A11yNote>
 
           <A11yNote>

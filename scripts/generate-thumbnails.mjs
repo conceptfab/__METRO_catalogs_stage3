@@ -235,6 +235,7 @@ async function processGalleryDirectory(dirPath, force = false) {
  * Process the per-catalog thumbs/ directory.
  * Files are split by suffix:
  *  - *-home.webp → homepage tiles, get wider variants (640/1280/1920)
+ *  - *-home-mobile.webp → mobile homepage tiles, same wider variants
  *  - *-nav.webp  → footer / nav tiles, get small variants (256/512/1024)
  */
 async function processThumbsDirectory(dirPath, force = false) {
@@ -251,7 +252,9 @@ async function processThumbsDirectory(dirPath, force = false) {
     const baseName = path.parse(file).name;
 
     let widths;
-    if (baseName.endsWith('-home')) {
+    if (baseName.endsWith('-home-mobile')) {
+      widths = SECTION_WIDTHS.home_tile;
+    } else if (baseName.endsWith('-home')) {
       widths = SECTION_WIDTHS.home_tile;
     } else if (baseName.endsWith('-nav')) {
       widths = SECTION_WIDTHS.nav_tile;

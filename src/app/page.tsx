@@ -4,13 +4,69 @@ import Link from 'next/link';
 import { getCatalogList, getGlobalConfig } from '@/lib/catalog-loader';
 import CatalogNav from '@/components/catalog/CatalogNav';
 
-const QX_HERO_IMAGE = '/catalogs/QX/thumbs/qx-home.webp';
-const QS_HERO_IMAGE = '/catalogs/QS/thumbs/qs-home.webp';
-const VR_HERO_IMAGE = '/catalogs/VR/thumbs/vr-home.webp';
-const TS_HERO_IMAGE = '/catalogs/TS/thumbs/ts-home.webp';
-const FM_HERO_IMAGE = '/catalogs/FM/thumbs/fm-home.webp';
-const FOTA_HERO_IMAGE = '/catalogs/FOTA/thumbs/fota-home.webp';
-const MCR800_HERO_IMAGE = '/catalogs/MCR800/thumbs/mcr800-home.webp';
+type HomeCatalogId = 'QX' | 'QS' | 'VR' | 'TS' | 'FM' | 'FOTA' | 'MCR800';
+
+const HOME_CATALOG_IMAGES: Record<
+  HomeCatalogId,
+  { desktop: string; mobile?: string }
+> = {
+  QX: {
+    desktop: '/catalogs/QX/thumbs/qx-home.webp',
+    mobile: '/catalogs/QX/thumbs/qx-home-mobile.webp',
+  },
+  QS: {
+    desktop: '/catalogs/QS/thumbs/qs-home.webp',
+    mobile: '/catalogs/QS/thumbs/qs-home-mobile.webp',
+  },
+  VR: {
+    desktop: '/catalogs/VR/thumbs/vr-home.webp',
+    mobile: '/catalogs/VR/thumbs/vr-home-mobile.webp',
+  },
+  TS: {
+    desktop: '/catalogs/TS/thumbs/ts-home.webp',
+    mobile: '/catalogs/TS/thumbs/ts-home-mobile.webp',
+  },
+  FM: {
+    desktop: '/catalogs/FM/thumbs/fm-home.webp',
+    mobile: '/catalogs/FM/thumbs/fm-home-mobile.webp',
+  },
+  FOTA: {
+    desktop: '/catalogs/FOTA/thumbs/fota-home.webp',
+    mobile: '/catalogs/FOTA/thumbs/fota-home-mobile.webp',
+  },
+  MCR800: {
+    desktop: '/catalogs/MCR800/thumbs/mcr800-home.webp',
+    mobile: '/catalogs/MCR800/thumbs/mcr800-home-mobile.webp',
+  },
+};
+
+function CatalogTileImage({
+  catalogId,
+  priority = false,
+  sizes,
+}: {
+  catalogId: HomeCatalogId;
+  priority?: boolean;
+  sizes: string;
+}) {
+  const image = HOME_CATALOG_IMAGES[catalogId];
+
+  return (
+    <picture>
+      {image.mobile && (
+        <source media="(max-width: 639px)" srcSet={image.mobile} />
+      )}
+      <Image
+        src={image.desktop}
+        alt=""
+        fill
+        priority={priority}
+        sizes={sizes}
+        className="object-cover"
+      />
+    </picture>
+  );
+}
 
 export const metadata: Metadata = {
   title: 'METRO – Catalogs',
@@ -67,13 +123,10 @@ export default async function HomePage() {
                   className="group relative block h-full w-full overflow-hidden bg-background outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-foreground"
                   aria-label={`Open ${qxCatalog.meta.title} catalog`}
                 >
-                  <Image
-                    src={QX_HERO_IMAGE}
-                    alt=""
-                    fill
+                  <CatalogTileImage
+                    catalogId="QX"
                     priority
                     sizes="(min-width: 1024px) 85vw, 100vw"
-                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
                   <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[88px] font-black tracking-tighter text-background opacity-0 group-hover:opacity-100">
@@ -91,13 +144,10 @@ export default async function HomePage() {
                   className="group relative block h-full w-full overflow-hidden bg-background outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-foreground"
                   aria-label={`Open ${qsCatalog.meta.title} catalog`}
                 >
-                  <Image
-                    src={QS_HERO_IMAGE}
-                    alt=""
-                    fill
+                  <CatalogTileImage
+                    catalogId="QS"
                     priority
                     sizes="(min-width: 1024px) 85vw, 100vw"
-                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
                   <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[88px] font-black tracking-tighter text-background opacity-0 group-hover:opacity-100">
@@ -115,12 +165,9 @@ export default async function HomePage() {
                   className="group relative block h-full w-full overflow-hidden bg-background outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-foreground"
                   aria-label={`Open ${vrCatalog.meta.title} catalog`}
                 >
-                  <Image
-                    src={VR_HERO_IMAGE}
-                    alt=""
-                    fill
+                  <CatalogTileImage
+                    catalogId="VR"
                     sizes="(min-width: 1024px) 85vw, 100vw"
-                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
                   <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[88px] font-black tracking-tighter text-background opacity-0 group-hover:opacity-100">
@@ -138,12 +185,9 @@ export default async function HomePage() {
                   className="group relative block h-full w-full overflow-hidden bg-background outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-foreground"
                   aria-label={`Open ${tsCatalog.meta.title} catalog`}
                 >
-                  <Image
-                    src={TS_HERO_IMAGE}
-                    alt=""
-                    fill
+                  <CatalogTileImage
+                    catalogId="TS"
                     sizes="(min-width: 1024px) 85vw, 100vw"
-                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
                   <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[88px] font-black tracking-tighter text-background opacity-0 group-hover:opacity-100">
@@ -161,12 +205,9 @@ export default async function HomePage() {
                   className="group relative block h-full w-full overflow-hidden bg-background outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-foreground"
                   aria-label={`Open ${fmCatalog.meta.title} catalog`}
                 >
-                  <Image
-                    src={FM_HERO_IMAGE}
-                    alt=""
-                    fill
+                  <CatalogTileImage
+                    catalogId="FM"
                     sizes="(min-width: 1024px) 85vw, 100vw"
-                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
                   <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[88px] font-black tracking-tighter text-background opacity-0 group-hover:opacity-100">
@@ -192,12 +233,9 @@ export default async function HomePage() {
                 className="group relative block h-full w-full overflow-hidden bg-background outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-foreground"
                 aria-label={`Open ${fotaCatalog.meta.title} catalog`}
               >
-                <Image
-                  src={FOTA_HERO_IMAGE}
-                  alt=""
-                  fill
+                <CatalogTileImage
+                  catalogId="FOTA"
                   sizes="(min-width: 1440px) 1440px, 100vw"
-                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
                 <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[88px] font-black tracking-tighter text-background opacity-0 group-hover:opacity-100">
@@ -226,12 +264,9 @@ export default async function HomePage() {
                   className="group relative block h-full w-full overflow-hidden bg-background outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-foreground"
                   aria-label={`Open ${mcr800Catalog.meta.title} catalog`}
                 >
-                  <Image
-                    src={MCR800_HERO_IMAGE}
-                    alt=""
-                    fill
+                  <CatalogTileImage
+                    catalogId="MCR800"
                     sizes="(min-width: 1440px) 1440px, 100vw"
-                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/55" />
                   <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-display text-[88px] font-black tracking-tighter text-background opacity-0 group-hover:opacity-100">
