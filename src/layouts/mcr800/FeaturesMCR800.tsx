@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type RefObject } from 'react';
+import Image from 'next/image';
 import { AnimatePresence, m, useInView, useReducedMotion } from 'framer-motion';
 import type { FeatureItem, FeaturesData } from '@/types/catalog';
 import { getIcon } from '@/lib/icon-map';
@@ -22,11 +23,12 @@ function FeatureVideo({ videoRef, active, activeIndex }: FeatureVideoProps) {
     <div className="relative aspect-square w-full overflow-hidden bg-surface-elevated">
       {active?.image ? (
         <>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             key={`${activeIndex}-${active.image.src}`}
             src={active.image.src}
             alt={active.image.alt ?? ''}
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
             className="absolute inset-0 h-full w-full object-cover"
           />
           <span className="sr-only">

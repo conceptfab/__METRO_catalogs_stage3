@@ -1,6 +1,7 @@
 import type { FinishesData } from '@/types/catalog';
 import { SectionHeading } from '@/components/catalog/SectionHeading';
 import { QxText } from '@/components/catalog/QxText';
+import { PrintImage } from '@/components/catalog/PrintImage';
 
 interface MCR800Illustration {
   id: string;
@@ -50,7 +51,7 @@ export default function FinishesPrintMCR800({ data }: Props) {
           {data.description && (
             <p className="sec_main_text finishes-print-description">
               {descriptionLines.map((line, index) => (
-                <span key={`${line}-${index}`}>
+                <span key={line}>
                   <QxText text={line} />
                   {index < descriptionLines.length - 1 ? <br /> : null}
                 </span>
@@ -66,11 +67,9 @@ export default function FinishesPrintMCR800({ data }: Props) {
                   className="finishes-print-figure-mcr800"
                 >
                   {slot.image && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
+                    <PrintImage
                       src={slot.image}
                       alt={slot.alt}
-                      loading="eager"
                       className="finishes-print-figure-image-mcr800"
                     />
                   )}

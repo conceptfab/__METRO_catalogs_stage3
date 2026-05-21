@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useRef } from 'react';
+import { Fragment, useRef, type ReactNode } from 'react';
 import Image from 'next/image';
 import { m, useInView } from 'framer-motion';
 import type { DimensionsData } from '@/types/catalog';
@@ -12,26 +12,49 @@ interface DimensionsSectionProps {
 }
 
 const PLACEHOLDER_COUNT = 6;
+const PLACEHOLDER_KEYS = Array.from(
+  { length: PLACEHOLDER_COUNT },
+  (_, index) => `module-placeholder-${index + 1}`,
+);
 
 const MODULE_CODE_REGEX = /(RC\d{3}(?:FS|L|R)?)/g;
 
-const renderLineWithBoldedCodes = (line: string) => {
-  const parts = line.split(MODULE_CODE_REGEX);
-  return parts.map((part, idx) =>
-    idx % 2 === 1 ? (
-      <strong key={idx} className="font-semibold text-foreground">
-        {part}
-      </strong>
-    ) : (
-      <Fragment key={idx}>{part}</Fragment>
-    ),
+function ModuleCodeLine({ line }: { line: string }) {
+  const nodes: ReactNode[] = [];
+  let cursor = 0;
+
+  for (const match of line.matchAll(MODULE_CODE_REGEX)) {
+    const code = match[0];
+    const start = match.index ?? 0;
+    if (start > cursor) {
+      nodes.push(
+        <Fragment key={`text-${cursor}`}>{line.slice(cursor, start)}</Fragment>,
+      );
+    }
+    nodes.push(
+      <strong key={`code-${start}`} className="font-semibold text-foreground">
+        {code}
+      </strong>,
+    );
+    cursor = start + code.length;
+  }
+
+  if (cursor < line.length) {
+    nodes.push(<Fragment key={`text-${cursor}`}>{line.slice(cursor)}</Fragment>);
+  }
+
+  return (
+    <>
+      {nodes}
+    </>
   );
-};
+}
 
 const DimensionsMCR800 = ({ data }: DimensionsSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const reveal = SECTION_REVEAL_LIFT;
+  const descriptionLines = data.description?.split('\n').filter(Boolean) ?? [];
 
   return (
     <section
@@ -58,10 +81,12 @@ const DimensionsMCR800 = ({ data }: DimensionsSectionProps) => {
           >
             <QxText text={data.title} />
           </h2>
-          {data.description && (
+          {descriptionLines.length > 0 && (
             <div className="sec_main_text mt-6 space-y-1">
-              {data.description.split('\n').filter(Boolean).map((line, idx) => (
-                <p key={idx}>{renderLineWithBoldedCodes(line)}</p>
+              {descriptionLines.map((line) => (
+                <p key={line}>
+                  <ModuleCodeLine line={line} />
+                </p>
               ))}
             </div>
           )}
@@ -74,8 +99,8 @@ const DimensionsMCR800 = ({ data }: DimensionsSectionProps) => {
           className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:mt-14 lg:grid-cols-3 lg:gap-8"
         >
           {data.modules && data.modules.length > 0
-            ? data.modules.map((module, idx) => (
-                <div key={`${module.label}-${idx}`} className="flex flex-col items-center gap-3">
+            ? data.modules.map((module) => (
+                <div key={module.image} className="flex flex-col items-center gap-3">
                   <div className="relative aspect-square w-[70%] overflow-hidden">
                     <Image
                       src={module.image}
@@ -90,9 +115,9 @@ const DimensionsMCR800 = ({ data }: DimensionsSectionProps) => {
                   </span>
                 </div>
               ))
-            : Array.from({ length: PLACEHOLDER_COUNT }, (_, i) => (
+            : PLACEHOLDER_KEYS.map((key) => (
                 <div
-                  key={i}
+                  key={key}
                   className="relative aspect-square w-full overflow-hidden border border-border bg-surface-elevated"
                   aria-hidden="true"
                 >

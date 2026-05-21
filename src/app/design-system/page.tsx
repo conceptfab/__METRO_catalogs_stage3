@@ -266,6 +266,12 @@ const SHARED_COMPONENTS = [
       'Client-only, mountowany w /print routes. Dodaje body.print-preview by pokazać A4 boundaries na ekranie. Skipowany gdy ?puppeteer=1 — generator PDF potrzebuje DOM bez zoom-skali.',
   },
   {
+    name: 'PrintImage',
+    source: 'src/components/catalog/PrintImage.tsx',
+    description:
+      'Wspólny wrapper next/image dla print/PDF: fill + eager + unoptimized, żeby zachować bezpośrednie publiczne src i klasy object-fit z print.css.',
+  },
+  {
     name: 'CatalogPagePlaceholder',
     source: 'src/components/catalog/CatalogPagePlaceholder.tsx',
     description:
@@ -528,7 +534,7 @@ const TOOLING_USED = [
   { name: 'oauth-discovery.ts', file: 'src/lib/oauth-discovery.ts', desc: 'Buduje metadata OpenID/OAuth (issuer, endpoints, scopes, PKCE). + oauthEndpointHeaders() helper z CORS i Cache-Control.' },
   { name: 'site-url.ts', file: 'src/lib/site-url.ts', desc: 'Resolver bazowego URL (env NEXT_PUBLIC_SITE_URL → Vercel deployment URL → localhost). Używany przez OAuth/MCP do absolutnych linków.' },
   { name: 'types/catalog.ts', file: 'src/types/catalog.ts', desc: 'Centralny model domeny: CatalogData, CatalogMeta, CatalogLayoutType, ProductCodeGroup, HeroSlide, GalleryImage, FinishesContent. Współdzielony przez loader, API, MCP, layouty.' },
-  { name: 'styles/print.css', file: 'src/styles/print.css', desc: '@page A4 landscape + @media print rules. Klasy .print-hide (UI controls), .print-page (A4 boundary box w preview), .print-only. -webkit-print-color-adjust: exact dla wiernych kolorów.' },
+  { name: 'styles/print.css', file: 'src/styles/print.css', desc: '@page A4 landscape + @media print rules. Klasy .print-hide (UI controls), .print-page (A4 boundary box w preview), .print-only. PrintImage korzysta z klas object-fit/object-position z tego pliku. -webkit-print-color-adjust: exact dla wiernych kolorów.' },
   { name: 'generated/responsive-image-manifest.json', file: 'src/generated/responsive-image-manifest.json', desc: 'Output process-images.mjs — mapa src → [generated widths]. Używana przez image-loader.ts i responsive-image.ts.' },
 ];
 

@@ -1,3 +1,4 @@
+import { createElement } from 'react';
 import { render } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import CatalogPrintQX from './CatalogPrintQX';
@@ -5,8 +6,10 @@ import type { CatalogData } from '@/types/catalog';
 
 vi.mock('next/image', () => ({
   default: ({ alt, src }: { alt?: string; src: string }) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img alt={alt ?? ''} src={typeof src === 'string' ? src : 'test-image'} />
+    createElement('img', {
+      alt: alt ?? '',
+      src: typeof src === 'string' ? src : 'test-image',
+    })
   ),
 }));
 

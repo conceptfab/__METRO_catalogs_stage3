@@ -2,6 +2,7 @@ import type { FeatureItem, FeaturesData } from '@/types/catalog';
 import { getIcon } from '@/lib/icon-map';
 import { SectionHeading } from '@/components/catalog/SectionHeading';
 import { QxText } from '@/components/catalog/QxText';
+import { PrintImage } from '@/components/catalog/PrintImage';
 
 interface Props {
   data: FeaturesData;
@@ -42,11 +43,9 @@ function FeatureCard({ item }: { item: FeatureItem }) {
     <article className="features-print-card">
       <div className="features-print-image-wrap">
         {still ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <PrintImage
             src={still}
             alt={item.title}
-            loading="eager"
             className="features-print-image"
           />
         ) : null}

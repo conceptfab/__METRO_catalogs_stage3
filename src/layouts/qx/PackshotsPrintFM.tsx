@@ -5,6 +5,7 @@ import type {
 } from '@/types/catalog';
 import { SectionHeading } from '@/components/catalog/SectionHeading';
 import { QxText } from '@/components/catalog/QxText';
+import { PrintImage } from '@/components/catalog/PrintImage';
 import {
   parsePackshotImage,
   pickConfiguratorOption,
@@ -115,11 +116,9 @@ export default function PackshotsPrintFM({
                         className="packshots-print-cell"
                       >
                         <div className="packshots-print-image-wrap">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
+                          <PrintImage
                             src={item.image}
                             alt={item.name || `${item.code} packshot`}
-                            loading="eager"
                             className="packshots-print-image"
                           />
                         </div>

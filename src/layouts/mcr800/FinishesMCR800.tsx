@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import Image from 'next/image';
 import { m, useInView } from 'framer-motion';
 import type { FinishesData } from '@/types/catalog';
 import { SECTION_REVEAL_SETTLE, slowTransition } from '@/lib/motion';
@@ -69,7 +70,7 @@ const FinishesMCR800 = ({ data }: FinishesSectionProps) => {
           {data.description && (
             <p className="sec_main_text mt-6 max-w-[633px]">
               {descriptionLines.map((line, index) => (
-                <span key={`${line}-${index}`}>
+                <span key={line}>
                   <QxText text={line} />
                   {index < descriptionLines.length - 1 ? <br /> : null}
                 </span>
@@ -92,10 +93,11 @@ const FinishesMCR800 = ({ data }: FinishesSectionProps) => {
                 className="relative aspect-square w-full overflow-hidden border border-border bg-surface-elevated"
               >
                 {slot.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <Image
                     src={slot.image}
                     alt={slot.alt}
+                    fill
+                    sizes="(min-width: 640px) 50vw, 100vw"
                     className="absolute inset-0 h-full w-full object-contain"
                   />
                 ) : (

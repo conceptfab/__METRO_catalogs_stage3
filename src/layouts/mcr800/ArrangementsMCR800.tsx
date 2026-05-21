@@ -63,8 +63,8 @@ const ArrangementsMCR800 = ({ data }: ArrangementsSectionProps) => {
           transition={slowTransition({ duration: 0.6, delay: 0.2 })}
           className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:mt-12 lg:gap-10"
         >
-          {placeholders.map((placeholder, i) => (
-            <div key={`${placeholder.label}-${i}`} className="flex flex-col items-center gap-3">
+          {placeholders.map((placeholder) => (
+            <div key={placeholder.image ?? placeholder.label} className="flex flex-col items-center gap-3">
               <div className="relative aspect-[1.6/1] w-full overflow-hidden">
                 {placeholder.image ? (
                   <Image

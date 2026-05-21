@@ -171,8 +171,8 @@ const ProductCodesMCR800 = ({ data }: ProductCodesSectionProps) => {
                     transition={slowTransition({ duration: 0.6, delay: 0.25 })}
                     className="grid flex-1 grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:gap-6"
                   >
-                    {data.modules.map((module, idx) => (
-                      <div key={`${module.label}-${idx}`} className="flex flex-col items-center gap-2">
+                    {data.modules.map((module) => (
+                      <div key={module.image} className="flex flex-col items-center gap-2">
                         <div className="relative aspect-square w-[80%] overflow-hidden">
                           <Image
                             src={module.image}

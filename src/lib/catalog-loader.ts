@@ -536,16 +536,14 @@ export async function getCatalogFooterEntries(): Promise<CatalogFooterEntry[]> {
         `${overviewBase(item.id)}/content.json`,
       );
 
-      const dedicatedThumb = await resolveImage(
-        thumbsBase(item.id),
-        `${item.id.toLowerCase()}-nav.webp`,
-      );
+      const [dedicatedThumb, fallbackPackshot] = await Promise.all([
+        resolveImage(thumbsBase(item.id), `${item.id.toLowerCase()}-nav.webp`),
+        overview?.packshotImage
+          ? resolveImage(overviewBase(item.id), overview.packshotImage)
+          : Promise.resolve(null),
+      ]);
 
-      const thumbnail =
-        dedicatedThumb ??
-        (overview?.packshotImage
-          ? await resolveImage(overviewBase(item.id), overview.packshotImage)
-          : null);
+      const thumbnail = dedicatedThumb ?? fallbackPackshot;
 
       if (!thumbnail) return null;
 

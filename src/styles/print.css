@@ -230,6 +230,7 @@
   max-height: 100%;
   width: auto;
   height: auto;
+  object-fit: contain;
   display: block;
 }
 
@@ -497,6 +498,7 @@
   width: auto;
   height: auto;
   object-fit: contain;
+  object-position: top center;
   display: block;
 }
 

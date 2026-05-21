@@ -5,7 +5,7 @@ import type {
 } from '@/types/catalog';
 import { SectionHeading } from '@/components/catalog/SectionHeading';
 import { QxText } from '@/components/catalog/QxText';
-import { responsiveImg } from '@/lib/responsive-image';
+import { PrintImage } from '@/components/catalog/PrintImage';
 import {
   dedupeByCode,
   orderOptions,
@@ -240,26 +240,22 @@ export default function FinishesPrintQX({
                 aria-label={previewAlt}
               >
                 {previewMode !== 'desktop-only' && randomFrame && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <PrintImage
                     src={randomFrame.image}
-                    {...responsiveImg(randomFrame.image, 'materials-full')}
                     alt=""
-                    aria-hidden="true"
                     draggable={false}
-                    loading="eager"
+                    ariaHidden
+                    sizes="(min-width: 1440px) 687px, (min-width: 1024px) 50vw, 100vw"
                     className="finishes-print-preview-layer"
                   />
                 )}
                 {previewMode !== 'frame-only' && randomDesktop && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <PrintImage
                     src={randomDesktop.image}
-                    {...responsiveImg(randomDesktop.image, 'materials-full')}
                     alt=""
-                    aria-hidden="true"
                     draggable={false}
-                    loading="eager"
+                    ariaHidden
+                    sizes="(min-width: 1440px) 687px, (min-width: 1024px) 50vw, 100vw"
                     className="finishes-print-preview-layer"
                   />
                 )}

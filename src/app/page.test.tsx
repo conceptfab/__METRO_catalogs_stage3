@@ -1,8 +1,9 @@
+import { createElement, type ImgHTMLAttributes } from 'react';
 import { render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import HomePage from './page';
 
-type MockImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
+type MockImageProps = ImgHTMLAttributes<HTMLImageElement> & {
   fill?: boolean;
   priority?: boolean;
 };
@@ -15,8 +16,7 @@ vi.mock('next/image', () => ({
     src,
     ...props
   }: MockImageProps) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img alt={alt ?? ''} src={String(src)} {...props} />
+    createElement('img', { alt: alt ?? '', src: String(src), ...props })
   ),
 }));
 

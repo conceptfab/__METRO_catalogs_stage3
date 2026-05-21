@@ -1,5 +1,6 @@
 import type { CatalogData } from '@/types/catalog';
 import { SectionHeading } from '@/components/catalog/SectionHeading';
+import { PrintImage } from '@/components/catalog/PrintImage';
 
 interface Props {
   catalog: CatalogData;
@@ -44,22 +45,20 @@ export default function GalleryPrintMCR800({ catalog }: Props) {
 
         <div className="print-section-content">
           <div className="gallery-print-rows" style={{ gap }}>
-            {rows.map((row, ri) => (
-              <div key={ri} className="gallery-print-row" style={{ gap }}>
-                {row.map((img, i) => {
+            {rows.map((row) => (
+              <div key={row.map((img) => img.src).join('|')} className="gallery-print-row" style={{ gap }}>
+                {row.map((img) => {
                   const aspect =
                     img.width && img.height ? img.width / img.height : 1;
                   return (
                     <div
-                      key={`${img.src}-${i}`}
+                      key={img.src}
                       className="gallery-print-cell"
                       style={{ flex: `${aspect} 1 0` }}
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <PrintImage
                         src={img.src}
                         alt={img.alt}
-                        loading="eager"
                         className="gallery-print-image"
                       />
                     </div>

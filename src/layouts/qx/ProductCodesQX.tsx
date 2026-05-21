@@ -161,9 +161,9 @@ const ProductCodesQX = ({ data }: ProductCodesSectionProps) => {
                 ))}
                 {hasPlaceholders && (
                   <div className="mt-4 flex flex-row gap-3 sm:gap-4 lg:mt-0 lg:col-start-2 lg:row-start-2 lg:gap-3 lg:self-stretch">
-                    {data.placeholders!.map((placeholder, index) => (
+                    {data.placeholders!.map((placeholder) => (
                       <div
-                        key={`${placeholder.label}-${index}`}
+                        key={placeholder.image ?? placeholder.label}
                         className="flex flex-1 flex-col items-center gap-2 lg:h-full lg:flex-none"
                       >
                         <div className="relative aspect-square w-full max-w-[160px] overflow-hidden lg:w-auto lg:max-w-none lg:h-[calc(100%-1.75rem)]">
@@ -172,6 +172,7 @@ const ProductCodesQX = ({ data }: ProductCodesSectionProps) => {
                               src={placeholder.image}
                               alt={placeholder.label}
                               fill
+                              sizes="(min-width: 1024px) 160px, (min-width: 640px) 25vw, 50vw"
                               className="object-contain"
                             />
                           ) : null}
