@@ -10,7 +10,7 @@
   },
   "slides": [
     {
-      "image": "scene_WHITE_B_4_4K.webp",
+      "image": "mcr_hero_A.webp",
       "alt": "MCR800 desk system in a modern open-space office with people working",
       "description": "Slide 01: Open-space layout with collaborative desks.",
       "descriptionStyle": {
@@ -34,7 +34,7 @@
       "mobileImageOffsetX": "100px"
     },
     {
-      "image": "scene_WHITE_C_4_4K.webp",
+      "image": "mcr_hero_B.webp",
       "alt": "MCR800 desk system with matching chairs in a bright workspace",
       "description": "Slide 02: Focused workstation arrangement with coordinated seating.",
       "descriptionStyle": {

@@ -247,13 +247,13 @@
     1024,
     1600
   ],
-  "/catalogs/FOTA/hero/12_25_Metro_FOTA_HERO_0_0000.webp": [
+  "/catalogs/FOTA/hero/12_25_Metro_FOTA_HERO_AA.webp": [
     640,
     1280,
     1920,
     2560
   ],
-  "/catalogs/FOTA/hero/12_25_Metro_FOTA_HERO_1_0000.webp": [
+  "/catalogs/FOTA/hero/12_25_Metro_FOTA_HERO_BB.webp": [
     640,
     1280,
     1920,
@@ -428,19 +428,19 @@
     1024,
     1600
   ],
-  "/catalogs/MCR800/hero/scene_WHITE_B_4_4K.webp": [
+  "/catalogs/MCR800/hero/mcr_hero_A.webp": [
     640,
     1280,
     1920,
     2560
   ],
-  "/catalogs/MCR800/hero/scene_WHITE_C_4_4K.webp": [
+  "/catalogs/MCR800/hero/mcr_hero_B.webp": [
     640,
     1280,
     1920,
     2560
   ],
-  "/catalogs/MCR800/overview/QS-overview0000.webp": [
+  "/catalogs/MCR800/overview/MCR800_overview_R11.webp": [
     400,
     800,
     1200,
