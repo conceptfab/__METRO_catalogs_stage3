@@ -4,6 +4,7 @@ import OverviewMCR800 from './OverviewMCR800';
 import GalleryPrintMCR800 from './GalleryPrintMCR800';
 import FinishesPrintMCR800 from './FinishesPrintMCR800';
 import DimensionsMCR800 from './DimensionsMCR800';
+import ArrangementsPrintMCR800 from './ArrangementsPrintMCR800';
 import MaterialsPrintMCR800 from './MaterialsPrintMCR800';
 import FeaturesPrintMCR800 from './FeaturesPrintMCR800';
 import GettingStartedMCR800 from './GettingStartedMCR800';
@@ -55,6 +56,11 @@ export default function CatalogPrintMCR800({ catalog }: Props) {
       <div className="print-page print-page-dimensions">
         <DimensionsMCR800 data={catalog.dimensions} />
       </div>
+      {/* ArrangementsPrintMCR800 chunks the sample arrangements into pages of 4
+       * and emits its own .print-page wrappers — one per chunk. Renders nothing
+       * when the catalog has no arrangements data. Mirrors the on-screen order:
+       * Dimensions → Arrangements → Materials. */}
+      <ArrangementsPrintMCR800 data={catalog.arrangements} />
       {/* MaterialsPrintMCR800 chunks the 8 set illustrations into pages of 4
        * and emits its own .print-page wrappers — one per chunk. */}
       <MaterialsPrintMCR800 data={catalog.materials} />

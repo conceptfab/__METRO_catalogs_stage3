@@ -4,6 +4,10 @@
     "tagline": "FOTA Modular desk system/n engineered for the modern workspace.",
     "taglineLine2": "Where precision meets flexibility.",
     "ctaLabel": "Explore Collection",
-    "heroImage": "12_25_Metro_FOTA_HERO_0_0000.webp",
-    "heroImageAlt": "FOTA desk system in a modern open-space office with people working"
+    "heroImage": "12_25_Metro_FOTA_HERO_AA.webp",
+    "heroImageAlt": "FOTA desk system in a modern open-space office with people working",
+    "printCover": {
+        "image": "12_25_Metro_FOTA_HERO_AA.webp",
+        "alt": "FOTA desk system cover"
+    }
 }

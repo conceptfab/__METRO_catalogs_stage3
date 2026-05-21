@@ -45,12 +45,12 @@
         "maxWidth": "28rem"
       },
       "contentLayout": {
-        "anchor": "top-center",
+        "anchor": "top-left",
         "textAlign": "left",
         "maxWidth": "640px",
         "paddingTop": "10rem",
         "paddingBottom": "0",
-        "offsetX": "5rem",
+        "offsetX": "0",
         "contentLift": "0",
         "ctaPosition": "floating",
         "ctaFloatingBottom": "2rem"

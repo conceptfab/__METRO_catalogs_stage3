@@ -444,7 +444,8 @@
 }
 
 .print-page-packshots .print-section-content,
-.print-page-materials .print-section-content {
+.print-page-materials .print-section-content,
+.print-page-arrangements .print-section-content {
   flex: 0 0 auto;
 }
 
@@ -452,23 +453,27 @@
  * affects this print page, not other sections sharing the .print-section
  * geometry. Frame padding, heading margin and subtitle margins are all
  * tightened to give the 2×2 grid the largest possible cells.
- * MaterialsPrintMCR800 reuses the same .packshots-print-grid (1080px tall),
- * so its .print-page-materials wrapper needs the identical tightening — without
+ * MaterialsPrintMCR800 and ArrangementsPrintMCR800 reuse the same
+ * .packshots-print-grid (1080px tall), so their .print-page-materials /
+ * .print-page-arrangements wrappers need the identical tightening — without
  * this the bottom row's .packshots-print-meta captions get clipped by the
  * 1358px page boundary. */
 .print-page-packshots .print-section-frame,
-.print-page-materials .print-section-frame {
+.print-page-materials .print-section-frame,
+.print-page-arrangements .print-section-frame {
   padding-top: 32px;
   padding-bottom: 32px;
 }
 
 .print-page-packshots .print-section-heading,
-.print-page-materials .print-section-heading {
+.print-page-materials .print-section-heading,
+.print-page-arrangements .print-section-heading {
   margin-bottom: 16px;
 }
 
 .print-page-packshots .packshots-print-subtitle,
-.print-page-materials .packshots-print-subtitle {
+.print-page-materials .packshots-print-subtitle,
+.print-page-arrangements .packshots-print-subtitle {
   margin: -16px 0 16px;
 }
 

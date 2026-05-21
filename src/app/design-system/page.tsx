@@ -330,7 +330,8 @@ const PRINT_LAYOUTS = [
   { name: 'FinishesPrintQX', file: 'src/layouts/qx/FinishesPrintQX.tsx', desc: 'Konfigurator dla wydruku — losowy preview + pełna lista swatchy. Współdzielony przez QX, QS, VR, TS, FOTA (FM ma własny FinishesPrintFM).' },
   { name: 'PackshotsPrintQX', file: 'src/layouts/qx/PackshotsPrintQX.tsx', desc: 'Paginowane packshoty — siatka z konfigurowalnym pacing per-strona. Współdzielony przez QX, QS, VR, TS, FOTA (FM ma własny PackshotsPrintFM).' },
   { name: 'ContactPrintQX', file: 'src/layouts/qx/ContactPrintQX.tsx', desc: 'Strona kontaktu na końcu wydruku, wspólny układ dla QX i MCR800.' },
-  { name: 'CatalogPrintMCR800', file: 'src/layouts/mcr800/CatalogPrintMCR800.tsx', desc: 'Wydruk MCR800 — analog CatalogPrintQX. + 7 print sekcji MCR800 (Hero/Overview/Gallery/Features/Finishes/Packshots/Materials/Contact).' },
+  { name: 'CatalogPrintMCR800', file: 'src/layouts/mcr800/CatalogPrintMCR800.tsx', desc: 'Wydruk MCR800 — analog CatalogPrintQX. + dedykowane print sekcje MCR800 (Hero/Overview/Gallery/Finishes/Packshots/Arrangements/Materials/Features/Contact).' },
+  { name: 'ArrangementsPrintMCR800', file: 'src/layouts/mcr800/ArrangementsPrintMCR800.tsx', desc: 'Wzorcowe aranżacje dla wydruku — paginowana siatka 2×2 (chunk po 4), współdzieli .packshots-print-* CSS. Lustro ekranowego ArrangementsMCR800; renderuje null gdy katalog nie ma arrangements. Tylko MCR800.' },
 ];
 
 const FM_OVERRIDES = [
