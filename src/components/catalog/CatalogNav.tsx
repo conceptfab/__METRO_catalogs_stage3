@@ -364,7 +364,7 @@ function renderCatalogNav({
                   <li key={section.id}>
                     <button
                       onClick={() => scrollTo(section.id)}
-                      className={`catalog-nav-link w-full border-b border-muted p-5 text-left text-base font-medium transition-colors last:border-0 !rounded-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
+                      className={`catalog-nav-link w-full border-b border-muted px-5 py-3 text-left text-base font-medium transition-colors last:border-0 !rounded-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                         isSectionHighlighted(section.id)
                           ? '!font-bold !text-foreground'
                           : 'text-muted-foreground hover:text-foreground'
@@ -452,12 +452,12 @@ function renderCatalogNav({
             exit={{ opacity: 0, y: -20 }}
             className="fixed left-0 right-0 top-14 z-[59] border-b border-border bg-surface-elevated shadow-xl lg:hidden"
           >
-            <ul className="flex flex-col p-4">
+            <ul className="flex flex-col px-4 py-2">
               {visibleSections.map((section) => (
                 <li key={section.id}>
                   <button
                     onClick={() => scrollTo(section.id)}
-                    className={`catalog-nav-link w-full p-4 text-left text-base font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
+                    className={`catalog-nav-link w-full px-4 py-2 text-left text-base font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-foreground ${
                         isSectionHighlighted(section.id)
                           ? '!font-bold !text-foreground'
                           : 'text-muted-foreground hover:text-foreground'

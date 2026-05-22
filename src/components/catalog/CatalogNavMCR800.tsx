@@ -346,7 +346,7 @@ function renderCatalogNav({
                 <li key={section.id}>
                   <button
                     onClick={() => scrollTo(section.id)}
-                    className={`catalog-nav-link w-full border-b border-muted p-5 text-left text-base font-medium transition-colors last:border-0 !rounded-none ${
+                    className={`catalog-nav-link w-full border-b border-muted px-5 py-3 text-left text-base font-medium transition-colors last:border-0 !rounded-none ${
                       isSectionHighlighted(section.id)
                         ? '!font-bold !text-foreground'
                         : 'text-muted-foreground hover:text-foreground'
