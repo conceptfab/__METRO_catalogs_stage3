@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Lato } from 'next/font/google';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import '@/styles/print.css';
 import { Providers } from './providers';
@@ -44,6 +45,7 @@ export default function RootLayout({
     <html lang="en" className={lato.variable}>
       <body>
         <Providers>{children}</Providers>
+        <SpeedInsights />
       </body>
     </html>
   );
